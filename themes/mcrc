@@ -1,0 +1,277 @@
+# -*- shell-script -*-
+
+### CTWM configuration file by Mikael "MC" Cardell <mc@hack.org>.
+### Last changed 2003-01-29.
+
+### A slightly blueish/greyish colour style.
+
+# Color
+# {
+# 	BorderColor		"#6a7b8f"
+# 	DefaultBackground	"#6a7b8f"
+# 	BorderTileBackground    "grey30"
+# 	BorderTileForeground    "grey30"
+# 	DefaultForeground	"black"
+# 	TitleBackground		"#6a7b8f"
+# 	TitleForeground		"black"
+# 	MenuBackground		"#6a7b8f"
+# 	MenuForeground		"black"
+# 	MenuTitleBackground	"#6a7b8f"
+# 	MenuTitleForeground	"black"
+# 	IconManagerBackground	"white"
+# 	IconManagerForeground	"black"
+# 	IconManagerHighlight	"black"
+# }
+
+Color
+{
+	BorderColor		"light slate gray"
+	DefaultBackground	"light slate gray"
+	BorderTileBackground    "grey30"
+	BorderTileForeground    "grey30"
+	DefaultForeground	"black"
+	TitleBackground		"light slate gray"
+	TitleForeground		"black"
+	MenuBackground		"light slate gray"
+	MenuForeground		"black"
+	MenuTitleBackground	"light slate gray"
+	MenuTitleForeground	"black"
+	IconManagerBackground	"white"
+	IconManagerForeground	"black"
+	IconManagerHighlight	"black"
+}
+
+Cursors
+{
+	Frame		"top_left_arrow"
+	Title		"top_left_arrow"
+	Icon		"box_spiral"
+	IconMgr		"top_left_arrow"
+	Move		"fleur"
+	Resize		"sizing"
+	Menu		"sb_left_arrow"
+	Button		"hand2"
+	Wait		"watch"
+	Select		"dot"
+	Destroy		"pirate"
+}
+
+TitleFont "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+MenuFont "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+
+NoGrabServer                    # Permit X events while doing wm ops.
+UsePPosition "on"               # Honour window's own placement.
+WarpCursor
+DontMoveOff
+
+### Comment out the opaque lines if you're on a slow display so you
+### move only outlines instead of entire windows.
+
+#OpaqueMove
+#OpaqueResize
+
+### Sloppy focus will only work in versions >= 3.6, but I find it
+### useful, especially if you don't have the unclutter utility.
+
+SloppyFocus
+
+### Place new windows directly on screen without dragging...
+
+RandomPlacement "on"
+
+### ...but try not to overlap with existing windows.
+
+PackNewWindows
+
+RestartPreviousState
+DecorateTransients
+BorderWidth 1
+IconifyByUnmapping
+
+### Don't show icon managers or workspaces in windows or icon menus.
+
+ShortAllWindowsMenus
+
+### Avoid 'technicolor' effect on wm decorations if the display has
+### few colours by storing these colours.
+
+SaveColor
+{
+    BorderColor
+    TitleBackground
+    TitleForeground
+}
+
+### If I set the root window, I don't want ctwm to repaint it when I
+### shift workspaces.
+
+DontPaintRootWindow
+
+WorkSpaces
+{
+	"1"	{"white" "white" "black" "black"}
+	"2"
+	"3"
+	"4"
+	"5"
+	"6"
+	"7"
+	"8"
+	"9"
+	"10"
+}
+
+Occupy
+{
+    "Dillo" {"2"}
+}
+
+OccupyAll 
+{
+    "swisswatch"
+    "xwatch"
+    "xbiff"
+    "xclock"
+    "asapm"
+    "xmms"
+}
+
+StayUpMenus
+
+### If I'm using ctwm and not twm, these can make the decorations look
+### somewhat nicer, at least if you have many colours to shade with.
+
+UseThreeDMenus
+UseThreeDTitles
+SunkFocusWindowTitle
+NoTitleHighLight
+
+### Note that 3D buttons such as :xpm:resize don't use this variable
+### unless you have MC's patches to v3.6.
+
+TitleButtonShadowDepth 1
+
+TitleShadowDepth 1
+DarkShadowContrast 40
+ClearShadowContrast 40
+
+TitleJustification "left"
+
+Notitle
+{
+    ""
+    "WorkSpaceManager"
+    "rclock"
+    "xclock"
+    "asapm"
+    "asclock"
+    "xbiff"
+    "xphone"
+    "xmms"
+}
+
+### Define some useful functions for motion-based actions.
+
+MoveDelta 3
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+### Set some useful bindings.
+
+### No default buttons.
+
+NoDefaults
+
+### The :xpm:cross builtin 3D button is only available in versions
+### >=3.6, but looking neat and says more about what this button does
+### in this configuration (closes the window) than a bar does.
+
+LeftTitleButton ":xpm:cross" = f.delete
+
+### Comment out above and uncomment below if you're using versions
+### prior to 3.6.
+
+#LeftTitleButton ":xpm:bar" = f.delete
+
+RightTitleButton ":xpm:dot" = f.iconify
+RightTitleButton ":xpm:resize" = f.resize
+
+Button1 = : root : f.menu "defops"
+Button2 = : root : f.menu "programs"
+
+### The TwmIcons menu is only available in ctwm >=3.5.2, but very
+### useful when its there. It shows a list of iconified windows so
+### there is no need for mapped icon managers.
+
+Button3 = : root : f.menu "TwmIcons"
+
+Button1 = m : window|icon : f.function "move-or-lower"
+Button2 = m : window|icon : f.iconify
+Button3 = m : window|icon : f.function "move-or-raise"
+
+### Mouse button events on the title. Move with left, raise or lower
+### with middle and squeeze the window to show only the title with the
+### rightmost button.
+
+Button1 = : title : f.function "move-or-raise"
+Button2 = : title : f.raiselower
+Button3 = : title : f.squeeze
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+
+"F1" = : all : f.gotoworkspace "1"
+"F2" = : all : f.gotoworkspace "2"
+"F3" = : all : f.gotoworkspace "3"
+"F4" = : all : f.gotoworkspace "4"
+"F5" = : all : f.gotoworkspace "5"
+"F6" = : all : f.gotoworkspace "6"
+"F7" = : all : f.gotoworkspace "7"
+"F8" = : all : f.gotoworkspace "8"
+"F9" = : all : f.gotoworkspace "9"
+"F10" = : all : f.gotoworkspace "10"
+
+### And a menu with the usual window manager things.
+
+menu "defops"
+{
+    "CTWM"	f.title
+    "Iconify"	f.iconify
+    "Resize"	f.resize
+    "Move"	f.move
+    "Raise"	f.raise
+    "Lower"	f.lower
+    ""		f.nop
+    "Focus"	f.focus
+    "Unfocus"	f.unfocus
+    ""          f.nop
+    "Occupy"    f.occupy
+    ""		f.nop
+    "Kill"	f.destroy
+    "Delete"	f.delete
+    ""		f.nop
+    "Restart"	f.restart
+    "Exit"	f.quit
+}
+
+### Some useful tools I often start.
+
+menu "programs"
+{
+    "Tools"	f.title
+    "xterm"     f.exec "xterm -title 'xterm' &"
+    "Emacs"	f.exec "emacs &"
+    "Dillo"     f.exec "dillo &"
+    "Mozilla"   f.exec "mozilla&"
+    "xpdf"      f.exec "xpdf&"
+    "xv"        f.exec "xv&"
+    "Remotes"   f.title
+    "zoot"	f.exec "xterm -title zoot -e ssh zoot.hack.org&"
+    "r2d2"	f.exec "xterm -title r2d2 -e ssh r2d2.sics.se&"
+    "sellafield" f.exec "xterm -title sellafield -e ssh -L 4715:news.lysator.liu.se:119 sellafield.lysator.liu.se&"
+    "curie"	f.exec "xterm -title curie -e ssh -x curie.lysator.liu.se&"
+}
