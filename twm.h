@@ -64,6 +64,10 @@
 #ifndef _TWM_
 #define _TWM_
 
+#ifdef DMALLOC
+#include <dmalloc.h>
+#endif
+
 #ifdef VMS
 #include <decw$include/Xlib.h>
 #include <decw$include/Xutil.h>
@@ -401,6 +405,13 @@ typedef struct TwmWindow
     Bool heightEverChangedByUser;
 #endif
 
+#ifdef KWM_HINTS
+    struct {
+	unsigned int kwm_hidden_for_modules:1;
+	unsigned int kwm_managed:1;
+	unsigned int kwm_menubar:1;
+    } flags;
+#endif
 } TwmWindow;
 
 #ifdef X11R6

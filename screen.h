@@ -384,6 +384,9 @@ typedef struct ScreenInfo
 
     FuncKey FuncKeyRoot;
     FuncButton FuncButtonRoot;
+#ifdef KWM_HINTS
+    Window kwm_dock;
+#endif
 } ScreenInfo;
 
 extern int MultiScreen;
