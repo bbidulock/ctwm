@@ -1089,3 +1089,8 @@ TWM_CAPTIVE_NAME : The name of the captive Ctwm, if captive.
 	nonnegative integer as argument) you can declare a border "off limits" for
 	f.move etc.. These borders act the same way as the real borders of the
 	screen when moving windows; you can use f.forcemove to override them. 
+
+    5 - From Johan Vromans :Despite the documentation, the -k flag does little
+	more than saving the prepended defines in /tmp.  The appended patch adds
+	the -K <file> option to ctwm. With this option, the result of filtering
+	through m4 is saved in the named file.

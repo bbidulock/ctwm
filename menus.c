@@ -184,7 +184,7 @@ static void Identify();
 
 #define SHADOWWIDTH 5			/* in pixels */
 
-
+extern Atom _XA_WIN_STATE;
 
 /***********************************************************************
  *
@@ -3590,7 +3590,6 @@ Execute(s)
 #endif
 }
 
-
 
 Window lowerontop = -1;
 
@@ -4006,9 +4005,28 @@ TwmWindow *tmp_win;
 		      ? tmp_win->hints.win_gravity : NorthWestGravity);
     XWindowAttributes winattrs;
     unsigned long eventMask;
+	
+    unsigned char	*prop;
+    unsigned long	nitems, bytesafter;
+    Atom		actual_type;
+    int			actual_format, gwkspc;
 
     if (tmp_win->squeezed) {
 	tmp_win->squeezed = False;
+
+	XGetWindowAttributes(dpy, tmp_win->w, &winattrs);
+    eventMask = winattrs.your_event_mask;
+    XSelectInput(dpy, tmp_win->w, eventMask & ~PropertyChangeMask);
+	if(XGetWindowProperty(dpy, tmp_win->w, _XA_WIN_STATE, 0L, 32, False,
+			XA_CARDINAL, &actual_type, &actual_format, &nitems, &bytesafter, &prop) 
+			!= Success || nitems == 0) gwkspc = 0;
+	else gwkspc = (int)*prop;
+	gwkspc &= ~(1<<5);
+	XChangeProperty(dpy, tmp_win->w, _XA_WIN_STATE, XA_CARDINAL, 32, 
+			PropModeReplace, (unsigned char *)&gwkspc, 1); 
+
+    XSelectInput(dpy, tmp_win->w, eventMask);
+
 	if (!tmp_win->isicon) XMapWindow (dpy, tmp_win->w);
 	SetupWindow (tmp_win, tmp_win->actual_frame_x, tmp_win->actual_frame_y,
 		tmp_win->actual_frame_width, tmp_win->actual_frame_height, -1);
@@ -4040,7 +4058,15 @@ TwmWindow *tmp_win;
     }
     XGetWindowAttributes(dpy, tmp_win->w, &winattrs);
     eventMask = winattrs.your_event_mask;
-    XSelectInput(dpy, tmp_win->w, eventMask & ~StructureNotifyMask);
+    XSelectInput(dpy, tmp_win->w, eventMask & ~(StructureNotifyMask | PropertyChangeMask));
+	if(XGetWindowProperty(dpy, tmp_win->w, _XA_WIN_STATE, 0L, 32, False,
+			XA_CARDINAL, &actual_type, &actual_format, &nitems, &bytesafter, &prop) 
+			!= Success || nitems == 0) gwkspc = 0;
+	else gwkspc = (int)*prop;
+	gwkspc |= (1<<5);
+	XChangeProperty(dpy, tmp_win->w, _XA_WIN_STATE, XA_CARDINAL, 32, 
+			PropModeReplace, (unsigned char *)&gwkspc, 1); 
+
     XUnmapWindow(dpy, tmp_win->w);
     XSelectInput(dpy, tmp_win->w, eventMask);
 

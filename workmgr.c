@@ -56,6 +56,8 @@ int strcmp(); /* missing from string.h in AUX 2.0 */
 static void fakeRaiseLower ();
 #endif
 
+#include "gnomewindefs.h" /* include GNOME hints definitions */
+
 extern int twmrc_error_prefix (); /* in ctwm.c */
 extern int match ();		/* in list.c */
 extern char *captivename;
@@ -99,6 +101,9 @@ Atom _XA_WM_CURRENTWORKSPACE;
 Atom _XA_WM_WORKSPACESLIST;
 Atom _XA_WM_CTWMSLIST;
 Atom _OL_WIN_ATTR;
+
+extern Atom _XA_WIN_WORKSPACE;
+extern Atom _XA_WIN_STATE;
 
 int       fullOccupation    = 0;
 int       useBackgroundInfo = False;
@@ -165,13 +170,13 @@ ConfigureWorkSpaceManager () {
 void CreateWorkSpaceManager () {
     WorkSpaceList *wlist;
     char wrkSpcList [512];
-    int len;
+    int len, junk;
 
     if (! Scr->workSpaceManagerActive) return;
 
     _XA_WM_OCCUPATION       = XInternAtom (dpy, "WM_OCCUPATION",       False);
     _XA_WM_CURRENTWORKSPACE = XInternAtom (dpy, "WM_CURRENTWORKSPACE", False);
-    _XA_WM_WORKSPACESLIST   = XInternAtom (dpy, "WM_WORKSPACESLIST",   False);
+    _XA_WM_WORKSPACESLIST   = XInternAtom (dpy, "_WIN_WORKSPACE_NAMES",   False);
     _OL_WIN_ATTR            = XInternAtom (dpy, "_OL_WIN_ATTR",        False);
 
     NewFontCursor (&handCursor, "hand2");
@@ -194,7 +199,7 @@ void CreateWorkSpaceManager () {
 		Scr->workSpaceMgr.workspaceWindow.curBorderColor);
     XClearWindow (dpy, wlist->mapSubwindow.w);
 
-    len = GetPropertyFromMask (0xFFFFFFFF, wrkSpcList);
+    len = GetPropertyFromMask (0xFFFFFFFF, wrkSpcList, &junk);
     XChangeProperty (dpy, Scr->Root, _XA_WM_WORKSPACESLIST, XA_STRING, 8, 
 		     PropModeReplace, (unsigned char *) wrkSpcList, len);
 }
@@ -216,6 +221,20 @@ char *wname;
     if (wlist == NULL) return;
     GotoWorkSpace (wlist);
 }
+
+/* 6/19/1999 nhd for GNOME compliance */
+void GotoWorkSpaceByNumber(workspacenum)
+int workspacenum;
+{
+	WorkSpaceList *wlist;
+	if(! Scr->workSpaceManagerActive) return;
+	for (wlist = Scr->workSpaceMgr.workSpaceList; wlist != NULL; wlist = wlist->next){
+		if (wlist->number == workspacenum) break;
+	}
+	if (wlist == NULL) return;
+	GotoWorkSpace (wlist);
+}
+/* */
 
 void GotoPrevWorkSpace () {
     WorkSpaceList *wlist1, *wlist2;
@@ -484,6 +503,10 @@ WorkSpaceList *wlist;
 
     XChangeProperty (dpy, Scr->Root, _XA_WM_CURRENTWORKSPACE, XA_STRING, 8, 
 		     PropModeReplace, (unsigned char *) newscr->name, strlen (newscr->name));
+/* nhd 6/19/1999 for GNOME compliance */
+	XChangeProperty(dpy, Scr->Root, _XA_WIN_WORKSPACE, XA_CARDINAL, 32,
+		PropModeReplace, (unsigned char *) &(newscr->number),1);
+/* */
     XSelectInput(dpy, Scr->Root, eventMask);
 
     XDestroyWindow (dpy, w);
@@ -498,6 +521,8 @@ WorkSpaceList *wlist;
     }
     XSync (dpy, 0);
     MaybeAnimate = True;
+
+
 }
 
 char *GetCurrentWorkSpaceName ()
@@ -615,6 +640,7 @@ int occupation_hint; /* <== [ Matthew McNeill Feb 1997 ] == */
     WorkSpaceList	*wlist;
     XWindowAttributes   winattrs;
     unsigned long	eventMask;
+	int gwkspc = 0; /* for GNOME - which workspace we occupy */
 
     if (! Scr->workSpaceManagerActive) {
 	twm_win->occupation = 1;
@@ -687,7 +713,7 @@ int occupation_hint; /* <== [ Matthew McNeill Feb 1997 ] == */
     if ((twm_win->occupation & fullOccupation) == 0)
 	twm_win->occupation = 1 << Scr->workSpaceMgr.activeWSPC->number;
 
-    len = GetPropertyFromMask (twm_win->occupation, wrkSpcList);
+    len = GetPropertyFromMask (twm_win->occupation, wrkSpcList, &gwkspc);
 
     if (!XGetWindowAttributes(dpy, twm_win->w, &winattrs)) return;
     eventMask = winattrs.your_event_mask;
@@ -695,6 +721,16 @@ int occupation_hint; /* <== [ Matthew McNeill Feb 1997 ] == */
 
     XChangeProperty (dpy, twm_win->w, _XA_WM_OCCUPATION, XA_STRING, 8, 
 		     PropModeReplace, (unsigned char *) wrkSpcList, len);
+	XChangeProperty (dpy, twm_win->w, _XA_WIN_WORKSPACE, XA_CARDINAL, 32,
+			PropModeReplace, (unsigned char *)(&gwkspc), 1);
+	if(XGetWindowProperty(dpy, twm_win->w, _XA_WIN_STATE, 0L, 32, False,
+			XA_CARDINAL, &actual_type, &actual_format, &nitems, &bytesafter, &prop) 
+			!= Success || nitems == 0) gwkspc = 0;
+	else gwkspc = (int)*prop;
+	if(twm_win->occupation == fullOccupation) gwkspc |= WIN_STATE_STICKY;
+	else gwkspc &= ~WIN_STATE_STICKY;
+	XChangeProperty(dpy, twm_win->w, _XA_WIN_STATE, XA_CARDINAL, 32, 
+			PropModeReplace, (unsigned char *)&gwkspc, 1); 
     XSelectInput(dpy, twm_win->w, eventMask);
 
 /* kludge */
@@ -1079,16 +1115,33 @@ int newoccupation;
     int		  final_x, final_y;
     XWindowAttributes    winattrs;
     unsigned long	 eventMask;
+	int		gwkspc = 0; /* for gnome - the workspace of this window */
 
+	unsigned char *prop;
+	unsigned long bytesafter, numitems;
+	Atom actual_type;
+	int actual_format;
+	
     if ((newoccupation == 0) || /* in case the property has been broken by another client */
 	(newoccupation == tmp_win->occupation)) {
-	len = GetPropertyFromMask (tmp_win->occupation, namelist);
+	len = GetPropertyFromMask (tmp_win->occupation, namelist, &gwkspc);
 	XGetWindowAttributes(dpy, tmp_win->w, &winattrs);
 	eventMask = winattrs.your_event_mask;
 	XSelectInput(dpy, tmp_win->w, eventMask & ~PropertyChangeMask);
 
 	XChangeProperty (dpy, tmp_win->w, _XA_WM_OCCUPATION, XA_STRING, 8, 
 		     PropModeReplace, (unsigned char *) namelist, len);
+	XChangeProperty (dpy, tmp_win->w, _XA_WIN_WORKSPACE, XA_CARDINAL, 32,
+			PropModeReplace, (unsigned char *)(&gwkspc), 1);
+	if(XGetWindowProperty(dpy, tmp_win->w, _XA_WIN_STATE, 0L, 32, False,
+			XA_CARDINAL, &actual_type, &actual_format, &numitems, &bytesafter, &prop) 
+			!= Success || numitems == 0) gwkspc = 0;
+	else gwkspc = (int)*prop;
+	if(tmp_win->occupation == fullOccupation)	gwkspc |= WIN_STATE_STICKY;
+	else gwkspc &= ~WIN_STATE_STICKY;
+	XChangeProperty(dpy, tmp_win->w, _XA_WIN_STATE, XA_CARDINAL, 32, 
+			PropModeReplace, (unsigned char *)&gwkspc, 1); 
+
 	XSelectInput(dpy, tmp_win->w, eventMask);
 	return;
     }
@@ -1112,13 +1165,26 @@ int newoccupation;
 	    break;
 	}
     }
-    len = GetPropertyFromMask (newoccupation, namelist);
+    len = GetPropertyFromMask (newoccupation, namelist, &gwkspc);
     XGetWindowAttributes(dpy, tmp_win->w, &winattrs);
     eventMask = winattrs.your_event_mask;
     XSelectInput(dpy, tmp_win->w, eventMask & ~PropertyChangeMask);
 
     XChangeProperty (dpy, tmp_win->w, _XA_WM_OCCUPATION, XA_STRING, 8, 
 		     PropModeReplace, (unsigned char *) namelist, len);
+
+	/* Tell GNOME where this window lives */
+	XChangeProperty (dpy, tmp_win->w, _XA_WIN_WORKSPACE, XA_CARDINAL, 32,
+			PropModeReplace, (unsigned char *)(&gwkspc), 1); 
+	if(XGetWindowProperty(dpy, tmp_win->w, _XA_WIN_STATE, 0L, 32, False,
+			XA_CARDINAL, &actual_type, &actual_format, &numitems, &bytesafter, &prop) 
+			!= Success || numitems == 0) gwkspc = 0;
+	else gwkspc = (int)*prop;
+	if(tmp_win->occupation == fullOccupation)	gwkspc |= WIN_STATE_STICKY;
+	else gwkspc &= ~WIN_STATE_STICKY;
+	XChangeProperty(dpy, tmp_win->w, _XA_WIN_STATE, XA_CARDINAL, 32, 
+			PropModeReplace, (unsigned char *)&gwkspc, 1); 
+	
     XSelectInput(dpy, tmp_win->w, eventMask);
 
     if (Scr->workSpaceMgr.workspaceWindow.noshowoccupyall) {
@@ -1254,7 +1320,7 @@ static void CreateWorkSpaceManagerWindow ()
     XSizeHints	  sizehints;
     XWMHints	  wmhints;
     int		  gravity;
-#ifdef I18N
+	#ifdef I18N
 	XRectangle inc_rect;
 	XRectangle logical_rect;
 #endif
@@ -1420,7 +1486,7 @@ static void CreateWorkSpaceManagerWindow ()
 	exit (1);
     }
     tmp_win->occupation = fullOccupation;
-
+	
     attrmask = 0;
     attr.cursor = Scr->ButtonCursor;
     attrmask |= CWCursor;
@@ -1926,9 +1992,10 @@ unsigned long len;
     return (mask);
 }
 
-static int GetPropertyFromMask (mask, prop)
+static int GetPropertyFromMask (mask, prop, gwkspc)
 unsigned int mask;
 char *prop;
+int *gwkspc;
 {
     WorkSpaceList *wlist;
     int           len;
@@ -1945,6 +2012,7 @@ char *prop;
 	    strcpy (p, wlist->label);
 	    p   += strlen (wlist->label) + 1;
 	    len += strlen (wlist->label) + 1;
+		*gwkspc = wlist->number;
 	}
     }
     return (len);

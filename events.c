@@ -96,7 +96,6 @@
 #include "icons.h"
 #include "iconmgr.h"
 #include "version.h"
-
 #ifdef VMS
 #include <starlet.h>
 #include <ssdef.h>
@@ -179,8 +178,13 @@ extern int ShapeEventBase, ShapeErrorBase;
 
 extern Window lowerontop;
 
+#include "gnomewindefs.h"
+extern Atom _XA_WIN_WORKSPACE;
+extern Atom _XA_WIN_STATE;
 extern Atom _XA_WM_OCCUPATION;
 extern Atom _XA_WM_CURRENTWORKSPACE;
+int GnomeProxyButtonPress = -1;
+
 /*#define TRACE_FOCUS*/
 /*#define TRACE*/
 
@@ -971,7 +975,6 @@ HandleVisibilityNotify()
 	cwin->visibility = vevent->state;
 }
 
-
 
 /***********************************************************************
  *
@@ -1324,7 +1327,6 @@ HandleKeyPress()
 
 }
 
-
 
 static void free_window_names (tmp, nukefull, nukename, nukeicon)
     TwmWindow *tmp;
@@ -1358,7 +1360,6 @@ static void free_window_names (tmp, nukefull, nukename, nukeicon)
     return;
 }
 
-
 
 void free_cwins (tmp)
     TwmWindow *tmp;
@@ -1413,6 +1414,8 @@ HandlePropertyNotify()
     XRectangle logical_rect;
 #endif    
 
+	unsigned char *gwkspc;
+	
     /* watch for standard colormap changes */
     if (Event.xproperty.window == Scr->Root) {
 	XStandardColormap *maps = NULL;
@@ -1725,12 +1728,17 @@ HandlePropertyNotify()
 				  &bytesafter, (unsigned char **) &prop) != Success ||
 	      actual == None) return;
 	  ChangeOccupation (Tmp_win, GetMaskFromProperty (prop, nitems));
+	} else if (Event.xproperty.atom == _XA_WIN_WORKSPACE){
+		if(XGetWindowProperty(dpy, Tmp_win->w, Event.xproperty.atom, 0L, 32, False,
+				XA_CARDINAL, &actual, &actual_format, &nitems, &bytesafter,
+				&gwkspc) != Success || actual == None) return;
+		ChangeOccupation(Tmp_win, 1 << (int)(*gwkspc));
 	}
 	break;
     }
 }
 
-
+
 
 static void RedoIcon()
 {
@@ -1915,28 +1923,72 @@ wmapupd:
 void
 HandleClientMessage()
 {
-    if (Event.xclient.message_type == _XA_WM_CHANGE_STATE)
-    {
-	if (Tmp_win != NULL)
-	{
-	    if (Event.xclient.data.l[0] == IconicState && !Tmp_win->isicon)
-	    {
-		XEvent button;
+	unsigned long new_stuff, old_stuff;
+	Window tmp_win;
+	TwmWindow *twm_win;
+	int i;
+		
+   if (Event.xclient.message_type == _XA_WM_CHANGE_STATE){
+ 		if (Tmp_win != NULL)
+		{
+	    	if (Event.xclient.data.l[0] == IconicState && !Tmp_win->isicon)
+	    	{
+			XEvent button;
 
-		XQueryPointer( dpy, Scr->Root, &JunkRoot, &JunkChild,
-			      &(button.xmotion.x_root),
-			      &(button.xmotion.y_root),
-			      &JunkX, &JunkY, &JunkMask);
+			XQueryPointer( dpy, Scr->Root, &JunkRoot, &JunkChild,
+			    	  &(button.xmotion.x_root),
+			    	  &(button.xmotion.y_root),
+			    	  &JunkX, &JunkY, &JunkMask);
 
-		ExecuteFunction(F_ICONIFY, NULLSTR, Event.xany.window,
-		    Tmp_win, &button, FRAME, FALSE);
-		XUngrabPointer(dpy, CurrentTime);
-	    }
+			ExecuteFunction(F_ICONIFY, NULLSTR, Event.xany.window,
+		    	Tmp_win, &button, FRAME, FALSE);
+			XUngrabPointer(dpy, CurrentTime);
+	    	}
+		}
+	return;
 	}
-    }
+	/* 6/19/1999 nhd for GNOME compliance */	
+	if(Event.xclient.message_type == _XA_WIN_WORKSPACE){
+		GotoWorkSpaceByNumber(Event.xclient.data.l[0]);
+		return;
+	}
+	if(Event.xclient.message_type == _XA_WIN_STATE){
+		new_stuff = (unsigned long) Event.xclient.data.l[1];
+		old_stuff = (unsigned long) Event.xclient.data.l[0];
+		tmp_win = Event.xclient.window;
+		for(twm_win = (Scr->TwmRoot).next; twm_win != NULL; twm_win = twm_win->next)if(twm_win->w == tmp_win) break;
+		if(twm_win == NULL) return;
+		for(i=1;i<(1<<10);i <<= 1){
+			switch(old_stuff & i){
+				case WIN_STATE_STICKY: /* sticky */
+					if(new_stuff & i) OccupyAll(twm_win);
+					else ChangeOccupation(twm_win, (1<<(Scr->workSpaceMgr.activeWSPC->number)));
+					break;
+				case WIN_STATE_MINIMIZED: /* minimized - reserved */
+					break;
+				case WIN_STATE_MAXIMIZED_VERT: /* window in maximized V state */
+					break;
+				case WIN_STATE_MAXIMIZED_HORIZ: /* maximized horizontally */
+					break;
+				case WIN_STATE_HIDDEN: /* hidden - what does this mean?? */
+					break;
+				case WIN_STATE_SHADED: /* shaded (squeezed) */
+					Squeeze(twm_win);
+					break;
+				case WIN_STATE_HID_WORKSPACE: /* not on this workspace */
+					break;
+				case WIN_STATE_HID_TRANSIENT: /* owner of transient hidden ? */
+					break;
+				case WIN_STATE_FIXED_POSITION: /* position fixed, don't move */
+					break;
+				case WIN_STATE_ARRANGE_IGNORE: /* ignore when auto-arranging */
+					break;
+			}
+		}
+	}
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2099,7 +2151,6 @@ HandleExpose()
     }
 }
 
-
 
 static void remove_window_from_ring (tmp)
     TwmWindow *tmp;
@@ -2130,7 +2181,6 @@ static void remove_window_from_ring (tmp)
     if (!Scr->Ring || Scr->RingLeader == tmp) Scr->RingLeader = Scr->Ring;
 }
 
-
 
 /***********************************************************************
  *
@@ -2155,6 +2205,7 @@ HandleDestroyNotify()
 	return;
 
     RemoveWindowFromRegion (Tmp_win);
+    GnomeDeleteClientWindow(Tmp_win); /* Fix the gnome client list */
     if (Tmp_win == Scr->Focus)
     {
 	Scr->Focus = (TwmWindow*) NULL;
@@ -2252,9 +2303,10 @@ HandleDestroyNotify()
     remove_window_from_ring (Tmp_win);				/* 11 */
 
     free((char *)Tmp_win);
+	
 }
 
-
+
 
 void
 HandleCreateNotify()
@@ -2295,6 +2347,7 @@ HandleMapRequest()
 	Tmp_win = AddWindow(Event.xany.window, FALSE, (IconMgr *) NULL);
 	if (Tmp_win == NULL)
 	    return;
+    GnomeAddClientWindow(Tmp_win); /* add the new window to the gnome client list */
     }
     else
     {
@@ -2377,13 +2430,13 @@ HandleMapRequest()
       else {
 	Tmp_win->mapped = TRUE;
       }
-    }
+	}
     if (Tmp_win->mapped) WMapMapWindow (Tmp_win);
     MaybeAnimate = True;
 }
 
-
 
+		
 void SimulateMapRequest (w)
     Window w;
 {
@@ -2391,7 +2444,7 @@ void SimulateMapRequest (w)
     HandleMapRequest ();
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2431,7 +2484,6 @@ HandleMapNotify()
     Tmp_win->icon_on = FALSE;
 }
 
-
 
 /***********************************************************************
  *
@@ -2508,7 +2560,6 @@ HandleUnmapNotify()
     XFlush (dpy);
 }
 
-
 
 /***********************************************************************
  *
@@ -2559,7 +2610,12 @@ HandleButtonRelease()
 {
     int xl, yt, w, h;
     unsigned mask;
-
+	
+	if(GnomeProxyButtonPress == Event.xbutton.button){
+		GnomeProxyButtonPress = -1;
+		XSendEvent(dpy, Scr->workSpaceMgr.workspaceWindow.w, False, SubstructureNotifyMask, &Event);
+	}
+	
     if (InfoLines) 		/* delete info box on 2nd button release  */
       if (Context == C_IDENTIFY) {
 	XUnmapWindow(dpy, Scr->InfoWindow);
@@ -2746,7 +2802,7 @@ HandleButtonRelease()
     }
 }
 
-
+
 
 static do_menu (menu, w)
     MenuRoot *menu;			/* menu to pop up */
@@ -2821,6 +2877,8 @@ HandleButtonPress()
     int func;
     Window w;
 
+	GnomeProxyButtonPress = -1;
+	
     /* pop down the menu, if any */
 
     if (XFindContext (dpy, Event.xbutton.window, MenuContext, (XPointer *) &mr) != XCSUCCESS) {
@@ -3140,6 +3198,7 @@ HandleButtonPress()
     }
     else if (Scr->DefaultFunction.func != 0)
     {
+
 	if (Scr->DefaultFunction.func == F_MENU)
 	{
 	    do_menu (Scr->DefaultFunction.menu, (Window) None);
@@ -3149,12 +3208,18 @@ HandleButtonPress()
 	    Action = Scr->DefaultFunction.item ?
 		Scr->DefaultFunction.item->action : NULL;
 	    ExecuteFunction(Scr->DefaultFunction.func, Action,
-	       Event.xany.window, Tmp_win, &Event, Context, FALSE);
+	    Event.xany.window, Tmp_win, &Event, Context, FALSE);
 	}
+	}
+	else{
+		/* GNOME: Pass on the event to any applications listening for root window clicks */
+		GnomeProxyButtonPress = Event.xbutton.button;
+		ButtonPressed = -1;
+		XUngrabPointer(dpy, CurrentTime);
+		XSendEvent(dpy, Scr->workSpaceMgr.workspaceWindow.w, False, SubstructureNotifyMask, &Event);
     }
 }
 
-
 
 /***********************************************************************
  *
@@ -4146,7 +4211,7 @@ static void dumpevent (e)
 {
     char *name = NULL;
 
-    if (! tracefile) return;
+    if (! tracefile) return; 
     switch (e->type) {
       case KeyPress:  name = "KeyPress"; break;
       case KeyRelease:  name = "KeyRelease"; break;

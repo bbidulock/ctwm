@@ -363,8 +363,8 @@ main(argc, argv, environ)
 		    if (++i >= argc) goto usage;
 		    captivename = argv[i];
 		    continue;
-		}
 #ifdef USEM4
+		} else
 		GoThroughM4 = False;
 		continue;
 #endif
@@ -391,7 +391,7 @@ main(argc, argv, environ)
     }
 
 #define newhandler(sig, action) \
-    if (signal (sig, SIG_IGN) != SIG_IGN) (void) signal (sig, action)
+     if (signal (sig, SIG_IGN) != SIG_IGN) (void) signal (sig, action)
 
     newhandler (SIGINT, Done);
     newhandler (SIGHUP, Restart);
@@ -780,7 +780,8 @@ main(argc, argv, environ)
 	CreateIconManagers();
 	CreateWorkSpaceManager ();
 	MakeWorkspacesMenu ();
-
+	InitGnome();
+	
 	XQueryTree(dpy, Scr->Root, &root, &parent, &children, &nchildren);
 	/*
 	 * weed out icon windows
@@ -896,6 +897,19 @@ main(argc, argv, environ)
 #ifdef SOUNDS
     play_startup_sound();
 #endif
+
+	if (captive) 
+	    XSelectInput(dpy, root,
+		ColormapChangeMask | EnterWindowMask | PropertyChangeMask | 
+		SubstructureRedirectMask | KeyPressMask |
+		ButtonPressMask | ButtonReleaseMask | StructureNotifyMask | SubstructureNotifyMask);
+	else
+	    XSelectInput(dpy, root,
+		ColormapChangeMask | EnterWindowMask | PropertyChangeMask | 
+		SubstructureRedirectMask | KeyPressMask |
+		ButtonPressMask | ButtonReleaseMask | SubstructureNotifyMask);
+	/* This is necessary because, for some reason, all non-iconified windows get 
+	destroyed on startup if SubstructureNotifyMask is selected earlier */
 
     RestartPreviousState = True;
     HandlingEvents = TRUE;
@@ -1375,6 +1389,7 @@ static int CatchRedirectError(display, event)
     ErrorOccurred = True;
     return 0;
 }
+
 
 Atom _XA_MIT_PRIORITY_COLORS;
 Atom _XA_WM_CHANGE_STATE;

@@ -64,10 +64,6 @@
 #ifndef _TWM_
 #define _TWM_
 
-#ifdef DMALLOC
-#include <dmalloc.h>
-#endif
-
 #ifdef VMS
 #include <decw$include/Xlib.h>
 #include <decw$include/Xutil.h>

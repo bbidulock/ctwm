@@ -18,13 +18,14 @@ ResizeFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
 MenuFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
 IconFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
 IconManagerFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*"
-ShowWorkSpaceManager			# start with workspcace manager up
+#ShowWorkSpaceManager			# start with workspcace manager up
 UseThreeDMenus
 UseThreeDTitles
 UseThreeDIconManagers
 UseThreeDBorders
 UseThreeDWMap
 SunkFocusWindowTitle
+
 
 workspacemanagergeometry        "360x60+60-0" 4
 WorkSpaces {
@@ -82,7 +83,18 @@ IconManagerDontShow {
 NoTitle {                  # little programs that look like icons
     "TWM Icon Manager"
     "WorkSpaceManager"
+    "panel"
+    "gmc-desktop-icon"
 }
+OccupyAll {
+    "panel"
+}
+NoBorder {
+    "panel"
+    "gmc-desktop-icon"
+}
+NoIconManagers
+
 #
 # Define some useful functions for motion-based actions.
 #
@@ -94,8 +106,8 @@ Function "move-or-iconify" { f.move f.deltastop f.iconify }
 #
 # Set some useful bindings.  Sort of uwm-ish, sort of simple-button-ish
 #
-Button1 =	: root		: f.menu "defops"
-Button2 =       : root		: f.menu "windowops"
+Button1 = m	: root		: f.menu "defops"
+Button2 = m	: root		: f.menu "windowops"
 
 Button1 = m	: window|icon	: f.function "move-or-lower"
 Button2 = m	: window|icon	: f.iconify

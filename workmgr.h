@@ -39,6 +39,7 @@ void InitWorkSpaceManager ();
 int ConfigureWorkSpaceManager ();
 void CreateWorkSpaceManager ();
 void GotoWorkSpaceByName ();
+void GotoWorkSpaceByNumber ();
 void GotoPrevWorkSpace ();
 void GotoNextWorkSpace ();
 void GotoRightWorkSpace ();
@@ -91,6 +92,12 @@ void RemoveFromCaptiveList ();
 Bool RedirectToCaptive ();
 void SetPropsIfCaptiveCtwm ();
 Window CaptiveCtwmRootWindow ();
+
+/* 6/19/1999 nhd for GNOME compliance */
+void InitGnome();
+void GnomeAddClientWindow();
+void GnomeDeleteClientWindow();
+/* */
 
 typedef struct WorkSpaceList WorkSpaceList;
 

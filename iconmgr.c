@@ -144,7 +144,6 @@ void CreateIconManagers()
 	if (!p->geometry || !strlen(p->geometry)) p->geometry = "+0+0";
 	mask = XParseGeometry(p->geometry, &JunkX, &JunkY,
 			      (unsigned int *) &p->width, (unsigned int *)&p->height);
-
 	bw = LookInList (Scr->NoBorder, str, NULL) ? 0 :
 		(Scr->ThreeDBorderWidth ? Scr->ThreeDBorderWidth : Scr->BorderWidth);
 
