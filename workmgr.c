@@ -1320,7 +1320,7 @@ static void CreateWorkSpaceManagerWindow ()
     XSizeHints	  sizehints;
     XWMHints	  wmhints;
     int		  gravity;
-	#ifdef I18N
+#ifdef I18N
 	XRectangle inc_rect;
 	XRectangle logical_rect;
 #endif
