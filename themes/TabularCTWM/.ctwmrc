@@ -1,0 +1,498 @@
+#######################################################################
+#                                                                     #
+#                           .ctwmrc addition                          #
+#                                                                     #
+#######################################################################
+
+PixmapDirectory	"/usr/X11/include/X11/pixmaps:/etc/X11/twm/images:/usr/share/icons:/usr/share/icons/mini"
+UnknownIcon			"@unknown.xpm"
+IconJustification		"left"
+TitleJustification		"center"
+#RightTitleButton		"%xpm:resize" = f.horizoom
+#UsePPosition			"non-zero"
+ButtonIndent			0
+OpaqueMoveThreshold		50
+OpaqueResizeThreshold		50
+WMgrVertButtonIndent		1
+WMgrHorizButtonIndent		1
+WMgrButtonShadowDepth		3
+MaxIconTitleWidth		128
+AnimationSpeed			0
+IconBorderWidth			0
+#XorValue			1
+TransientOnTop			30
+OpenWindowTimeout		60
+DontPaintRootWindow
+
+ShowWorkSpaceManager
+#NoShowOccupyAll
+AutoOccupy
+NoMenuShadows
+UseThreeDMenus
+UseThreeDTitles
+UseThreeDIconManagers
+#UseThreeDBorders
+#ThreeDBorderWidth	5
+SunkFocusWindowTitle
+#ChangeWorkspaceFunction	!"cat ~/sounds/bom.au   2>/dev/null 1>/dev/audio&"
+#IconifyFunction		!"cat ~/sounds/splat.au 2>/dev/null 1>/dev/audio&"
+#DeIconifyFunction	!"cat ~/sounds/drip.au  2>/dev/null 1>/dev/audio&"
+
+#IconRegion			"128x950+0+140" North West 128 1
+#IconRegion			"320x950+100+0" North West 320 1
+WorkSpaceManagerGeometry 	"300x23+0+0" 3
+
+WorkSpaces
+{
+    "Terminals"	{"light sea green" "dark green" "olive drab" "dark olive green" ""}
+    "Schedules"	{"light sea green" "dark green" "dark olive green" "olive drab" ""}
+    "Aurora"	{"light sea green" "dark green" "dark olive green" "olive drab" ""}
+}
+
+MapWindowCurrentWorkSpace {"Red"  "Blue"   "Black"}
+
+AlwaysOnTop {
+#	"TWM Icon Manager"
+#	"WorkSpaceManager"
+}
+
+OccupyAll {
+    "TWM Icon Manager"
+    "Console"
+    "dclock"
+    "xdaliclock"
+    "xbiff"
+	 "gkrellm" 
+    "xcalc"
+    "xcalendar"
+    "xload"
+    "xplaycd"
+    "xmms"
+}
+
+Occupy {
+    "TWM Icon Manager"	{"all"}
+    "Console"		{"all"}
+    "dclock"		{"all"}
+    "xdaliclock"	{"all"}
+    "xbiff"		{"all"}
+    "gkrellm"		{"all"}
+    "xcalendar"		{"all"}
+    "xload"		{"all"}
+    "rp3"		{"all"}
+    "xplaycd"		{"all"}
+    "xmms"		{"all"}
+    "xdemineur"		{"Terminals"}
+    "SchedTerm"		{"Schedules"}
+    "xTodoCalendar"	{"Schedules"}
+    "xHopper11"		{"Schedules"}
+    "xHopper8"		{"Schedules"}
+    "xSckatdm10"	{"Schedules"}
+    "xAurora"		{"Aurora"}
+    "auroraTerm"	{"Aurora"}
+}
+
+#
+# File - .twmrc
+#
+# Startup File for "twm" Window Manager
+#
+# NoGrabServer
+# DecorateTransients
+# TitleFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+# ResizeFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+# MenuFont "-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*"
+# IconFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*-*-*-*"
+# IconManagerFont "-adobe-helvetica-bold-r-normal--*-100-*-*-*"
+
+	AutoRaise {
+	    "xdaliclock"
+	}
+	RaiseDelay 200
+#	AutoRelativeResize
+	BorderWidth 2
+#	ButtonIdent 1
+#	ClientBorderWidth
+	Color {
+	    BorderColor "medium spring green"
+	    {
+	    	"TWM Icon Manager"	"light sea green"
+	    	"WorkSpaceManager"	"light sea green"
+	    	"xdaliclock" 		"dark green"
+	    	"xbiff" 		"dark green"
+	    	"xcalendar" 		"dark green"
+		"xlogo" 		"dark green"
+		"xload" 		"dark green"
+		"rp3" 			"dark green"
+	    }
+	    BorderTileForeground "dark green"
+	    {
+		"xlogo" 		"medium spring green"
+		"xload" 		"medium spring green"
+		"rp3"			"medium spring green"
+	    }
+	    BorderTileBackground "light sea green"
+	    {
+	    	"xdaliclock" 		"dark green"
+	    	"xbiff" 		"dark green"
+	    	"xcalendar" 		"dark green"
+		"xlogo" 		"medium spring green"
+		"xload" 		"medium spring green"
+		"rp3"	 		"medium spring green"
+	    }
+	    DefaultBackground "light sea green"
+	    DefaultForeground "dark green"
+	    IconBackground "medium aquamarine"
+	    IconBorderColor "dark olive green"
+	    IconForeground "darkgreen"
+	    IconManagerBackground "light sea green"
+	    IconManagerForeground "dark green"
+	    IconManagerHighlight "dark olive green"
+	    MenuBackground "medium aquamarine"
+	    MenuForeground "dark green"
+	    MenuShadowColor "dark green"
+	    MenuTitleBackground "medium sea green"
+	    MenuTitleForeground "dark green"
+	    TitleBackground "medium aquamarine"
+	    TitleForeground "dark green"
+	}
+	DontIconifyByUnmapping {
+	    "WorkSpaceManager"
+	    "TWM Icon Manager"
+	    "xTodoCalendar"	# scheduling calendar
+	    "xHopper11"		# scheduling calendar
+	    "xHopper8"		# scheduling calendar
+	    "xSckatdm10"	# scheduling calendar
+	    "xAurora"		# work time calendar
+	    "xpostit"
+	    "dclock"
+	    "xdaliclock"
+	    "xcalendar"
+	    "xload"
+	    "xlogo"
+	    "kworldwatch"
+	    "xbiff"
+	    "gkrellm"
+	    "xeyes"
+    	    "xplaycd"
+    	    "xmms"
+	}
+	DontMoveOff
+	IconDirectory "/usr/X11/include/X11/bitmaps"
+	IconifyByUnmapping
+	IconFont "8x13"
+	IconManagerDontShow { 
+	    "xTodoCalendar"	# scheduling calendar
+	    "xAurora"		# billable time calendar
+	    "xHopper11"		# scheduling calendar
+	    "xHopper8"		# scheduling calendar
+	    "xSckatdm10"	# scheduling calendar
+	    "dclock" 
+	    "xdaliclock" 
+	    "xcalendar" 
+	    "xload"
+	    "xlogo"
+	    #"pppload"
+	    "kworldwatch"
+	    "xbiff" 
+	 	 "gkrellm" 
+	    "xeyes"
+    	    "xplaycd"
+    	    "xmms"
+	}
+	IconManagerFont "8x13"
+	IconManagerGeometry "=300x1+0+27" 2
+#	IconManagers {
+#	}
+#	IconManagerShow {
+#	}
+#	IconRegion -0-0 South East 50 50
+#	Icons {
+#	}
+#	InterpolateMenuColors
+#	MakeTitle {
+#	}
+#	MaxWindowSize "30000x30000"
+	MenuFont "8x13"
+	Monochrome {
+	    BorderColor "black"
+	    BorderTileForeground "black"
+	    BorderTileBackground "white"
+	    DefaultBackground "black"
+	    DefaultForeground "white"
+	    IconBackground "white"
+	    IconBorderColor "black"
+	    IconForeground "black"
+	    IconManagerBackground "black"
+	    IconManagerForeground "white"
+	    IconManagerHighlight "white"
+	    MenuBackground "black"
+	    MenuForeground "white"
+	    MenuShadowColor "black"
+	    MenuTitleBackground "white"
+	    MenuTitleForeground "black"
+	    TitleBackground "white"
+	    TitleForeground "black"
+	}
+#	MoveDelta 0
+	NoBackingStore
+#	NoCaseSensitive
+#	NoDefaults
+#	NoGrabServer
+	NoHighlight { 
+	    "TWM Icon Manager"
+	    "WorkSpaceManager"
+	    "dclock" 
+	    "xdaliclock" 
+	    "xcalendar" 
+	    "xload"
+	    "rp3"
+	    "xlogo"
+	    #"pppload"
+	    "kworldwatch"
+	    "xbiff" 
+	}
+#	NoIconManagers
+#	NoMenuShadows
+#	NoRaiseOnDeiconify
+#	NoRaiseOnMove
+#	NoRaiseOnResize
+#	NoRaiseOnWarp
+	NoSaveUnders
+	NoTitle { 
+	    "TWM Icon Manager"
+	    "WorkSpaceManager"
+	    "xcalendar" 
+	    "xdaliclock" 
+	    "xload" 
+	    "xlogo" 
+	    "kworldwatch"
+	    "gkrellm" 
+	    "xbiff"
+	    "xco"
+	    "xdvi" 
+	    "xmms" 
+	}
+#	NoTitleFocus
+	NoTitleHighlight
+#	NoTitleHighlight {
+#	}
+	OpaqueMove
+	OpaqueResize
+	NoOpaqueResize {
+		"applix"
+		"xspread"
+	}
+#	Pixmaps {
+#	}
+#	RandomPlacement
+	ResizeFont "fixed"
+	RestartPreviousState
+	ShowIconManager
+	SortIconManager
+#	SqueezeTitle {
+#	}
+#	StartIconified {
+#	}
+#	TitleButtonBorderWidth 1
+	RightTitleButton ":xpm:bar" = f.deleteordestroy
+	TitleFont "8x13"
+#	TitlePadding 8
+#	UnknownIcon "icon"
+#	WarpCursor
+#	UsePPosition "off"
+#	WarpCursor {
+#	    "xterm"
+#	}
+#	WindowRing {
+#	    "xterm"
+#	}
+#	WarpUnmapped
+#	WindowFunction f.deiconify
+#	Zoom 5
+	DefaultFunction f.beep
+
+#
+# Button Bindings
+#
+
+Button1 = : root : f.menu "window ops"
+Button2 = : root : f.menu "clients"
+Button3 = : root : f.menu "schedules"
+
+Button1 = m4 : root : f.menu "TwmWindows"
+Button2 = m4 : root : f.menu "games"
+Button3 = m4 : root : f.menu "preferences"
+
+Button1 = m4 : window|icon : f.raiselower
+Button2 = m4 : window|icon : f.move
+Button3 = m4 : window|icon : f.iconify
+
+Button1 = c : window|icon : f.resize
+
+Button1	= : title : f.raiselower
+Button2	= : title : f.move
+Button3	= : title : f.iconify
+
+Button2 = m4 : title : f.raise
+Button3 = m4 : title : f.lower
+
+# Default Bindings for Icons
+#
+Button1 = m4 : icon : f.iconify
+Button2 = m4 : icon : f.move
+Button3 = m4 : icon : f.iconify
+
+Button1 = : icon : f.iconify
+Button2 = : icon : f.move
+Button3 = : icon : f.iconify
+
+# Key Bindings
+#
+"F1"  =     : all : f.raiselower
+"F2"  =     : all : f.iconify
+"F3"  =     : all : f.warptoiconmgr ""
+"F4"  =     : all : f.restart
+"F5"  =     : all : f.deleteordestroy
+"F6"  =     : all : !"netscape -no-about-splash &"
+"F6"  = mod4: all : !"rp3 -i ppp0 &"
+"F7"  =     : all : !"xcalc -geometry =+290-0 &"
+"F7"  = mod4: all : !"xcalc -geometry =+400+0 &"
+"F8"  =     : all : !"xterm -n shell -T shell -geometry 80x40+390-250 &"
+"F8"  = mod4: all : !"xterm -T News -n News -geometry 80x40+85+170 &"
+"F9"  =	    : all : !"applix -wp &"
+"F9"  =	mod4: all : !"applix -ss &"
+"F9"  =	m4 | s : all : !"applix &"
+"F10" =	    : all : !"xmms &"
+"F10" =	mod4: all : !"xsane &"
+"F10" =	m4 | s: all : !"xplaycd -geometry =+160+70 &"
+"F11" =    : all : !"sleep 1; xset dpms force off &"
+"F12" = mod4: all : f.quit
+#
+# Multi-column Icon Manager
+"Alt_L"    =         : all : f.leftworkspace
+"Alt_R"    =         : all : f.rightworkspace
+"Left"      =  mod4   : all : f.backiconmgr
+"Right"     =  mod4   : all : f.forwiconmgr
+"Up"        =  mod4   : all : f.upiconmgr
+"Down"      =  mod4   : all : f.downiconmgr
+
+# Menu Definitions
+#
+
+Menu "window ops" {
+"Window Ops"	f.title
+"Destroy"	f.destroy
+"Exit"		f.delete
+"Occupy All"	f.occupyall
+"Occupy"	f.occupy
+"Move"		f.move
+"Resize"	f.resize
+"Raise/Lower"   f.raiselower
+"Refresh"	f.refresh
+"Full Zoom"	f.fullzoom
+"Identify"	f.identify
+"Iconify"	f.iconify
+""		f.nop
+"Source ctwm"	f.restart 
+"Restart"	f.restart
+"Quit ctwm"	f.quit
+"Merge Xdefaults"	!"xrdb -nocpp -merge .Xdefaults &"
+"Load Xdefaults"	!"xrdb -nocpp -load .Xdefaults &"
+"Show Mgr"	f.showiconmgr
+"Hide Mgr"	f.hideiconmgr
+"More ops"	f.menu "more ops"
+}
+
+Menu "more ops" {
+"AutoRaise"	f.autoraise
+"Beep"		f.beep
+"Circle Down"   f.circledown
+"Circle Up"     f.circleup
+"Deiconify"	f.deiconify
+"Delete"	f.delete
+"Focus"		f.focus
+"Force Move"	f.forcemove
+"Lower"		f.lower
+"Raise"		f.raise
+"Save"		f.saveyourself
+"Unfocus"	f.unfocus
+"Version"	f.version
+"Win Refresh"	f.winrefresh
+"Zoom"		f.zoom
+}
+
+Menu "games" {
+"X Games"	f.title
+"Solitaire"	!"xpat2 &"
+"Mines"	!"xdemineur &"
+"QMahjongg"	!"qmahjongg &"
+"KMahjongg"	!"kmahjongg &"
+"Xbill"		!"xbill &"
+"Chess"		!"xboard &"
+}
+
+Menu "clients" {
+"X Clients"	f.title
+"Xcalc"		!"xcalc &"
+"ApplixWare"	!"applix &"
+"Applix Words"	!"applix -wp &"
+"Applix Spread"	!"applix -ss &"
+"Applix Graphics"	!"applix -gr&"
+"XSane"		!"xsane &"
+"Screen Lock"	!"xscreensaver-command -lock &"
+"Netscape"	!"netscape -no-about-splash &"
+"RP3"		!"rp3 -i ppp0 &"
+"Grail"		!"grail -g =695x740+195+0 &"
+"New Shell"	!"xterm -T shell -n shell &"
+"New Console"	!"xterm -T Console -n Console -C +vb -geometry =64x14-0+4 &"
+"News Reader"	!"xterm -T News -n News -geometry 80x40+85+170 &"
+"Xfig"		!"xfig -pheight 7.75 &"
+"Elm mailer"	!"xterm -T 'Elm mailer' -n 'Elm mailer' -sb -cr khaki -geometry =80x25+253+226 -e /usr/bin/elm &"
+"Seyon"		!"cd ~/Seyon; seyon -bg darkgreen -fg khaki &"
+"XCalendar"	!"xcalendar &"
+"CD Player"	!"xmms &"
+"World Watch"	!"nice kworldwatch &"
+"Xbiff"		!"xbiff &"
+"gkrellm"		!"gkrellm &"
+"Xdaliclock"	!"xdaliclock &"
+"Xload"		!"xload &"
+"Manual Reader"	!"xman &"
+"Xco"		!"xco &"
+"Xlogo"		!"xlogo &"
+}
+
+Menu "preferences" {
+"Preferences"	f.title
+"Default"	!"xsetroot -default &"
+"Background"	f.title
+"Root Color"	!"xsetroot -fg red -bg black -mod 4 4 &"
+"Root B&W"	!"xsetroot -fg black -bg white -mod 3 3 &"
+"Bell"		f.title
+"Bell Loud"	!"xset b 90 &"
+"Bell Normal"	!"xset b 50 &"
+"Bell Off"	!"xset b off &"
+"Key Click"	f.title
+"Click Loud"	!"xset c 90 &"
+"Click Soft"	!"xset c 50 &"
+"Click Off"	!"xset c off &"
+"Mouse"		f.title
+"Mouse Fast"	!"xset m 4 2 &"
+"Mouse Normal"	!"xset m 2 5 &"
+"Mouse Slow"	!"xset m 1 1 &"
+}
+
+#
+# My own Schedules menu
+#
+menu "schedules"
+{
+"Schedules"	f.title
+
+"XCalendar"	!"xcalendar &"
+"Todo Calendar"	!"xcalendar -name xTodoCalendar &"
+"Aurora"	!"xcalendar -name xAurora &"
+"Hopper 11"	!"xcalendar -name xHopper11 &"
+"Hopper 8"	!"xcalendar -name xHopper8 &"
+"Sckatdm 10"	!"xcalendar -name xSckatdm10 &"
+}
