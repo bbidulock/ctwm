@@ -1,0 +1,523 @@
+
+#---------------------------------------------------------
+# .ctwmrc file
+#          Version 1.1.2 - 25/Sep/2000
+#          by mdlch@altavista.net
+#          http://128.100.80.13/marco
+#
+# Based on .ctwmrc-files by:
+# * Dan Lilliehorn
+# * josvanr@xs4all.nl (BeOS-like backgrounds)
+#
+# Developed for CTWM 3.5.2 running under Alpha Linux
+#
+# Requires: Emiclock and the files "im.miff" and "bg*.xpm"
+#           A three-button mouse is highly recommended
+#
+# Please revise the directories where the background pixmaps
+# are located, e.g. search for the string
+# /home/marco/.ctwm/pixmaps/
+# below and change accordingly
+#
+# Comments:
+# I designed the desktop to be as "clean" as possible,
+# and, I hope, easy on the eyes. The windows have no buttons,
+# experiment by clicking on the borders/titlebar. HINT: right
+# button pops up window menu.
+#
+#---------------------------------------------------------
+
+# ------------------------------------------------------------
+# QUICK EXITS: click Alt-F9 for emergency exit of ctwm
+# ------------------------------------------------------------
+
+"F9" =	m 	: all	: f.quit
+"F4" =	m	: all	: f.destroy
+
+# ------------------------------------------------------------
+# VARIABLES
+# ------------------------------------------------------------
+
+# AlwaysOnTop			# try to keep {win-list} on top always
+# AlwaysShowWindowWhenMovingFromWorkspaceManager	# show win during move
+# AnimationSpeed		8	# draws per sec - The default value is 0
+AutoFocusToTransients		# Automatically focus new windows
+# AutoLower			# Windows to lower when unpointed
+AutoOccupy			# clients will change occupation
+AutoRaise			# list of windows to raise on focus
+{				# also see RaiseDelay and f.autoraise
+	"TWM Icon Manager"
+	"WorkSpaceManager"
+}
+AutoRaiseIcons			# raise pointed icons
+AutoRelativeResize		# resize without crossing window edge
+# AutoSqueeze			# automatic (un)squeeze when pointing
+# BeNiceToColormap		# use stipled colors for 3D look- overrides
+# BorderColor			# See COLOR section below
+BorderResizeCursors		# use resize cursor if pointer is on edge
+# BorderShadowDepth	2	# shadow depth in pixels
+# BorderTileBackground		# See COLOR section below
+# BorderTileForeground		# See COLOR section below
+BorderWidth		2	# border surrounding all window frames
+# ButtonIndent		0	# title-button pixel indent on all sides      
+# CenterFeedbackWindow		# moving and resizing information at screen centre
+# ClearShadowContrast   40	# brighter 3D highlight
+ClientBorderWidth	2	# override BorderWidth for client window frames
+
+# COLOR Section
+
+Color				# list of color assignments
+{
+	DefaultBackground	"MidnightBlue"		# bg for sizing and info
+	DefaultForeground	"gray95"	# fg for sizing and info
+	MenuBackground		"MidnightBlue"		# bg for menus	 
+	MenuForeground		"gray95"	# fg for menus	 
+	MenuTitleBackground	"gray95"	# bg for menu title entry
+	MenuTitleForeground	"MidnightBlue"		# fg for menu title entry
+	MenuShadowColor		"black"		# shadow behind pull-down menus
+	BorderColor		"MidnightBlue"		# focused border 
+	IconManagerHighlight	"darkred"	# icon mgr entry w/focus border
+	BorderTileBackground	"black"		# unfocused border bg
+	BorderTileForeground	"MidnightBlue"		# unfocused pixmap fg
+	TitleBackground		"MidnightBlue"		# bg in titlebars
+	TitleForeground		"gray95"	# fg in titlebars
+	IconBackground		"gray95"	# bg of icons	 
+	IconForeground		"MidnightBlue"		# fg of icons	 
+	IconBorderColor		"black"		# border of icons
+	IconManagerBackground	"MidnightBlue"		# bg of icon manager entry
+	IconManagerForeground	"gray95"	# fg of icon manager entry
+	MapWindowBackground	"MidnightBlue"		# bg of windows in wrkspce map
+	MapWindowForeground	"gray95"	# fg of windows in wrkspce map
+}
+
+ConstrainedMoveTime	200	# ms double-click to move vert/horz only
+
+# CURSORS Section
+
+# Cursors			# pointer glyphs (defaults are fine)
+# {
+#	Frame	"top_left_arrow"
+#	Title	"top_left_arrow"
+#	Icon	"top_left_arrow"
+#	IconMgr	"top_left_arrow"
+#	Move	"fleur"
+#	Resize	"fleur"
+#	Menu	"sb_left_arrow"
+#	Button	"hand2"
+#	Wait	"watch"
+#	Select	"dot"
+#	Destroy	"pirate"
+# }
+
+# DarkShadowContrast    60	# darker 3D highlight
+DecorateTransients		# windows WM_TRANSIENT_FOR have titlebars
+# DefaultBackground		# See COLOR section above
+# DefaultForeground		# See COLOR section above
+# DontIconifyByUnmapping	# force {win-list} to have icons
+# DontMoveOff			# unable to move win off screen (c f.forcemove)
+# DontPaintRootWindow		# don't paint root same as workspace bg
+# DontSetInactive		# don't make inactive when changing workspace
+# DontSqueezeTitle		# don't squeeze titles {win-list}
+# DontWarpCursorInWMap		# don't warp cursor to win by workspace click
+ForceIcons			# ctwm icon pixmaps override client-supplied
+# FramePadding		0	# pixels between buttons/text and title frame 
+# IconBackground		# See COLOR section above
+# IconBorderColor		# See COLOR section above
+# IconBorderWidth		# width of icon border
+# IconDirectory	"/usr/include/X11/bitmaps"	# Where are the icons?
+# IconFont	"-misc-fixed-bold-r-normal-*-*-100-*-*-c-*-iso8859-*"
+# IconForeground		# See COLOR section above
+IconifyByUnmapping		# just use icon manager
+# IconJustification	"left"	# title/image justify
+# IconManagerBackground		# See COLOR section above
+IconManagerDontShow
+{
+	"emiclock"
+}				# ignore these windows in icn mngr
+IconManagerFont "-misc-fixed-bold-r-normal-*-*-100-*-*-c-*-iso8859-*"
+# IconManagerForeground		# See COLOR section above
+IconManagerGeometry	"700x14+3-1"	7	# strip across bottom
+# IconManagerHighlight		# See COLOR section above
+# IconManagers			# list of icon managers to create
+# IconManagerShadowDepth	2	# shadow depth in pixels
+# IconManagerShow		# win-list managed by icon manager
+# IconRegion	"512x200+0-0" South West 65 65
+# IconRegionAlignement	"bottom"	# "top"|"bottom"|"center"|"border"
+# IconRegionJustification	"left"		# "left"|"center"|"right"|"border"
+# Icons				# window names and bitmaps for their icons
+# IgnoreLockModifier		# ignore lockmask
+# InterpolateMenuColors		# blend colors between menu items described
+# MakeTitle			# put titles on {win-list} to override NoTitle
+# MapWindowBackground		# See COLOR section above
+MapWindowCurrentWorkSpace	# current workspace colors
+{
+	"darkred"			# border color
+	"black"				# background color
+}
+# MapWindowDefaultWorkSpace	# default workspace colors - used only if
+# MapWindowForground		# See COLOR section above
+# MaxIconTitleWidth	128	# max width of icon title string in pixels
+# MaxWindowSize		"1024x768"	# max win size permitted
+# MenuBackground		# See COLOR section above
+MenuFont "-misc-fixed-bold-r-normal-*-*-140-*-*-c-*-iso8859-*"
+# MenuForeground		# See COLOR section above
+# MenuShadowColor		# See COLOR section above
+# MenuShadowDepth	2	# shadow depth in pixels
+# MenuTitleBackground		# See COLOR section above
+# MenuTitleForeground		# See COLOR section above
+
+# MONOCHROME Section
+
+Monochrome                    # list of color assignments for pixel depth 1
+{
+	DefaultBackground	"white"		# bg for sizing and info
+	DefaultForeground	"black"		# fg for sizing and info
+	MenuBackground		"white"		# bg for menus   
+	MenuForeground		"black"		# fg for menus   
+	MenuShadowColor		"black"		# shadow behind pull-down menus
+	MenuTitleBackground	"white"		# bg for menu title entry
+	MenuTitleForeground	"black"		# fg for ment title entry
+	BorderColor		"black"		# placed around all windows
+	BorderTileBackground	"white"		# pattern bg unhghlghtd border
+	BorderTileForeground	"black"		# pattern fg unhghlghtd border
+	IconBackground		"white"		# bg of icons    
+	IconBorderColor		"black"		# border of icons
+	IconForeground		"black"		# fg of icons    
+	IconManagerBackground	"white"		# bg of icon manager entry
+	IconManagerForeground	"black"		# fg of icon manager entry
+	IconManagerHighlight	"black"		# icon mgr entry w/focus border
+	MapWindowBackground	"white"		# bg of windows in wrkspce map
+	MapWindowForeground	"black"		# fg of windows in wrkspce map
+	TitleBackground		"white"		# bg in titlebars
+	TitleForeground		"black"		# fg in titlebars
+}
+# MoveDelta		0	# num of pixels pointer to move before f.move
+# MovePackResistance	20	# don't overlap unless pushed more than pixels
+# MoveOffResistance	40	# if more than pixels off override DontMoveOff
+NoBackingStore			# faster to paint menus than to store
+NoBorder			# no borders around {win-list}
+{
+	"WorkSpaceManager"
+	"TWM Icon Manager"
+}
+NoCaseSensitive			# ignore case on sort in icon manager
+NoDefaults			# Don't use the default titlebar buttons
+NoGrabServer			# don't grab server on opaques or menu popups
+# NoHighlight			# don't highlight {win-list} borders on focus
+# NoIconTitle			# title/image justify "left"|"right"|"center"
+# NoIconManagerFocus		# no win focus when pointer in icon manager
+# NoIconManagers		# don't create any icon managers
+# NoMenuShadows			# no shadow drawn for popup menus
+NoOpaqueMove			# move a window outline (see next two)
+NoOpaqueResize			# resize a window outline (see next two)
+# NoRaiseOnDeiconify		# don't raise upon de-iconification
+# NoRaiseOnMove			# window not raised when moved
+# NoRaiseOnResize		# window not raised when resized
+# NoRaiseOnWarp			# don't raise on f.warpto
+NoSaveUnders			# faster to repaint than to save-under
+NoShowOccupyAll			# window in all wrkpcs not seen in wkspmap
+# NoStackMode			# ignore {win-list} stack order change
+NoTitle				# no titles on {win-list} entries
+{
+	"WorkSpaceManager"
+	"emiclock"	  
+	"TWM Icon Manager"
+}
+# NoTitleFocus			# click to focus (vs. pointer focus)
+# NoTitleHighlight		# don't display the title-bar focus pixmap
+# Occupy			# list which windows occupy which workspaces
+OccupyAll
+{
+	"emiclock"
+}
+# OpaqueMove			# move [{win-list}] visible, not outline
+# OpaqueMoveThreshold	25	# visible unless win-size > percent of screen
+# OpaqueResize			# resize [{win-list}] visible, not outline
+# OpaqueResizeThreshold	25	# visible unless win-size > percent of screen
+OpenWindowTimeout	10	# open unatended after n seconds
+# PackNewWindows		# use  f.movepack instead of f.move
+# Pixmaps			# list of pixmaps for various images
+PixmapDirectory "/usr/include/X11/bitmaps"	# Where are the buttons?
+RaiseDelay		200	# ms to wait before autoraise invoked
+# RaiseOnClick			# raise on click
+# RaiseOnClickButton		# button for RaiseOnClick
+# RaiseWhenAutoUnSqueeze	# we no like auto nothing
+RandomPlacement		"off"	# new window placement "on"|"off"|"unmapped"
+ReallyMoveInWorkspaceManager	# really move the win when manipulated in map
+ResizeFont "-misc-fixed-bold-r-normal-*-*-140-*-*-c-*-iso8859-*"
+RestartPreviousState		# use WM_STATE to use prev winmgr state
+# ReverseCurrentWorkspace	# use inverse fg/bg colors for current wrkspc
+# SaveColor			# list of colour assignments
+SchrinkIconTitles		# schrinking of icon titles
+ShortAllWindowsMenus
+ShowIconManager			# start with iconmgr up
+ShowWorkSpaceManager		# WorkSpaceManager should be visible
+SortIconManager			# keep entries in alphabetic order
+# SqueezeTitle			# squeeze titles for {win-list}
+# StartIconified		# start clients {win-list} iconified
+StartInMapState			# start in map form (vs button form)
+# StartSqueezed			# start these windows squeezed
+# StayUpMenus			# menu stays when ButtonUp - dragging optional
+SunkFocusWindowTitle		# title of focus win is sunken
+ThreeDBorderWidth	4	# width of 3D border in pixels, if any
+# TitleBackground		# See COLOR section above
+TitleButtonBorderWidth	0	# pixels bordering title buttons
+# TitleButtonShadowDepth	2	# shadow depth in pixels
+TitleFont "-misc-fixed-bold-r-normal-*-*-140-*-*-c-*-iso8859-*"
+# TitleForeground		# See COLOR section above
+TitleJustification	"left"	# title "left"|"right"|"center" justified
+# TitlePadding		1	# pixels btwen title buttons, text & highlight
+# TitleShadowDepth		1	# shadow depth in pixels
+# TransientHasOccupation	# allow transients their own occupation
+TransientOnTop		50	# transient always on top iff % < leader
+UnknownIcon	"xlogo32"	# default icon to bind
+# UnmapByMovingFarAway
+UsePPosition		"on"	# use client postition "on"|"off"|"non-zero"
+# UseSunkTitlePixmap
+UseThreeDBorders		# look a little more like motif
+# UseThreeDIconManagers		# use 3D-looking IconManagers if any
+# UseThreeDMenus		# Tells ctwm to use 3D-looking menus
+# UseThreeDTitles		# Tells ctwm to use 3D-looking  windows titles
+# UseThreeDWMap			# use 3D decorations for small workspace wins
+# WarpCursor			# warp to [{ win-list }] when win deiconified
+
+# You can find the name of the windows by running "xprop | grep WM_CLASS"
+WindowRing
+{
+	"xterm"
+	"ee"
+	"Tgif"
+	"xpaint"
+	"Gimp"
+	"animate"
+	"display"
+	"AbiWord Personal"
+	"emacs"
+	"xpdf"
+	"xdvi"
+	"ghostview"
+	"dayview1"
+	"bcalc"
+	"gxcalc"
+	"Netscape"
+	"mozilla-bin"
+	"RealPlayer"
+	"GQview"
+}				# f.warpring cycles thru [{ win-list }] or all
+WarpRingOnScreen		# cycle thru visible win in current workspace
+WarpToDefaultMenuEntry		# warp pointer in menu
+WarpUnmapped			# f.warpto deiconifies windows
+WMgrButtonShadowDepth	2	# button (non-map mode) shadow depth in pixels
+WMgrHorizButtonIndent	2	# horizontal space between buttons in pixels
+WMgrVertButtonIndent	2	# vertical space between buttons in pixels
+WorkSpaceFont	"-misc-fixed-medium-r-normal-*-*-50-*-*-c-*-iso8859-*"
+WorkSpaceManagerGeometry	"260x60-3-1" 4
+WorkSpaces
+{
+	# name  [{bg-button [fg-button] [bg-root] [fg-root] [pixmap-root]}]
+	"Main"    {"grey60" "black" "grey60" "black" "xpm:/home/marco/.ctwm/pixmaps/bggrey.xpm"}
+	"Work A"  {"grey60" "black" "grey60" "black" "xpm:/home/marco/.ctwm/pixmaps/bggreen.xpm"}
+	"Work B"  {"grey60" "black" "grey60" "black" "xpm:/home/marco/.ctwm/pixmaps/bgblue.xpm"}
+	"Work C" {"grey60" "black" "grey60" "black" "xpm:/home/marco/.ctwm/pixmaps/bgred.xpm"}
+}
+# XMoveGrid			# constrains x window movement
+# XorValue		1	# adjust move/resize win outline colors
+# YMoveGrid			# constrains y window movement
+Zoom			8	# animate de/iconification with n draws
+
+
+# ------------------------------------------------------------
+# FUNCTIONS
+# FUNCTIONS MUST COME AFTER FONT VARIABLES
+# ------------------------------------------------------------
+
+# ChangeWorkspaceFunction
+DefaultFunction	f.beep
+# DeIconifyFunction
+# IconifyFunction	
+# WindowFunction
+
+Function	"move-or-raise"	{ f.move f.deltastop f.raise }
+
+Function	"move-or-lower"	{ f.move f.deltastop f.lower }
+
+Function	"move-or-stack"	{ f.move f.deltastop f.raiselower }
+
+Function	"resize-or-raise"	{ f.resize f.deltastop f.raise }
+
+Function	"resize-or-lower"	{ f.resize f.deltastop f.lower }
+
+Function	"squeeze-and-raise"	{ f.squeeze f.raise }
+
+# ------------------------------------------------------------
+# MOUSE BINDINGS
+# ------------------------------------------------------------
+
+Button1 =	: root			: f.menu "programs"
+Button2 =	: root			: f.menu "connections"
+Button3 =	: root			: f.menu "windowops"
+
+Button1 =	: title			: f.function "move-or-raise"
+Button2 =	: title			: f.function "move-or-lower"
+Button3 =	: title			: f.menu "windowops"
+
+Button1 =	: frame			: f.function "resize-or-raise"
+Button2 =	: frame			: f.function "resize-or-lower"
+Button3 =	: frame			: f.menu "windowops"
+
+Button1 =	: icon			: f.iconify
+Button2 =	: icon			: f.iconify
+Button3 =	: icon			: f.iconify
+
+Button1 =	: iconmgr		: f.iconify
+Button2 =	: iconmgr		: f.iconify
+Button3 =	: iconmgr		: f.iconify
+
+# ------------------------------------------------------------
+# KEYBOARD BINDINGS (a few a la Windows)
+# ------------------------------------------------------------
+
+"Tab" =		m	: all	: f.rightworkspace	# Warp to right WS
+"Tab" =		s | m	: all	: f.leftworkspace	# Warp to left WS
+"Right"  =	m	: all		: f.warpring "next"
+"Left" =	m	: all		: f.warpring "prev"
+
+# ------------------------------------------------------------
+# MENUS
+# ------------------------------------------------------------
+
+menu "windowops"
+{
+	"Window"	("gray95":"DarkGreen")f.title
+	"iconify"	f.iconify
+	"raise"		f.raise	    
+	"lower"		f.lower
+	"move"		f.move
+	"resize"	f.resize
+	"zoom"		f.fullzoom
+	"tall"		f.zoom
+	"squeeze"	f.function "squeeze-and-raise"
+	""		f.nop
+	""		f.separator
+	""		f.nop
+	"Kill"		f.menu "kill"
+	""		f.nop	    
+	"Exit CTWM"	f.menu "out"
+}
+
+menu "kill"
+{
+	"Kill"		("gray95":"DarkGreen")f.title
+	"close"		f.delete
+	""		f.nop	 
+	"destroy"	("red":"MidnightBlue")f.destroy
+}
+
+menu "out"
+{
+	"Bai!"		("gray95":"DarkGreen")f.title
+	"restart"	f.restart
+	""		f.nop 
+	"logout"	("red":"MidnightBlue")f.quit
+}
+
+menu "programs"
+{
+	"Programs"	("gray95":"DarkGreen")f.title
+	"Graphics"	f.menu "graphics"
+	""		f.nop 
+	"Text"		f.menu "text"
+	""		f.nop 
+	"Viewers"	f.menu "viewers"
+	""		f.nop 
+	"Utilities"	f.menu "utilities"
+	""		f.nop 
+	"WWW"		f.menu "www"
+}
+
+menu "graphics"
+{
+	"Graphics"	("gray95":"DarkGreen")f.title
+	"electric eyes"	f.exec "ee &"
+	"image magick"	f.menu "imagemagick"
+	"tgif"		f.exec "tgif &"
+	"xpaint"	f.exec "xpaint &"
+	"the gimp"	f.exec "gimp &"
+	"gqview"	f.exec "gqview &"
+}
+
+# It seems ImageMagick requires an argument to run from
+# a menu. No problem, use the following:
+
+menu "imagemagick"
+{
+	"image magick"	("gray95":"DarkGreen")f.title
+	"animate"	f.exec "animate /home/marco/.ctwm/pixmaps/b*.xpm &"
+	"display"	f.exec "display /home/marco/.ctwm/pixmaps/im.miff &"
+}
+
+menu "text"
+{
+	"Text"		("gray95":"DarkGreen")f.title
+	"abiword"	f.exec "abiword &"
+	"emacs"		f.exec "emacs &"
+}
+
+menu "viewers"
+{
+	"Viewers"	("gray95":"DarkGreen")f.title
+	"xpdf"		f.exec "xpdf &"
+	"xdvi"		f.exec "xdvi &"
+	"ghostview"	f.exec "ghostview &"
+	"realplayer"	f.exec "rp &"
+}
+
+menu "utilities"
+{
+	"Utilities"	("gray95":"DarkGreen")f.title
+	"icalendar"	f.exec "ical &"
+	"bcalc"		f.exec "/home/marco/bin/bcalc &"
+	"gxcalc"	f.exec "/home/marco/bin/gxcalc &"
+}
+
+
+menu "www"
+{
+	"WWW"		("gray95":"DarkGreen")f.title
+	"mozilla"	f.exec "/home/marco/bin/mozilla-M17/package/run-mozilla.sh &"
+	"lynx"		f.exec "xterm -fn 7x13bold -title 'lynx@storm' -e lynx -cfg=/home/marco/lynx.cfg &"
+}
+
+menu "connections"
+{
+	"Connect"	("gray95":"DarkGreen")f.title	     
+	"As user"	f.menu "user"
+	""		f.nop 
+	"As root"	f.menu "root"
+	""		f.nop 
+	"Non ssh"	f.menu "open"
+}
+
+menu "user"
+{
+	"User SSH"	("gray95":"DarkGreen")f.title
+	"xterm"		f.exec "xterm -ls -fn 7x13bold -title 'marco@storm (local)' &"
+	""		f.nop
+	"YourMach"	f.exec "xterm -fn 7x13bold -title 'You@YourMach' -e ssh YourMach &"
+}
+
+# Use a red cursor for root sessions
+
+menu "root"
+{
+	"Root SSH"	("gray95":"DarkGreen")f.title
+	"xterm"		f.exec "xterm -cr red -ls -fn 7x13bold -title 'root@storm (local)' -e su -l &"
+	""		f.nop	      
+	"YourMach"	f.exec "xterm -cr red -fn 7x13bold -title 'root@YourMach' -e ssh YourMach -l root &"
+}
+
+menu "open"
+{
+	"Non ssh"	("gray95":"DarkGreen")f.title
+	"Freenet"	f.exec "xterm -fn 7x13bold -title 'freenet (open)' -e telnet torfree.net &"
+}

@@ -1,0 +1,968 @@
+#---------------------------------------------------------
+# CTWMRC - Version 1.4 - June 20 2002
+#          by Dan Lilliehorn
+#
+# Created in an attempt to create a .ctwmrc-file 
+# with the following characteristics:
+# * Easy to read
+# * Rather complete
+# * Well-organized
+# * Pretty
+# * Well-commented
+#
+# Comments? Updates? Requests? Mail me at dl@dl.nu
+#
+# Based on lots of other .ctwmrc-files and, of course, the man-file
+#
+# Legend:
+# I=Icon(s)
+# TB=TitleBar(s)
+# IM=IconManager
+# WS=WorkSpace
+# WSM=WorkSpaceManager 
+#---------------------------------------------------------
+
+#---------------------------------------------------------
+# EMERGENCY
+# This line is here so that U will be able 2 restart CTWM
+# even if the rest of the file doesn't work very well!
+#---------------------------------------------------------
+
+"F6"= s : r|w|t|m|f : f.twmrc  #shift "L2": source .ctwmrc
+
+#---------------------------------------------------------      
+# FONTS                                                 
+#---------------------------------------------------------
+
+MenuFont         "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+TitleFont 	 "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+IconManagerFont  "-adobe-helvetica-bold-r-normal--12*"
+IconFont	 "-adobe-helvetica-medium-r-normal--10*"
+ResizeFont       "-adobe-helvetica-bold-r-normal--10*"
+WorkSpaceFont	 "-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+#---------------------------------------------------------
+# PIXMAP CONFIG and
+# PIXMAPS
+#---------------------------------------------------------
+
+PixmapDirectory          "~/ctwm-themes/neoclassic"	# dir. for xpms
+
+Pixmaps
+{
+	TitleHighLight	"xpm:macfocus.xpm"
+}
+
+#---------------------------------------------------------
+# COLOR CONFIG and
+# COLORS                                          
+#---------------------------------------------------------
+
+#BeNiceToColorMap			# less col in shadows
+
+Color
+{
+  BorderColor           "grey65"	# optional windowlist
+#    {
+#      "emacs"          "#009900"
+#      "Netscape"       "cyan4"
+#    }
+	
+  DefaultBackground     "grey65"
+  DefaultForeground     "black"
+  TitleBackground       "grey70" 
+#    { 					# optional windowlist
+#      "Netscape"       "DarkBlue"        
+#      "emacs"          "DarkSlateGray"
+#      "xfig"           "#80CCF8"
+#    }
+  
+  TitleForeground       "black" 
+#    { 					# optional windowlist
+#      "Netscape"       "Yellow"        
+#      "emacs"          "Wheat"
+#      "xfig"           "black"
+#    }       
+
+  BorderTileBackground  "black"		# optional windowlist
+#    { 
+#      "Netscape"       "#B0B0B0"        
+#      "emacs"          "DarkSlateGray"
+#    }
+
+  MenuBackground        "grey70"
+  MenuForeground        "black"
+  MenuTitleBackground   "grey40"
+  MenuTitleForeground   "black"
+  MenuShadowColor 	"black"			# default is black
+
+  IconBackground        "Black"
+#    {						# optional winlist
+#	"Netscape"	"Blue"
+#    }
+  IconForeground        "green"
+#    {						# optional winlist
+#	"Netscape"	"Yellow"
+#    }
+  IconBorderColor       "black"
+#    {						# optional winlist
+#	"Netscape"	"Blue"
+#    }
+
+  IconManagerBackground "grey90"
+    {						# optional winlist
+#	"Netscape"	"DarkBlue"
+#	"emacs"		"#000020"
+#	"*pdf*"		"Red"
+#	"*xmms*"	"gray50"
+#	"*pine*"	"black"
+#	"*lysator*"	"lemonchiffon"
+#	"*vmware*"	"white"
+    }
+
+  IconManagerForeground "black"
+    {						# optional winlist
+#	"Netscape"	"Yellow"
+#	"emacs"		"lemonchiffon"
+#	"*pdf*"		"White"
+#	"*xmms*"	"black"
+#	"*pine*"	"green"
+#	"*lysator*"	"black"
+#	"*wmware*"	"DarkSlateGray"
+    }
+
+  IconManagerHighlight  "black"
+#    {						# optional winlist
+#	"Netscape"	"Blue"
+#    }
+
+  MapWindowBackground   "gray80"		# BGcol for WSMwins
+#     {						# optional winlist
+#     }
+
+  MapWindowForeground   "black"			# FGcol for WSMwins
+#     {						# optional winlist
+#     }
+
+}
+
+SaveColor					# tell client about these
+{						# settings to "smooth"
+     BorderColor
+     TitleBackground
+     TitleForeground
+}
+
+
+#---------------------------------------------------------
+# MONOCHROME "COLOR"-SETTINGS
+#---------------------------------------------------------
+
+Monochrome
+{
+	BorderColor 		"black"
+	BorderTileForeground 	"black"
+	BorderTileBackground 	"white"
+	TitleForeground 	"black"
+	TitleBackground 	"white"
+	MenuTitleForeground 	"black"
+	MenuTitleBackground 	"white"
+	MapWindowForeground 	"white"
+	MapWindowBackground 	"white"
+}
+
+#---------------------------------------------------------
+# GENERAL CTWM CONFIG                                         
+#---------------------------------------------------------
+
+RestartPreviousState			# use previous if any
+#CenterFeedbackWindow			# move pos.info to center
+
+DecorateTransients			# give transients TB
+TransientHasOccupation			# ..uhh? Try it! What is it?
+TransientOnTop				# Put transients top when they appear 
+#AutoFocusToTransients			# Give transients autofocus.
+
+OpaqueMove				# want to see the window?
+#{					# optional winlist
+#}
+#NoOpaqueMove				# When OpaqueMove is set, use
+#{					# NoOpaqueMove on these wins
+#}
+
+#OpaqueMoveThreshold {35}		# ..but only less than XX%
+OpaqueResize				# see everthing when you resize
+#{					# optional winlist
+#}
+NoOpaqueResize				# ... or only the frames?
+{					# optional winlist
+    "Netscape"
+}
+#OpaqueResizeThreshold {35}		# ..but only less than XX%
+
+AutoOccupy				# change occupation automat. (?)
+AutoRelativeResize			# intelligent resizing => easier
+
+NoGrabServer				# no grab server on popup/opaque (?)
+
+#NoRaiseOnWarp				# when should I raise a win?
+NoRaiseOnMove				#  /\
+NoRaiseOnResize				#  ||
+
+#RaiseOnClick				# raise window when clicked on
+#RaiseOnClickButton	3		# which button?
+
+WarpRingOnScreen			# only warp on current workspace
+WarpUnmapped				# deiconfity unmapped and warp
+
+DontMoveOff				# Add below & U get resistance
+MoveOffResistance	  150		# how hard must I push?
+
+ConstrainedMoveTime       0		# How quick to 2click to constrain
+#XMoveGrid		  3		# Constraint grid
+#YMoveGrid                3             #    -- | | --
+
+RandomPlacement          "on"		# ask for pos?
+MoveDelta                 3		# dist. 4 move 2 work
+AnimationSpeed            15		# update speed for animated things
+ClearShadowContrast       50		# clear shadow for 3D
+DarkShadowContrast        50		# dark shadow for 3D
+MovePackResistance        100		# how many pix. res. be4 overlap?
+UsePPosition 		  "on"		# let the apps have their way?
+#MaxWindowSize		  "30000x30000" # default
+#RaiseDelay               10		# how long delay raise?
+
+NoStackMode				# ignore stacking reqs from clients
+#{					# optional winlist
+#}
+
+PackNewWindows				# use f.movepack, not f.move, 4 new
+#OpenWindowTimeout	90		# autoclose if not attended (see man)
+RaiseWhenAutoUnSqueeze			
+ShortAllWindowsMenus			# Don't show IM and WSM in win.menu
+#XorValue				# coloring when not using Opaque
+#Zoom			8		# show iconification
+SloppyFocus				# 3.6: use Sloppy Focus
+
+#DontSave				# 3.6: Don's save session info 4 these
+#{
+#}
+
+#---------------------------------------------------------
+# TITLEBAR CONFIG and
+# TITLEBAR BUTTONS                                          
+#---------------------------------------------------------
+
+#UseThreeDTitles
+NoDefaults				# not use default buttons
+
+#NoTitleHighlight			
+#{					# optional winlist
+#}
+
+#SunkFocusWindowTitle			# sink instead of raise?
+NoTitleFocus				# keyboard input at pointer
+#UseSunkTitlePixmap			# sink instead of raise?
+
+#SqueezeTitle				# shrinks titlebar
+#{					# optional winlist
+#}
+
+#DontSqueezeTitle			# Don't squeeze title for these wins.
+#{					# If used w/o list, no titles squeeze
+#}
+
+#TitleButtonShadowDepth    0
+TitleShadowDepth          0
+TitleButtonBorderWidth    0
+#TitlePadding              0		# frame around TBobjects?
+#ButtonIndent              0		# indentated TBbuttons?		
+FramePadding		  2		# frame around TB?
+TitleJustification        "left"	# right/left/center
+
+#RightTitleButton           "xpm:kill.xpm"         = f.delete
+RightTitleButton           "xpm:grey-size.xpm"    = f.resize
+#RightTitleButton           "xpm:verexp.xpm"    = f.zoom
+#RightTitleButton           "xpm:horexp.xpm"    = f.hzoom
+LeftTitleButton            "xpm:grey-iconify.xpm"   = f.iconify
+
+#---------------------------------------------------------
+# BORDER CONFIG
+#---------------------------------------------------------
+
+#UseThreeDBorders
+
+#ThreeDBorderWidth         3
+Borderwidth               1
+#BorderShadowDepth         1
+
+#ClientBorderWidth			# Allow apps to set own BWidth
+
+BorderBottom 0				# 3.6: how much "offscreen" outside wdw
+BorderLeft   0
+BorderRight  0
+BorderTop    0
+
+#---------------------------------------------------------
+# WORKSPACE MANAGER CONFIG and
+# WORKSPACE COLORS AND NAMES                              
+# N = "Name"  |  MC = "ManagerColor"  |  MTC = "ManTextColor" 
+# BC = "BackgroundColor"  |  FC = "ForegroundColor"  |  RX = "RootXpm" 
+#---------------------------------------------------------
+
+DontPaintRootWindow			# repaint root(below) or not?
+ShowWorkSpaceManager			# activate/deactivate WSM
+
+ReallyMoveInWorkspaceManager            # Move windows from WSM?
+#AlwaysShowWindowWhenMovingFromWorkspaceManager   # Mirror moves i WSM in
+						  # the current WS. Ugly!
+
+#MapWindowCurrentWorkSpace   		# appearance of current WS
+#{  border_color  [background] [fore- ground] [bitmap] }
+
+#MapWindowDefaultWorkSpace  		# appearance of default WS
+#{  border_color  [background] [fore- ground] [bitmap] }
+
+
+UseThreeDWMap
+DontWarpCursorInWMap			# no move to indicated win
+NoShowOccupyAll				# don't OccupyAlls in WSM
+ReverseCurrentWorkspace			# reverse colors in curr WS?
+#StartInMapState			# buttons or maps?
+
+WMgrHorizButtonIndent     0		# /dist. between buttons
+WMgrVertButtonIndent      0		# \when in button mode
+
+#WorkSpaceManagerGeometry  "80x150-1-52" 2 2
+WorkSpaceManagerGeometry  "144x16-30+0" 9 1
+
+#WMgrButtonShadowDepth    1
+
+WorkSpaces 
+{
+#    N          MC        MTC       BC       FC    RX 
+    "1"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "2"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "3"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "4"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "5"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "6"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "7"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "8"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    "9"    { "grey60" "black" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+#    "10"    { "gray80" "green" "gray80" "white"} # "xpm:bg/gnome-bg.xpm"}
+    
+}
+
+#---------------------------------------------------------
+# ICON CONFIG and
+# ICONS
+#---------------------------------------------------------
+
+ForceIcons				# use icons put below, not default
+IconifyByUnmapping			# no icon when iconified
+#NoRaiseOnDeiconify			# raise deiconified wins?
+#AutoRaiseIcons				# raise icons when under cursor
+
+#IconDirectory            ""		# dir. for bitmapI
+IconJustification         "center"	# where put image/title?
+MaxIconTitleWidth         120
+#IconBorderWidth          0             # frame around I?
+#UnknownIcon		  ""		# bitmap to use for unknown?
+
+SchrinkIconTitles			# shrink icon titles a'la Motif
+
+# Where on the screen to put icons and how to place them.
+IconRegion                "140x684+0+0"   North East 130 90  { }
+IconRegion                "140x684+140+0" North East 130 90  { }
+#IconRegionAlignement     "bottom"
+#IconRegionJustification  "center"
+
+Icons
+{
+   "xterm"        "xpm:terminal2.xpm"
+   "emacs"        "xpm:edit1.xpm"
+   "pine"         "xpm:mail3.xpm"
+   "ghostview"    "xpm:magnify.xpm"
+   "MPEG Play"    "xpm:movie.xpm"
+   "xanim"        "xpm:movie.xpm"
+   "Control"      "xpm:mixer.xpm"
+   "xfractint"    "xpm:mandelbrot.xpm"
+   "AC3D v1.58b"  "xpm:3dcubes.xpm"
+   "Netscape"     "xpm:orbit.xpm"
+   "Mxp"          "xpm:mandelbrot.xpm"
+   "XQuit"        "xpm:info2.xpm"
+   "XaoS"         "xpm:mandelbrot.xpm"
+   "Xman"         "xpm:files2.xpm"
+   "root"         "xpm:restricted.xpm"
+}
+
+#---------------------------------------------------------
+# ICON MANAGER CONFIG
+#---------------------------------------------------------
+
+#ShowIconManager			# activate/deactivate IM
+#NoIconManagers				# activate/deactivate IM
+UseThreeDIconManagers
+SortIconManager				# sorts alphabetically
+#NoCaseSensitive			# sort with case?
+#NoIconTitle				# don't put title under icons
+#{					# optional winlist
+#}
+IconManagerShadowDepth    2
+NoIconManagerFocus			# !focus the win under cursor in IM
+
+# Icon Manager Geometry:  Size:       Columns:
+IconManagerGeometry       "968x20+0-0" 9
+
+#IconManagers
+#{
+#	"eterm"		"=73x40-1+200" 1
+#}
+
+
+#---------------------------------------------------------
+# MOUSE POINTER CONFIG and   (cursor = mouse pointer)
+# MOUSE POINTERS
+#---------------------------------------------------------
+
+BorderResizeCursors			# resize curs on border
+
+Cursors
+{	
+	Frame		"top_left_arrow"
+	Title		"top_left_arrow"
+	Icon		"box_spiral"
+	IconMgr		"top_left_arrow"
+	Move		"fleur"
+	Resize		"sizing"
+	Menu		"sb_left_arrow"
+	Button		"hand2"
+	Wait		"watch"
+	Select		"dot"
+	Destroy		"pirate"
+}
+
+#---------------------------------------------------------
+# MENU CONFIG and
+# MENUS                                           
+#
+# Tip for menus:
+# Instead of rewriting your menus for every platform you
+# move your .ctwmrc-file to, you could keep all menus in
+# the same file and simply add a couple of lines to the
+# mouse button funcion specifications below. Here I have
+# one set of menus for DEC and one for Linux. Study my
+# example! :)
+#---------------------------------------------------------
+
+#StayUpMenus				# pin automatically?
+#WarpToDefaultMenuEntry			# warp to menu (when using above)
+
+UseThreeDMenus				# 3D or not?
+MenuShadowDepth           0		# how big shadow? (1 looks good)
+#NoMenuShadows				# do U want shadows?
+NoBackingStore				# /which is faster,
+#NoSaveUnders				# \try them out!
+
+InterpolateMenuColors			# interpolate colors in multicol menus
+
+menu "programs"
+{
+	"Programs"		f.title
+	"xterm"			!"xterm -n xterm@truls -T xterm@truls -geometry 80x18&"
+	"term@brugd"		!"brugd&"
+	""			f.separator
+	"emacs .ctwmrc"		!"emacs ~/.ctwmrc&"
+	"VMWare"		!"vmware&"
+	"LinuxConf"		!"linuxconf&"
+	"XCalc."		!"xcalc&"
+	"JPilot"		!"tkreminder&"
+	"Opera"      		!"opera&"
+	"XMMS"			!"xmms&"
+}
+
+menu "Prefs"
+{
+       "Ljud Gap"		!"xset b 75&"
+       "Ljud Vettig"		!"xset b 50&"
+       "Ljud Hygglo"		!"xset b 25&"
+       "Ljud Tyst"		!"xset b off&"
+       ""                      f.separator
+       "Mus Sakta"             !"xset m 1 1&"
+       "Mus Normal"            !"xset m 2 1&"
+       "Mus Snabb"             !"xset m 3 1&"
+       "Mus Dan"               !"xset m 3 7&"
+}
+
+menu "windows"
+{
+    "  Windows"      f.title
+    "  Pin Menu"     f.pin
+    ""               f.separator
+    "  Kill"         f.menu "Kill"
+    "  Save"         f.saveyourself
+    "  Refresh All"  f.refresh
+    "  Refresh"      f.winrefresh
+    "  Occupy"       f.occupy
+    "  Occupy All"   f.occupyall
+    "  Vanish"       f.vanish
+    "  Iconify"      f.iconify
+    "  Resize"       f.resize
+    "  RaiseLower"   f.raiselower
+    "  Move"         f.move
+    "  Raise"        f.raise
+    "  Lower"        f.lower
+    "  Info"         f.identify
+    "  Focus"        f.focus
+    "  Unfocus"      f.unfocus
+    "  Animation"    f.menu "Anim"
+    "  Zoom"         f.menu "Zoom"
+}
+
+menu "Kill"
+{
+    "Pin menu"     f.pin
+    "Kill Window"  f.destroy
+    "Send Delete"  f.delete
+}
+
+menu "Zoom" {
+    "Full"       f.fullzoom
+    "Horizontal" f.horizoom
+    "Vertical"   f.zoom
+    "Left"       f.leftzoom
+    "Top"        f.topzoom
+    "Right"      f.rightzoom
+    "Bottom"     f.bottomzoom
+}
+
+menu "Anim" {
+    "Start"       f.startanimation
+    "Stop"        f.stopanimation
+    "Faster"      f.speedupanimation
+    "Slower"      f.slowdownanimation
+}
+
+menu "SuperMenu"
+{
+    "CTWM SuperMenu"  f.title
+    "Programs"        f.menu "programs"
+    "TWM Keys"        f.menu "TwmKeys"
+    "TWM Icons"	      f.menu "TwmIcons"
+    "TWM Visible"     f.menu "TwmVisible"
+    "TWM Windows"     f.menu "windows"
+    "TWM All Windows" f.menu "TwmAllWindows"
+    "TWM Title Menu"  f.menu "TMenu"
+    "TWM Workspaces"  f.menu "TwmWorkspaces"
+}
+
+menu "TMenu" 
+{
+    "Title Menu" f.title
+    "To All"	 f.occupyall
+    "To WS 1"    f.function "toone"
+    "To WS 2"    f.function "totwo"
+    "To WS 3"    f.function "tothree"
+    "To WS 4"    f.function "tofour"
+    "To WS 5"    f.function "tofive"
+    "To WS 6"    f.function "tosix"
+    "To WS 7"    f.function "toseven"
+    "To WS 8"    f.function "toeight"
+    "To WS 9"	 f.function "tonine"
+}
+
+#---------------------------------------------------------
+# WM DISPLAY CONFIGURATION                              
+#---------------------------------------------------------
+
+#IconManagerShow			# If IconManagerDontShow is set
+#{					# only these windows will be shown
+#}
+
+
+IconManagerDontShow
+{
+    "xeyes"
+    "xsysinfo"
+    "Occupy Window"
+    "xload"
+    "asclock"
+    "xclock"
+    "Loadmeter"
+    "xlogo"
+    "flexbuttonz*"
+    "rclock"
+    "asmail"
+    "xmms*"
+    "XMMS*"
+    "WorkSpaceManager"
+} 
+
+#IconMenuDontShow			# 3.6: dont show these in TwmIcons
+#{
+#}
+
+
+NoHighLight
+{					# optional winlist. no list = no hl
+    "TWM Icon Manager"
+    "WorkSpaceManager"
+    "xclock"
+    "xload"
+#    "xsysinfo"
+    "xlogo"
+    "xeyes"
+    "console"
+    "asclock"
+    "XQuit"
+    "Occupy Window"
+    "xbiff"
+    "Loadmeter"
+    "rclock"
+    "asmail"
+}   
+
+OccupyAll 
+{
+    "asclock"
+    "xclock"
+    "xload"
+    "xbiff"
+    "Loadmeter"
+    "gnotes_applet"
+    "Xlogo"
+    "xlogo"
+    "flexbuttonz"
+    "rclock"
+    "asmail"
+    "panel*"
+    "Panel*"
+    "RealPlayer*"
+    "XMMS*"
+}
+
+AlwaysOnTop
+{
+     "TWM Icon Manager"
+     "WorkSpaceManager"
+     "panel"
+     "gnotes_applet"
+     "wmxmms"
+     "xload"
+     "xclock"
+     "ascd"
+     "flexbuttonz*"
+     "rclock"
+     "asmail"
+     "asclock"
+     "xbiff"
+     "xmms*"
+}
+
+NoTitle 
+{					# optional winlist              
+
+   "flexbuttonz*"
+   "Loadmeter"    
+   "TWM Icon Manager"
+   "WorkSpaceManager"
+   "Occupy Window"
+   "xclock"
+   "xload"
+   "xsysinfo"
+   "xlogo"
+   "xeyes"
+   "console"
+   "asclock"
+   "XQuit"
+   "xbiff"
+   "xfwharf"
+   "asmail"
+   "gnotes_applet"
+   "kmp3"
+   "XMMS"
+   "XMMS*"
+   "xlogo"
+   "wmxmms"
+   "ascd"
+   "rclock"
+   "panel"
+}
+
+StartIconified 
+{ 
+   "XQuit"  
+   "Povray" 
+   "Netscape Download"
+   "console"
+   "RealPlayer*"
+#  "XMMS*"
+}
+
+DontIconifyByUnmapping			# These wins will turn into icons
+{					# even if you use an Icon Manager
+   "xlogo"
+   "wmxmms"
+   "TWM Icon Manager"
+   "WorkSpaceManager"
+   "xload"
+   "xclock"
+   "flexbuttonz"
+}
+
+StartSqueezed				# start these in squeezed state
+{
+#	"WorkSpaceManager"
+}
+
+AutoSqueeze				# Auto Squeeze/Unsqueeze these wins
+{
+#	"WorkSpaceManager"
+}
+
+#UnmapByMovingFarAway			# Don't unmap these when you go
+#{					# to another WS
+#}
+
+#DontSetInactive			# Don't make these wins inactive
+#{					# when you go to other WS. (FrameM)
+#}
+
+#AutoRaise				# Raise when RaiseDelay has passed
+#{
+#	"WorkSpaceManager"
+#}
+
+NoBorder
+{
+  "xbiff"
+  "xlogo"
+  "TWM Icon Manager"
+  "xclock"
+  "xload"
+#  "WorkSpaceManager"
+  "flexbuttonz*"
+  "asmail"
+  "panel"
+}
+
+Occupy					# always move this app. to the same
+{					# workspace?
+}
+
+WindowRing 				# which windows to use when warping
+#{					# if you don't list any windows 
+#   "Emacs" 				# all will be warped. Se WRExclude.
+#   "xterm"
+#   "Maker" 
+#   "Netscape"
+#   "ddd"
+#   "eterm*"
+#   "pine*"
+#   "Eterm*"
+#   "XMMS*"
+#   "VMware*"
+#   "flexbuttonz*"
+#   "tkReminder*"
+#   "*emind*"
+#   "*.pdf*"
+#}
+
+WindowRingExclude			# Don't include these windows i warp
+{
+	"xload*"
+	"xclock"
+	"TWM Icon Manager"
+	"WorkSpaceManager"
+	"wmxmms*"
+	"flexbuttonz"
+	"xlogo*"
+	"XMMS *"
+	"panel"
+}
+
+#MakeTitle				# When NoTitle is set, make titlebars
+#{					# on these specific windows
+#    "XMMS"
+#}		
+
+WarpCursor				# warp to deiconified wins
+#{					# optional winlist
+#}
+
+#WindowBox "xloadbox" "320x100+0-0"	# 3.6: create a box wdw 4 wdws in list
+#{
+#    "xload"
+#}
+
+#WindowGeometries {			# 3.6: default geo 4 some clients
+#    "Mozilla*"       "1000x800+10+10"
+#    "jpilot*"        "800x600-0-0"
+#}
+
+
+
+#---------------------------------------------------------
+# FUNCTION DEFINITIONS                                   
+#---------------------------------------------------------
+
+define(`forloop',
+       `pushdef(`$1', `$2')_forloop(`$1', `$2', `$3', `$4')popdef(`$1')')
+define(`_forloop',
+       `$4`'ifelse($1, `$3', ,
+       `define(`$1', incr($1))_forloop(`$1', `$2', `$3', `$4')')')
+
+forloop(`N', 1, 9, `Function "move-to-workspace-N"
+{
+    f.addtoworkspace	"N"
+    forloop(`I', 1, 9, `ifelse(N, I, , `  f.removefromworkspace	"I"')')
+}
+')
+
+forloop(`N', 1, 9, `Function "move-and-goto-workspace-N"
+{
+    f.addtoworkspace "N"
+    forloop(`I', 1, 9, `ifelse(N, I, , `  f.removefromworkspace	"I"')')
+    f.gotoworkspace "N"
+}
+')
+
+Function "move-or-raiselower"  { f.move f.deltastop f.raiselower }
+Function "move-or-lower"       { f.move f.deltastop f.lower }
+Function "move-or-raise"       { f.move f.deltastop f.raise }
+Function "raise-and-resize"    { f.raise f.deltastop f.resize }
+Function "move-or-iconify"     { f.move f.deltastop f.iconify }
+Function "move-or-flip"        { f.move f.deltastop f.raiselower }
+Function "raise-n-focus"       { f.raise f.focus}
+Function "raise-move"          { f.raise f.deltastop f.move }
+Function "blob"                { f.deiconify f.raise f.focus f.lower }
+Function "toone"               { f.toggleoccupation "1" f.vanish }
+Function "totwo"               { f.toggleoccupation "2" f.vanish }
+Function "tothree"             { f.toggleoccupation "3" f.vanish }
+Function "tofour"              { f.toggleoccupation "4" f.vanish }
+Function "tofive"              { f.toggleoccupation "5" f.vanish }
+Function "tosix"               { f.toggleoccupation "6" f.vanish }
+Function "toseven"             { f.toggleoccupation "7" f.vanish }
+Function "toeight"             { f.toggleoccupation "8" f.vanish }
+Function "tonine"              { f.toggleoccupation "9" f.vanish }
+Function "getxmms"             { f.warphere "XMMS" f.warphere "XMMS -*"}
+
+#---------------------------------------------------------
+# MOUSE BUTTON FUNCTIONS
+# BUTTONS	: CONTEXT	: FUNCTION            
+#---------------------------------------------------------
+
+Button1 =	: root		: f.menu "SuperMenu"
+Button2 =	: root		: f.menu "TwmIcons"
+Button3 =	: root		: f.menu "TwmVisible"
+
+Button1 =	: t		: f.function "move-or-raise"
+Button2 =	: t|f		: f.raiselower
+Button3 =	: t|f		: f.menu "TMenu"
+
+Button1 =	: f		: f.function "raise-and-resize"
+
+Button1 =	: i|m		: f.iconify
+Button2 =	: i		: f.move
+Button3 =	: i|m		: f.raiselower
+
+Button1 =       : iconmgr       : f.raiselower
+
+
+#---------------------------------------------------------
+# KEY FUNCTIONS
+# KEYS	= Altkey: CONTEXT	: FUNCTION
+#---------------------------------------------------------
+
+#IgnoreModifier			# 3.6: ignore modifiers specified
+#{
+#lock m2 
+#}
+
+#IgnoreLockModifier		# same bindings rgdless of locks (obs w above)
+
+"KP_Insert"= c  : all		: f.prevworkspace
+"KP_Enter"= c	: all		: f.nextworkspace
+"KP_Subtract" =c: all		: f.iconify		
+"KP_Add"   = c	: all		: f.zoom
+
+"KP_Subtract" =c|s: all		: f.twmrc
+
+"KP_Divide"= c	: all		: f.moveresize "+0+0"
+"KP_Multiply"=c	: all		: f.moveresize "+658+0"
+"KP_Up"    = c	: all		: f.moveresize "+0+275"
+"KP_Prior" = c	: all		: f.moveresize "+658+275"
+"KP_Begin" = c	: all		: f.moveresize "+0+430"
+"KP_Right" = c	: all		: f.moveresize "+658+415"
+"KP_Down"  = c	: all		: f.moveresize "+0+605"
+"KP_Next"  = c	: all		: f.moveresize "+658+605"
+"KP_Left"  = c	: all		: f.moveresize "+320+250"
+
+"KP_Delete"= c	: all		: f.menu "TwmWorkspaces"
+
+"KP_End"   = c|s: all		: f.delete
+"KP_Home"  = c	: all		: f.raiselower
+
+"F1"	   = s  : all		: !"cdcd prev"
+"F1"	   = c	: all		: !"cdcd play 1"
+
+"F2"	   = s	: all		: !"cdcd next"
+"F2"	   = c  : all		: !"cdcd pause"
+
+"F3"	   = c  : all		: !"cdcd resume"
+"F3"	   = s  : all		: !"cdcd eject"
+
+"F4"	   = s	: all		: !"tkremind&"
+"F4"	   = c	: all		: !"cdcd stop"
+
+"F5"       = c	: all		: !"netscape&"
+"F5"       = s	: all		: !"mucus&"
+
+"F6"       = c  : all		: !"opera&"
+"F6"	   = s  : all		: !"brugd&"
+
+"F7"       = c	: all		: !"aumix -w -5; aumix -c -3"
+"F7"       = s	: all		: !"brugd2&"
+
+"F8"       = c	: all		: !"aumix -w +5; aumix -c +3"
+"F8"       = s	: all		: !"emacs -g 80x31+0+0 -l ~/.emacs_kom& emacs -g 80x31+0+439 -l ~/.emacs_kom&"
+
+"F9"       = c	: all		: !"xterm -n xterm@truls -T xterm@truls -geometry 80x18&"
+"F9"       = s  : all		: !"emacs ~/.ctwmrc&"
+
+"F10"      = s	: all		: !"xmms&"
+"F10"      = c	: all		: !"xmms -r"
+"F10"      = m  : all		: !"xmms -u"
+
+"F11"      = s	: all		: f.function "getxmms"
+"F11"      = c	: all		: !"xmms -f"
+"F11"      = m : all		: !"xmms -p"
+
+# xterm@balder|hero
+#!"rexec -l dali -p 4711narug balder remterm&"
+#!"rexec -l dali -p 4711narug hero remterm&"
+
+"F12"      = c	: all		: !"xterm +sb -bg white -g 80x20-1+0 -n mail@brugd -T mail@brugd -e pine& xterm +sb -bg white -g 80x20-1+290 -n mail@brugd -T mail@brugd -e /home/dali/bin/eneapine & "
+"F12"      = s	: all		: !"xterm +sb -bg white -g 80x20-1+580 -n mail@brugd -T mail@brugd -e /home/dali/bin/ctrlcpine&"
+
+"Tab"      = c	: all		: f.warpring "next"
+
+"Right"    = c	: all		: f.jumpright "15"
+"Left"     = c	: all		: f.jumpleft "15"
+"Up"       = c  : all		: f.jumpup "15"
+"Down"     = c  : all		: f.jumpdown "15"
+
+"Next"     = c	: all		: f.menu "TwmIcons"
+"Next"     = m	: all		: f.menu "TwmVisible"
+"End"      = c	: all		: f.menu "TMenu"
+"End"      = m  : all		: f.menu "SuperMenu"
+
+
+
+
+
+
+
+
+

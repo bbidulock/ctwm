@@ -1,0 +1,193 @@
+# -*- shell-script -*-
+
+# General settings.
+
+NoDefaults
+
+PixmapDirectory "~/.ctwm-themes/neo-classic"
+
+### New stuff
+
+Color
+{
+	BorderColor		"grey65"
+	BorderTileBackground "black"
+	DefaultBackground	"grey65"
+	DefaultForeground	"black"
+	TitleBackground		"grey70"
+	TitleForeground		"black"
+	MenuBackground		"grey70"
+	MenuForeground		"black"
+	MenuTitleBackground	"grey40"
+	MenuTitleForeground	"black"
+	IconManagerBackground	"grey90"
+	IconManagerForeground	"black"
+	IconManagerHighlight	"black"
+}
+
+Cursors
+{
+	Frame		"top_left_arrow"
+	Title		"top_left_arrow"
+	Icon		"box_spiral"
+	IconMgr		"top_left_arrow"
+	Move		"fleur"
+	Resize		"sizing"
+	Menu		"sb_left_arrow"
+	Button		"hand2"
+	Wait		"watch"
+	Select		"dot"
+	Destroy		"pirate"
+}
+
+
+Pixmaps
+{
+    TitleHighlight "xpm:macfocus.xpm"
+}
+
+TitleFont "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+MenuFont "-*-helvetica-medium-r-*-*-10-*-*-*-p-*-*-*"
+WorkspaceFont "-*-helvetica-medium-r-*-*-8-*-*-*-*-*-*-*"
+
+ShowWorkSpaceManager
+UsePPosition "on"
+WarpCursor
+WorkSpaceManagerGeometry        "190x22-0-0" 6	
+StartInMapState
+
+### If I set the root window, I don't want ctwm to repaint it when I
+### shift workspaces.
+
+DontPaintRootWindow
+
+WorkSpaces
+{
+	"1"	{"grey60" "black" "grey60" "black"}
+	"2"	{"grey60" "black" "grey60" "black"}
+	"3"	{"grey60" "black" "grey60" "black"}
+	"4"	{"grey60" "black" "grey60" "black"}
+	"5"	{"grey60" "black" "grey60" "black"}
+	"6"	{"grey60" "black" "grey60" "black"}
+}
+
+OccupyAll 
+{
+    "swisswatch"
+    "xwatch"
+}
+
+NoShowOccupyAll
+
+### If I'm using ctwm, these can make it look nicer.
+
+UseThreeDMenus
+
+ButtonIndent 0
+TitleButtonBorderWidth 0
+
+FramePadding 2
+NoGrabServer
+NoHighLight
+NoRaiseOnMove
+RestartPreviousState
+DecorateTransients
+BorderWidth 1
+IconifyByUnmapping
+
+Notitle
+{
+    ""
+    "rclock"
+    "swisswatch"
+    "TWM Icon Manager"
+    "WorkSpaceManager"
+    "xbiff"
+    "xphone"
+    "Dali Clock"
+}
+
+IconManagerDontShow		# Ignore these windows in icon mgr
+{
+    "TWM Icon Manager"
+    "X DeskTop Manager"
+    "xclock"
+    "rclock"
+    "xbiff"
+    "xload"
+}
+
+DontIconifyByUnmapping		# ...but don't lose them.
+{
+    "xclock"
+    "rclock"
+    "xbiff"
+    "xload"
+    "Dali Clock"
+    "Untitled"
+}
+
+### Define some useful functions for motion-based actions.
+
+MoveDelta 3
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+### Set some useful bindings.
+
+LeftTitleButton "xpm:grey-iconify.xpm" = f.iconify
+RightTitleButton "xpm:grey-size.xpm" = f.resize
+
+Button1 = : root : f.menu "defops"
+Button2 = : root : f.menu "programs"
+
+### TwmIcons is only available in ctwm, but very useful when its
+### there. Patch vanilla twm to include it? Who want's an icon manager
+### anyway?
+
+Button3 = : root : f.menu "TwmIcons"
+
+Button1 = m : window|icon : f.function "move-or-lower"
+Button2 = m : window|icon : f.iconify
+Button3 = m : window|icon : f.function "move-or-raise"
+
+Button1 = : title : f.function "move-or-raise"
+Button2 = : title : f.raiselower
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+
+#
+# And a menu with the usual things
+#
+menu "defops"
+{
+    "Twm"	f.title
+    "Iconify"	f.iconify
+    "Resize"	f.resize
+    "Move"		f.move
+    "Raise"		f.raise
+    "Lower"		f.lower
+    ""		f.nop
+    "Focus"		f.focus
+    "Unfocus"	f.unfocus
+    "Show Iconmgr"	f.showiconmgr
+    "Hide Iconmgr"	f.hideiconmgr
+    ""		f.nop
+    "Kill"		f.destroy
+    "Delete"	f.delete
+    ""		f.nop
+    "Restart"	f.restart
+    "Exit"		f.quit
+}
+
+menu "programs"
+{
+    "Tools"     f.title
+    "Shell"     f.exec "xterm &"
+    "God"	f.exec "emacs &"
+}
