@@ -2430,7 +2430,7 @@ HandleMapRequest()
       else {
 	Tmp_win->mapped = TRUE;
       }
-	}
+    }
     if (Tmp_win->mapped) WMapMapWindow (Tmp_win);
     MaybeAnimate = True;
 }
