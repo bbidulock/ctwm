@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		      "http://www/w3/org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<title>monotone crash course.</title>
+</head>
+
+<body bgcolor="lemonchiffon">
+<center>
+<img src="ctwm.jpg" alt="[CTWM]" />
+
+<h1>monotone crash course</h1>
+
+</center>
+
+<h2>First time actions</h2>
+
+<h3>Initialise database</h3>
+
+<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+	db init
+</pre>
+
+<h3>Pull the repository</h3>
+
+<pre>  monotone  --db=<i>YOUR_DATABASE_DIRECTORYI</i>/db.ctwm \
+	pull repository.lp.se free.lp.se/X.ctwm
+</pre>
+
+<h3>Check out the source</h3>
+
+<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm --branch=free.lp.se/X.ctwm \
+	co <i>CTWM_WORK_DIRECTORY</i>
+</pre>
+
+<p>If you want write access, you have to create a key pair with your
+email address as identity, then extract the public half and send it
+to me.</p>
+
+<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+	genkey your.mail@address.com</pre>
+<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+	pubkey your.mail@address.com > public_your.mail@address.com</pre>
+
+<hr />
+
+<h2>Every day actions</h3>
+
+<p>When standing in the working directory, the database is recorded in
+MT/options, and the database itself contains data about the default
+server and collection to use (this got initialised by the first
+monotone pull), so further updates are done like this:</p>
+
+<pre>  monotone pull</pre>
+<pre>  monotone update</pre>
+
+<hr />
+
+<h2>Every day actions with write access</h3>
+
+<p>When you have write access, these are practical operations.</p>
+
+<h3>Add a file</h3>
+
+<pre>  monotone add <i>FILE</i></pre>
+
+<h3>Drop (delete) a file</h3>
+
+<pre>  monodone drop <i>FILE</i></pre>
+
+<h3>Rename a file</h3>
+
+<pre>  monotone rename <i>OLDFILE</i> <i>NEWFILE</i> && \
+	mv <i>OLDFILE</i> <i>NEWFILE</i></pre>
+
+<h3>Check the status of currently known files</h3>
+
+<p>This variant only shows which files have changed, been added,
+deleted or renamed.  This differs from <tt>cvs status</tt>, which
+shows the status of unknown files.</p>
+
+<pre>  monotone status</pre>
+
+<h3>Check the status of all file in the directory</h3>
+
+<pre>  monotone automate inventory</pre>
+
+<h3>Commit all your changes</h3>
+
+<pre>  monotone commit [--message="<i>message</i>"]</pre>
+
+<h3>Commit only selected files</h3>
+
+<pre>  monotone commit [--message="<i>message</i>"] <i>FILE1</i> <i>FILE2</i> ...</pre>
+
+<h3>Send your changes to the server you pulled from</h3>
+
+<pre>  monotone push</pre>
+
+<hr />
+
+<p><a href="http://validator.w3.org/check/referer"><img
+src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!"
+height="31" width="88" /></a></p>
+
+<p><a
+href="http://validator.w3.org/check?uri=http%3A%2F%2Fctwm.free.lp.se/monotone-crash-course.html">Check it again, I dare you :-)</a></p>
+</body>
+
+</html>

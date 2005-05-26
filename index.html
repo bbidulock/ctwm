@@ -95,7 +95,8 @@ document.write(document.lastModified)
 <h2> CTWM Documentation</h2>
 
 <ul>
-  <li><a href="http://repository.lp.se/viewcvs/X/ctwm/">Browse the CVS repository</a>.</li>
+  <!-- <li><a href="http://repository.lp.se/viewcvs/X/ctwm/">Browse
+  the CVS repository</a>.</li> -->
   <li><a href="README.html">README file from rel v.3.5.</a></li>
   <li><a href="CHANGES.html">Changelog from rel v.3.5.2.</a></li>
   <li><a href="CHANGES-3.6.txt">Changelog from rel 3.6.</a></li>
@@ -105,6 +106,10 @@ document.write(document.lastModified)
   <li><a href="manpage.html">CTWM manpage (v.3.5.2).</a></li>
   <li><a href="http://WWW.Update.UU.SE/~d93jha/prog/ctwm/ctwm.man.html">A HTML Guide to CTWM configurations (v?) </a> (Thanks to Jonas Hagelin).</li>
 </ul>
+
+<p>The CTWM source is managed using
+<a href="http://www.venge.net/monotone/">monotone</a>.
+<a href="monotone-crash-course.html">Here</a> is a crash course.</p>
 
 <hr />
 
@@ -126,11 +131,22 @@ document.write(document.lastModified)
     </blockquote>
     <a href="http://tigerdyr.wheel.dk/ctwm-archive/">An archive of the
     list (started 2001-09-04)</a></dd>
-  <dt><tt>ctwm-cvs@free.lp.se</tt></dt>
-  <dd>This is a log list, where all CVS logs are sent to, and you can
-    follow exactly what's being changed in CTWM.<br />
+  <dt><tt>ctwm-notify-diffs@free.lp.se</tt></dt>
+  <dd>This is a log list, where all monotone logs with diffs are sent
+    to, and you can follow exactly what's being changed in CTWM.<br />
     To subscribe, send an email to <a
-    href="mailto:ctwm-cvs-request@free.lp.se">ctwm-cvs-request@free.lp.se</a>
+    href="mailto:ctwm-notify-diffs-request@free.lp.se">ctwm-notify-diffs-request@free.lp.se</a>
+    with the following two lines in the body:<br />
+    <blockquote>
+    <tt>SUBSCRIBE</tt><br />
+    <tt>QUIT</tt>
+    </blockquote></dd>
+  <dt><tt>ctwm-notify-nodiffs@free.lp.se</tt></dt>
+  <dd>This is a log list, where all monotone logs without diffs are
+    sent to, and you can follow exactly what's being changed in
+    CTWM.<br />
+    To subscribe, send an email to <a
+    href="mailto:ctwm-notify-nodiffs-request@free.lp.se">ctwm-notify-nodiffs-request@free.lp.se</a>
     with the following two lines in the body:<br />
     <blockquote>
     <tt>SUBSCRIBE</tt><br />
