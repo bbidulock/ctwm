@@ -1,4 +1,4 @@
-<pre>
+
 
     Changes from version 1.0 to 1.1
     -------------------------------
@@ -1456,4 +1456,3 @@ VirtualScreens {
 	richard@levitte.org.
 	[Richard Levitte]
 
-</pre>
