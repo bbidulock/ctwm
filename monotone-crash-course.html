@@ -19,19 +19,19 @@
 
 <h3>Initialise database</h3>
 
-<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
 	db init
 </pre>
 
 <h3>Pull the repository</h3>
 
-<pre>  monotone  --db=<i>YOUR_DATABASE_DIRECTORYI</i>/db.ctwm \
-	pull repository.lp.se free.lp.se:X.ctwm
+<pre>  mtn  --db=<i>YOUR_DATABASE_DIRECTORYI</i>/ctwm.mtn \
+	pull guardian.lp.se free.lp.se:X.ctwm
 </pre>
 
 <h3>Check out the source</h3>
 
-<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm --branch=free.lp.se:X.ctwm \
+<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn --branch=free.lp.se:X.ctwm \
 	co <i>CTWM_WORK_DIRECTORY</i>
 </pre>
 
@@ -39,9 +39,9 @@
 email address as identity, then extract the public half and send it
 to me.</p>
 
-<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
 	genkey your.mail@address.com</pre>
-<pre>  monotone --db=<i>YOUR_DATABASE_DIRECTORY</i>/db.ctwm \
+<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
 	pubkey your.mail@address.com > public_your.mail@address.com</pre>
 
 <hr />
@@ -50,11 +50,11 @@ to me.</p>
 
 <p>When standing in the working directory, the database is recorded in
 MT/options, and the database itself contains data about the default
-server and collection to use (this got initialised by the first
-monotone pull), so further updates are done like this:</p>
+server and collection to use (this got initialised by the first mtn
+ull), so further updates are done like this:</p>
 
-<pre>  monotone pull</pre>
-<pre>  monotone update</pre>
+<pre>  mtn pull</pre>
+<pre>  mtn update</pre>
 
 <hr />
 
@@ -64,7 +64,7 @@ monotone pull), so further updates are done like this:</p>
 
 <h3>Add a file</h3>
 
-<pre>  monotone add <i>FILE</i></pre>
+<pre>  mtn add <i>FILE</i></pre>
 
 <h3>Drop (delete) a file</h3>
 
@@ -72,7 +72,7 @@ monotone pull), so further updates are done like this:</p>
 
 <h3>Rename a file</h3>
 
-<pre>  monotone rename <i>OLDFILE</i> <i>NEWFILE</i> &amp;&amp; \
+<pre>  mtn rename <i>OLDFILE</i> <i>NEWFILE</i> &amp;&amp; \
 	mv <i>OLDFILE</i> <i>NEWFILE</i></pre>
 
 <h3>Check the status of currently known files</h3>
@@ -81,23 +81,23 @@ monotone pull), so further updates are done like this:</p>
 deleted or renamed.  This differs from <tt>cvs status</tt>, which
 shows the status of unknown files.</p>
 
-<pre>  monotone status</pre>
+<pre>  mtn status</pre>
 
 <h3>Check the status of all file in the directory</h3>
 
-<pre>  monotone automate inventory</pre>
+<pre>  mtn automate inventory</pre>
 
 <h3>Commit all your changes</h3>
 
-<pre>  monotone commit [--message="<i>message</i>"]</pre>
+<pre>  mtn commit [--message="<i>message</i>"]</pre>
 
 <h3>Commit only selected files</h3>
 
-<pre>  monotone commit [--message="<i>message</i>"] <i>FILE1</i> <i>FILE2</i> ...</pre>
+<pre>  mtn commit [--message="<i>message</i>"] <i>FILE1</i> <i>FILE2</i> ...</pre>
 
 <h3>Send your changes to the server you pulled from</h3>
 
-<pre>  monotone push</pre>
+<pre>  mtn push</pre>
 
 <hr />
 
