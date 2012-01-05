@@ -1,0 +1,1571 @@
+#
+# old_revision [53b2b57d8309d6507a64bd5ee4cf5ebc480159b7]
+#
+# delete "alloca.c"
+# 
+# patch "CHANGES"
+#  from [08768d9d42f7249287ccd273679fce382dfe1ac9]
+#    to [725d07c6194ced52655bda972197906806227d2c]
+# 
+# patch "Imakefile"
+#  from [ff68e27bd83c76f682b7943dfe0acf324db7c40e]
+#    to [8f5f588f8598b6951a672b5a2a9d8debbcb27e25]
+# 
+# patch "README"
+#  from [96dfaa26c9305cae88e74124e09fced27cd3a4bd]
+#    to [c94053f22ceb4f9f79d2830073ba7486452db152]
+# 
+# patch "add_window.c"
+#  from [32b936cdaba147612081b1fbe65e7ceb9a22b463]
+#    to [31705f70831cc555f963f8c65afc82e907095668]
+# 
+# patch "ctwm.c"
+#  from [85ebd1c921b013aed697fa8ab8f42832817f00eb]
+#    to [92a7863c957acb35f0e3133941561a89ace04bdf]
+# 
+# patch "ctwm.man"
+#  from [46d8d793b20b997b8f1783b35351a6adfcd65978]
+#    to [c385bd243f2a15648c06e6cb5d9296dbc72d1179]
+# 
+# patch "ctwm.spec"
+#  from [3d3e337e6b43cd318e6dae06bb207022437e13af]
+#    to [67921f54c3620d2736cc4744a190ba6f0ac4325a]
+# 
+# patch "events.c"
+#  from [685d604d51fbec43362bed358703bb39c23dd5b4]
+#    to [39f3358ff082d672b599845150ceab6806a03603]
+# 
+# patch "gram.y"
+#  from [e27e6bb86324a57246031cd0d54cd98540f31ff3]
+#    to [f2d8e73825d7ce599e46d90a6a80cfaea8174c87]
+# 
+# patch "iconmgr.c"
+#  from [f00de9c3a0a0eb4e1383551f60e5e7c54315778f]
+#    to [1913a0dfec0f14363674c5aaae659aae4f1f184b]
+# 
+# patch "lex.l"
+#  from [42990f85e25cfa917cc0abbca579ca2c1061913b]
+#    to [5c3aacac9e7be64a40528463042849078f206fc1]
+# 
+# patch "libctwm.c"
+#  from [decb7ec8dc7edb365362c7220f8560ab118a7cd8]
+#    to [ea6442fdfa5ee8be8d3705d2fa2052ad0e78b835]
+# 
+# patch "menus.c"
+#  from [4bcae54dd72a4f41b1f3bbdf535a0b5a8a0223bb]
+#    to [704d216a42b5c27cff51ee8e256a9d066dbcfd3d]
+# 
+# patch "parse.c"
+#  from [a981dab6c1497614bbf93a9eb19a1e28fe871249]
+#    to [8dbb47b9e53ed31924474b56085a1639a7163094]
+# 
+# patch "screen.h"
+#  from [84a0e0a995a35462f4f2172569b9a09281f7fa3f]
+#    to [e3be8919dc8c0b63029d7a0772974bc1e433d9ff]
+# 
+# patch "siconify.bm"
+#  from [9f8036b04cc5732c911a2c9d3c009ff62f9ed795]
+#    to [fdcf54778c00bf4b3ec290dde3bd90b5625063fb]
+# 
+# patch "twm.h"
+#  from [63f2a702c87e8b206c75e3eb66ad9b28615634cb]
+#    to [3817926f80921b06eae8204341ea5006a27f26a8]
+# 
+# patch "util.c"
+#  from [94efd2be21b528cc2b88738e412a17c656309150]
+#    to [511d6c1cf0fdf697b6b34ec558f64aa4a94b4155]
+# 
+# patch "util.h"
+#  from [086a3b87e05de5bca8bb5221a7fce8478059865e]
+#    to [d8a995b60f289e1038c500a7641c5ee56022f10f]
+# 
+# patch "version.c"
+#  from [adedcb14af1a8e50423b601a3a58529fe3c94399]
+#    to [79609e3cb8536a42c2d31c8cbb2178ef18b3ce25]
+# 
+# patch "vscreen.c"
+#  from [9c5d09d51fefe8231e9de7ce18694c4852254ac7]
+#    to [9c8e13bbd28f15cf2881a7f2daf932ac025a9856]
+# 
+# patch "workmgr.c"
+#  from [6ae1b763af5d189dad48ba1c9cb1db121f5c3f60]
+#    to [ea9dbcb2897548e5721e6a6cd2da57223c2dfaad]
+# 
+# patch "workmgr.h"
+#  from [6897a7db2c5b2f23935674602a6be0edb518bb79]
+#    to [714b6e2de3af029c0d3c9fd06730a7e1e285444f]
+#
+============================================================
+--- CHANGES	08768d9d42f7249287ccd273679fce382dfe1ac9
++++ CHANGES	725d07c6194ced52655bda972197906806227d2c
+@@ -926,7 +926,7 @@ IconRegion geomstring vgrav hgrav gridwi
+ 
+     6 - f.toggleworkspacemgr
+ 	Toggle the presence of the WorkSpaceManager. If it is mapped, it will
+-	be unmapped and vice verça.
++	be unmapped and vice verÃ§a.
+ 
+     7 - OpenWindowTimeout number
+ 	number is an integer representing a number of second. When a window
+@@ -1054,7 +1054,7 @@ TWM_CAPTIVE_NAME : The name of the capti
+ 	window to the specified geometry. The width and height are to be given
+ 	in pixel, no base size or resize increment are used.
+ 
+-    2 - AutoLower et f.autolower : from Kai Großjohann
++    2 - AutoLower et f.autolower : from Kai GroÃŸjohann
+ 	(Kai.Grossjohann@CS.Uni-Dortmund.DE). Same as autoraise but with lower.
+ 
+     3 - WindowRingExclude : Takes a window list as argument. All listed windows
+@@ -1137,7 +1137,7 @@ WindowGeometries {
+     1 - Workspace context (bkctwmws.patch)
+ 
+ 	Makes it possible to bind keys specific to the workspace manager
+-	(by Björn Knutsson). Use the event context 'workspace' for this.
++	(by BjÃ¶rn Knutsson). Use the event context 'workspace' for this.
+ 
+     2 - New keyword : AlwaysSqueezeToGravity
+ 
+@@ -1212,7 +1212,7 @@ VirtualScreens {
+ 
+ 	This was contributed by Matthew D. Fuller.
+ 
+-   14 - DontMoveOff patch (by Björn Knutsson)
++   14 - DontMoveOff patch (by BjÃ¶rn Knutsson)
+ 
+ 	Change the behavior of DontMoveOff/MoveOffResistance so that
+ 	when you attempt to move a window off screen, it will not move
+@@ -1223,17 +1223,17 @@ VirtualScreens {
+ 	ability to move a window off screen less that
+ 	#MoveOffResistance pixels.
+ 
+-   15 - Random placement and DontMoveOff patch (by Björn Knutsson, changed)
++   15 - Random placement and DontMoveOff patch (by BjÃ¶rn Knutsson, changed)
+ 
+ 	When random placement was used, DontMoveOff wasn't honored.
+ 	This behavior has now changed so a window will be kept within
+ 	the screen when at all possible.  When the window is too
+ 	large, it's top or left edge (or both) will be placed in
+ 	coordinate 0.
+-	This change differs a little bit from Björns contribution by
++	This change differs a little bit from BjÃ¶rns contribution by
+ 	not using rand() at all.
+ 
+-   16 - f.warpring patch (by Björn Knutsson)
++   16 - f.warpring patch (by BjÃ¶rn Knutsson)
+ 
+ 	If IconManagerFocus is set, there's no reason why the icon
+ 	manager should get enter and leave events.  This fixes some
+@@ -1242,13 +1242,13 @@ VirtualScreens {
+    17 - f.movetoprevworkspace,
+ 	f.movetonextworkspace,
+ 	f.movetoprevworkspaceandfollow,
+-	f.movetonextworkspaceandfollow patch (by Daniel Holmström)
++	f.movetonextworkspaceandfollow patch (by Daniel HolmstrÃ¶m)
+ 
+ 	Makes it possible to move a window to the previous or next  
+ 	workspace and, if you like, go to that workspace and focus 
+ 	the moved window.
+ 
+-   18 - f.fill "vertical" patch (by Daniel Holmström)
++   18 - f.fill "vertical" patch (by Daniel HolmstrÃ¶m)
+ 
+ 	Expands the window vertically without overlapping any other window, 
+ 	much like { f.fill "top" f.fill "bottom" } but with the exception 
+@@ -1256,13 +1256,13 @@ VirtualScreens {
+ 	windows 'zoomed' to F_FULLZOOM, so one can toggle between this 
+ 	size, original and maximized.
+ 
+-   19 - RESIZEKEEPSFOCUS bugfix patch (by Daniel Holmström)
++   19 - RESIZEKEEPSFOCUS bugfix patch (by Daniel HolmstrÃ¶m)
+ 
+ 	If a window is maximized with togglemaximize and then restored 
+ 	it might loose focus if the cursor is outside the restored window. 
+ 	This hack puts the cursor at the left-top corner of the window.
+ 
+-   20 - f.zoom bugfix patch (by Daniel Holmström)
++   20 - f.zoom bugfix patch (by Daniel HolmstrÃ¶m)
+ 
+ 	f.zoom now doesn't move the window up (as it sometimes did before)
+ 
+@@ -1664,3 +1664,45 @@ VirtualScreens {
+ 	window start near the bottom edge instead of the top.
+ 	[Richard Levitte]
+ 
++
++    Changes from version 3.8 to 3.8.1
++    ---------------------------------
++
++    1 - Fix bug causing [de]iconified status of windows to not be
++        maintained across workspaces.
++        [Matthew Fuller]
++
++    2 - Quite a bunch of compiler warnings.
++        [Matthew Fuller]
++
++    3 - Make sure we fully initialize our WorkSpaceWindow structure so
++        we don't try to dereference uninitialized pointers later on.
++        [Matthew Fuller]
++
++    4 - Increased the number of supported mouse buttons again, having
++	just heard of a mouse with 9 possible buttons...
++	[Richard Levitte]
++
++    5 - Fix a bug in the warping "next" function, where if there is a
++	single window and the cursor is not on it, invoking 'f.warpring
++	"next"' does nothing.
++	[Martin Blais]
++
++    6 - Introduce a new feature called "SaveWorkspaceFocus", which when
++	enabled, makes ctwm remember which window has the focus within
++	each virtual workspace. As you switch workspaces, the cursor is
++	automatically warped to the window previous in focus in the
++	workspace. This significantly reduces the amount of mouse use.
++	[Martin Blais]
++
++    7 - From Matthias Kretschmer <kretschm@cs.uni-bonn.de>:
++	f.fill patch.
++	Without the patch, you might get windows which are increased by
++	two times the border width more than it should be.  Additionally
++	if you place a window with no/not much size contrainst like
++	firefox in the upper left corner and perform f.fill "top" or
++	f.fill "left" the size of the window will increase by two times
++	the border width in width and height without changing the
++	top-left coordinate without the patch.  Of course in such a
++	situation the size should not change at all...                 
++	[via Olaf Seibert]
+============================================================
+--- Imakefile	ff68e27bd83c76f682b7943dfe0acf324db7c40e
++++ Imakefile	8f5f588f8598b6951a672b5a2a9d8debbcb27e25
+@@ -115,6 +115,8 @@ DEBUGPARSERDEFINES = -DYYDEBUG=1
+ #ifdef GCC_PEDANTIC
+       CCOPTIONS = -pedantic -ansi -Wall \
+ 		-Wshadow -Wstrict-prototypes -Wmissing-prototypes -Wundef \
++		-Wredundant-decls -Wcast-align -Wcast-qual -Wchar-subscripts \
++		-Winline -Wnested-externs -Wmissing-declarations \
+ 		-aux-info $@.info
+ #endif
+ 
+@@ -217,6 +219,8 @@ dist:	clean Makefile gram.h gram.c lex.c
+ 	       \! -name .cvsignore \! -name STATUS \! -name TABLE \
+ 	       \! -name Makefile \
+ 	       \! -name Imakefile.local \! -name descrip.local \
++	       \! -name '*.o.info' \! -name '*.flc' \! -name semantic.cache \
++	       \! -name y.output \
+ 		| sort > ../ctwm-$$version.list; \
+ 	tar --no-recursion --files-from ../ctwm-$$version.list -cvf - | \
+ 	tardy --user_number=0  --user_name=ctwm \
+============================================================
+--- README	96dfaa26c9305cae88e74124e09fced27cd3a4bd
++++ README	c94053f22ceb4f9f79d2830073ba7486452db152
+@@ -94,20 +94,18 @@
+ 
+ 				----------
+ 
+-Mailing lists and other stuff:
++Mailing lists:
+ 
+-There is a CVS repository, available anonymously :
++There is a mailing list for discussions ctwm@free.lp.se.  Subscribe at
++minimalist@free.lp.se.
+ 
+-  cvs -d :pserver:anonymous@repository.lp.se:/orgs/lp/free/cvs login
+-  Password: (press enter)
+-  cvs -d :pserver:anonymous@repository.lp.se:/orgs/lp/free/cvs co X/ctwm
++Repository:
+ 
+-There is also the possibility to browse the repository :
++CTWM development uses monotone (see http://www.venge.net/monotone) for
++version control.  The current central server is free.lp.se, and the
++branch to pull is "free.lp.se:X.ctwm".
+ 
+-  http://repository.lp.se/viewcvs/X/ctwm/
++Further information:
+ 
+-The CVS logs are posted to ctwm-cvs@free.lp.se, subscribe at
+-ctwm-cvs-request@free.lp.se.
++http://ctwm.free.lp.se/
+ 
+-There is a mailing list for discussions ctwm@free.lp.se.  Subscribe at
+-ctwm-request@free.lp.se.
+============================================================
+--- add_window.c	32b936cdaba147612081b1fbe65e7ceb9a22b463
++++ add_window.c	31705f70831cc555f963f8c65afc82e907095668
+@@ -128,7 +128,6 @@ extern Atom _OL_WIN_ATTR;
+ int  resizeWhenAdd;
+ 
+ extern Atom _OL_WIN_ATTR;
+-extern int captive;
+ 
+ #if defined(__hpux) && !defined(_XPG4_EXTENDED)
+ #   define FDSET int*
+@@ -2539,7 +2538,7 @@ void RemoveWindowFromRegion (TwmWindow *
+  * this approach assumes screens that are next to each other horizontally,
+  * Other possibilities need to be investigated and accounted for.
+  */
+-void DealWithNonSensicalGeometries(Display *dpy, Window vroot, TwmWindow *tmp_win)
++void DealWithNonSensicalGeometries(Display *mydpy, Window vroot, TwmWindow *tmp_win)
+ {
+     Window		vvroot;
+     int			x,y;
+@@ -2551,7 +2550,7 @@ void DealWithNonSensicalGeometries(Displ
+     if(! vroot)
+ 	return;
+ 
+-    if(!(XGetGeometry(dpy, vroot, &vvroot, &x, &y, &w, &h, &j, &j)))
++    if(!(XGetGeometry(mydpy, vroot, &vvroot, &x, &y, &w, &h, &j, &j)))
+ 	return;
+ 
+     myvs = findIfVScreenOf(x, y);
+============================================================
+--- alloca.c	3d2c317909cd13389cdc069749d42f3159cc25f2
++++ /dev/null	
+@@ -1,564 +0,0 @@
+-/* alloca.c -- allocate automatically reclaimed memory
+-   (Mostly) portable public-domain implementation -- D A Gwyn
+-
+-   This implementation of the PWB library alloca function,
+-   which is used to allocate space off the run-time stack so
+-   that it is automatically reclaimed upon procedure exit,
+-   was inspired by discussions with J. Q. Johnson of Cornell.
+-   J.Otto Tennant <jot@cray.com> contributed the Cray support.
+-
+-   There are some preprocessor constants that can
+-   be defined when compiling for your specific system, for
+-   improved efficiency; however, the defaults should be okay.
+-
+-   The general concept of this implementation is to keep
+-   track of all alloca-allocated blocks, and reclaim any
+-   that are found to be deeper in the stack than the current
+-   invocation.  This heuristic does not reclaim storage as
+-   soon as it becomes invalid, but it will do so eventually.
+-
+-   As a special case, alloca(0) reclaims storage without
+-   allocating any.  It is a good idea to use alloca(0) in
+-   your main control loop, etc. to force garbage collection.  */
+-
+-#ifdef HAVE_CONFIG_H
+-#if defined (emacs) || defined (CONFIG_BROKETS)
+-#include <config.h>
+-#else
+-#include "config.h"
+-#endif
+-#endif
+-
+-/* #define RL_DEBUG */
+-
+-/* If compiling with GCC 2, this file's not needed.  */
+-#if !defined (__GNUC__) || __GNUC__ < 2
+-
+-/* If someone has defined alloca as a macro,
+-   there must be some other way alloca is supposed to work.  */
+-#ifndef alloca
+-
+-#ifdef emacs
+-#ifdef static
+-/* actually, only want this if static is defined as ""
+-   -- this is for usg, in which emacs must undefine static
+-   in order to make unexec workable
+-   */
+-#ifndef STACK_DIRECTION
+-you
+-lose
+--- must know STACK_DIRECTION at compile-time
+-#endif /* STACK_DIRECTION undefined */
+-#endif /* static */
+-#endif /* emacs */
+-
+-/* If your stack is a linked list of frames, you have to
+-   provide an "address metric" ADDRESS_FUNCTION macro.  */
+-
+-#if defined (CRAY) && defined (CRAY_STACKSEG_END)
+-long i00afunc ();
+-#define ADDRESS_FUNCTION(arg) (char *) i00afunc (&(arg))
+-#else
+-#define ADDRESS_FUNCTION(arg) &(arg)
+-#endif
+-
+-#if __STDC__
+-typedef void *pointer;
+-typedef void procedure;
+-#else
+-typedef char *pointer;
+-typedef int procedure;
+-#endif
+-
+-#define	NULL	0
+-
+-/* Different portions of Emacs need to call different versions of
+-   malloc.  The Emacs executable needs alloca to call xmalloc, because
+-   ordinary malloc isn't protected from input signals.  On the other
+-   hand, the utilities in lib-src need alloca to call malloc; some of
+-   them are very simple, and don't have an xmalloc routine.
+-
+-   Non-Emacs programs expect this to call use xmalloc.
+-
+-   Callers below should use malloc.
+-
+-   There is some need for BLOCK_INPUT and UNBLOCK_INPUT, but it is really
+-   only used in Emacs, so that's the only time it's used.  Otherwise,
+-   they are just empty statements.  */
+-
+-#ifndef emacs
+-#define malloc xmalloc
+-#define free xfree
+-#define BLOCK_INPUT
+-#define UNBLOCK_INPUT
+-#else
+-#ifndef BLOCK_INPUT
+-#include "blockinput.h"
+-#else
+-#ifndef UNBLOCK_INPUT
+-#define UNBLOCK_INPUT
+-#endif
+-#endif
+-#endif
+-extern pointer malloc ();
+-extern procedure free ();
+-
+-/* Define STACK_DIRECTION if you know the direction of stack
+-   growth for your system; otherwise it will be automatically
+-   deduced at run-time.
+-
+-   STACK_DIRECTION > 0 => grows toward higher addresses
+-   STACK_DIRECTION < 0 => grows toward lower addresses
+-   STACK_DIRECTION = 0 => direction of growth unknown  */
+-
+-#ifndef STACK_DIRECTION
+-#define	STACK_DIRECTION	0	/* Direction unknown.  */
+-#endif
+-
+-#if STACK_DIRECTION != 0
+-
+-#define	STACK_DIR	STACK_DIRECTION	/* Known at compile-time.  */
+-
+-#else /* STACK_DIRECTION == 0; need run-time code.  */
+-
+-static int stack_dir;		/* 1 or -1 once known.  */
+-#define	STACK_DIR	stack_dir
+-
+-static void
+-find_stack_direction ()
+-{
+-  static char *addr = NULL;	/* Address of first `dummy', once known.  */
+-  auto char dummy;		/* To get stack address.  */
+-
+-  if (addr == NULL)
+-    {				/* Initial entry.  */
+-      addr = ADDRESS_FUNCTION (dummy);
+-
+-      find_stack_direction ();	/* Recurse once.  */
+-    }
+-  else
+-    {
+-      /* Second entry.  */
+-      if (ADDRESS_FUNCTION (dummy) > addr)
+-	stack_dir = 1;		/* Stack grew upward.  */
+-      else
+-	stack_dir = -1;		/* Stack grew downward.  */
+-    }
+-}
+-
+-#endif /* STACK_DIRECTION == 0 */
+-
+-/* An "alloca header" is used to:
+-   (a) chain together all alloca'ed blocks;
+-   (b) keep track of stack depth.
+-
+-   It is very important that sizeof(header) agree with malloc
+-   alignment chunk size.  The following default should work okay.  */
+-
+-#ifndef	ALIGN_SIZE
+-#define	ALIGN_SIZE	sizeof(double)
+-#endif
+-
+-typedef union hdr
+-{
+-  char align[ALIGN_SIZE];	/* To force sizeof(header).  */
+-  struct
+-    {
+-      union hdr *next;		/* For chaining headers.  */
+-      char *deep;		/* For stack depth measure.  */
+-    } h;
+-} header;
+-
+-static header *last_alloca_header = NULL;	/* -> last alloca header.  */
+-
+-#ifdef RL_DEBUG
+-#include <stdio.h>
+-void follow_alloca_headers ()
+-{
+-  header *hp = last_alloca_header;
+-  for (; hp != NULL; hp = hp->h.next)
+-    printf ("Allocaheader %p, depth=%p\n", hp, hp->h.deep);
+-  fflush (stdout);
+-}
+-#endif
+-
+-/* Return a pointer to at least SIZE bytes of storage,
+-   which will be automatically reclaimed upon exit from
+-   the procedure that called alloca.  Originally, this space
+-   was supposed to be taken from the current stack frame of the
+-   caller, but that method cannot be made to work for some
+-   implementations of C, for example under Gould's UTX/32.  */
+-
+-pointer
+-alloca (size)
+-     unsigned size;
+-{
+-  auto char probe;		/* Probes stack depth: */
+-  register char *depth = ADDRESS_FUNCTION (probe);
+-
+-#if STACK_DIRECTION == 0
+-  if (STACK_DIR == 0)		/* Unknown growth direction.  */
+-    find_stack_direction ();
+-#endif
+-
+-  /* Reclaim garbage, defined as all alloca'd storage that
+-     was allocated from deeper in the stack than currently. */
+-
+-  {
+-    register header *hp;	/* Traverses linked list.  */
+-
+-    /* I've wrapped this loop (which I hope is tight) with BLOCK_INPUT
+-       because I had a case when xfree (), ending with UNBLOCK_INPUT,
+-       called reinvoke_input_signal (), which, through XTread_socket (),
+-       called alloca () again, which tried to free a block which was already
+-       free.  */
+-    BLOCK_INPUT;
+-#ifdef RL_DEBUG
+-    {
+-      extern int vms_out_initial;
+-      if (vms_out_initial)
+-	{
+-	  printf ("-----------------------\ncurrent depth = %p\n", depth);
+-	  if (last_alloca_header != NULL
+-	      && ((STACK_DIR > 0 && last_alloca_header->h.deep > depth)
+-		  || (STACK_DIR < 0 && last_alloca_header->h.deep < depth)))
+-	    {
+-	      printf ("Some of these will be deleted:\n");
+-	      follow_alloca_headers ();
+-	    }
+-	}
+-    }
+-#endif
+-
+-    for (hp = last_alloca_header; hp != NULL;)
+-      if ((STACK_DIR > 0 && hp->h.deep > depth)
+-	  || (STACK_DIR < 0 && hp->h.deep < depth))
+-	{
+-	  register header *np = hp->h.next;
+-#ifdef RL_DEBUG
+-	  {
+-	    extern int vms_out_initial;
+-	    if (vms_out_initial)
+-	      {
+-		if (hp->h.deep < (1 << 30))
+-		  {
+-		    printf ("There is something wrong here...\n");
+-		    abort ();
+-		  }
+-		printf ("Freeing %p\n", hp);
+-		fflush (stdout);
+-	      }
+-	  }
+-#endif
+-
+-	  free ((pointer) hp);	/* Collect garbage.  */
+-
+-	  hp = np;		/* -> next header.  */
+-	}
+-      else
+-	break;			/* Rest are not deeper.  */
+-
+-    last_alloca_header = hp;	/* -> last valid storage.  */
+-    UNBLOCK_INPUT;
+-  }
+-
+-  if (size == 0)
+-    return NULL;		/* No allocation required.  */
+-
+-  /* Allocate combined header + user data storage.  */
+-
+-  {
+-    register pointer new = malloc (sizeof (header) + size);
+-    /* Address of header.  */
+-
+-    ((header *) new)->h.next = last_alloca_header;
+-    ((header *) new)->h.deep = depth;
+-
+-    last_alloca_header = (header *) new;
+-
+-    /* User storage begins just after header.  */
+-
+-#ifdef RL_DEBUG
+-    {
+-      extern int vms_out_initial;
+-      if (vms_out_initial)
+-	{
+-	  printf ("Allocation gave %p\n", (char *)new + sizeof (header));
+-	  fflush (stdout);
+-	}
+-    }
+-#endif
+-    return (pointer) ((char *) new + sizeof (header));
+-  }
+-}
+-
+-#if defined (CRAY) && defined (CRAY_STACKSEG_END)
+-
+-#ifdef DEBUG_I00AFUNC
+-#include <stdio.h>
+-#endif
+-
+-#ifndef CRAY_STACK
+-#define CRAY_STACK
+-#ifndef CRAY2
+-/* Stack structures for CRAY-1, CRAY X-MP, and CRAY Y-MP */
+-struct stack_control_header
+-  {
+-    long shgrow:32;		/* Number of times stack has grown.  */
+-    long shaseg:32;		/* Size of increments to stack.  */
+-    long shhwm:32;		/* High water mark of stack.  */
+-    long shsize:32;		/* Current size of stack (all segments).  */
+-  };
+-
+-/* The stack segment linkage control information occurs at
+-   the high-address end of a stack segment.  (The stack
+-   grows from low addresses to high addresses.)  The initial
+-   part of the stack segment linkage control information is
+-   0200 (octal) words.  This provides for register storage
+-   for the routine which overflows the stack.  */
+-
+-struct stack_segment_linkage
+-  {
+-    long ss[0200];		/* 0200 overflow words.  */
+-    long sssize:32;		/* Number of words in this segment.  */
+-    long ssbase:32;		/* Offset to stack base.  */
+-    long:32;
+-    long sspseg:32;		/* Offset to linkage control of previous
+-				   segment of stack.  */
+-    long:32;
+-    long sstcpt:32;		/* Pointer to task common address block.  */
+-    long sscsnm;		/* Private control structure number for
+-				   microtasking.  */
+-    long ssusr1;		/* Reserved for user.  */
+-    long ssusr2;		/* Reserved for user.  */
+-    long sstpid;		/* Process ID for pid based multi-tasking.  */
+-    long ssgvup;		/* Pointer to multitasking thread giveup.  */
+-    long sscray[7];		/* Reserved for Cray Research.  */
+-    long ssa0;
+-    long ssa1;
+-    long ssa2;
+-    long ssa3;
+-    long ssa4;
+-    long ssa5;
+-    long ssa6;
+-    long ssa7;
+-    long sss0;
+-    long sss1;
+-    long sss2;
+-    long sss3;
+-    long sss4;
+-    long sss5;
+-    long sss6;
+-    long sss7;
+-  };
+-
+-#else /* CRAY2 */
+-/* The following structure defines the vector of words
+-   returned by the STKSTAT library routine.  */
+-struct stk_stat
+-  {
+-    long now;			/* Current total stack size.  */
+-    long maxc;			/* Amount of contiguous space which would
+-				   be required to satisfy the maximum
+-				   stack demand to date.  */
+-    long high_water;		/* Stack high-water mark.  */
+-    long overflows;		/* Number of stack overflow ($STKOFEN) calls.  */
+-    long hits;			/* Number of internal buffer hits.  */
+-    long extends;		/* Number of block extensions.  */
+-    long stko_mallocs;		/* Block allocations by $STKOFEN.  */
+-    long underflows;		/* Number of stack underflow calls ($STKRETN).  */
+-    long stko_free;		/* Number of deallocations by $STKRETN.  */
+-    long stkm_free;		/* Number of deallocations by $STKMRET.  */
+-    long segments;		/* Current number of stack segments.  */
+-    long maxs;			/* Maximum number of stack segments so far.  */
+-    long pad_size;		/* Stack pad size.  */
+-    long current_address;	/* Current stack segment address.  */
+-    long current_size;		/* Current stack segment size.  This
+-				   number is actually corrupted by STKSTAT to
+-				   include the fifteen word trailer area.  */
+-    long initial_address;	/* Address of initial segment.  */
+-    long initial_size;		/* Size of initial segment.  */
+-  };
+-
+-/* The following structure describes the data structure which trails
+-   any stack segment.  I think that the description in 'asdef' is
+-   out of date.  I only describe the parts that I am sure about.  */
+-
+-struct stk_trailer
+-  {
+-    long this_address;		/* Address of this block.  */
+-    long this_size;		/* Size of this block (does not include
+-				   this trailer).  */
+-    long unknown2;
+-    long unknown3;
+-    long link;			/* Address of trailer block of previous
+-				   segment.  */
+-    long unknown5;
+-    long unknown6;
+-    long unknown7;
+-    long unknown8;
+-    long unknown9;
+-    long unknown10;
+-    long unknown11;
+-    long unknown12;
+-    long unknown13;
+-    long unknown14;
+-  };
+-
+-#endif /* CRAY2 */
+-#endif /* not CRAY_STACK */
+-
+-#ifdef CRAY2
+-/* Determine a "stack measure" for an arbitrary ADDRESS.
+-   I doubt that "lint" will like this much. */
+-
+-static long
+-i00afunc (long *address)
+-{
+-  struct stk_stat status;
+-  struct stk_trailer *trailer;
+-  long *block, size;
+-  long result = 0;
+-
+-  /* We want to iterate through all of the segments.  The first
+-     step is to get the stack status structure.  We could do this
+-     more quickly and more directly, perhaps, by referencing the
+-     $LM00 common block, but I know that this works.  */
+-
+-  STKSTAT (&status);
+-
+-  /* Set up the iteration.  */
+-
+-  trailer = (struct stk_trailer *) (status.current_address
+-				    + status.current_size
+-				    - 15);
+-
+-  /* There must be at least one stack segment.  Therefore it is
+-     a fatal error if "trailer" is null.  */
+-
+-  if (trailer == 0)
+-    abort ();
+-
+-  /* Discard segments that do not contain our argument address.  */
+-
+-  while (trailer != 0)
+-    {
+-      block = (long *) trailer->this_address;
+-      size = trailer->this_size;
+-      if (block == 0 || size == 0)
+-	abort ();
+-      trailer = (struct stk_trailer *) trailer->link;
+-      if ((block <= address) && (address < (block + size)))
+-	break;
+-    }
+-
+-  /* Set the result to the offset in this segment and add the sizes
+-     of all predecessor segments.  */
+-
+-  result = address - block;
+-
+-  if (trailer == 0)
+-    {
+-      return result;
+-    }
+-
+-  do
+-    {
+-      if (trailer->this_size <= 0)
+-	abort ();
+-      result += trailer->this_size;
+-      trailer = (struct stk_trailer *) trailer->link;
+-    }
+-  while (trailer != 0);
+-
+-  /* We are done.  Note that if you present a bogus address (one
+-     not in any segment), you will get a different number back, formed
+-     from subtracting the address of the first block.  This is probably
+-     not what you want.  */
+-
+-  return (result);
+-}
+-
+-#else /* not CRAY2 */
+-/* Stack address function for a CRAY-1, CRAY X-MP, or CRAY Y-MP.
+-   Determine the number of the cell within the stack,
+-   given the address of the cell.  The purpose of this
+-   routine is to linearize, in some sense, stack addresses
+-   for alloca.  */
+-
+-static long
+-i00afunc (long address)
+-{
+-  long stkl = 0;
+-
+-  long size, pseg, this_segment, stack;
+-  long result = 0;
+-
+-  struct stack_segment_linkage *ssptr;
+-
+-  /* Register B67 contains the address of the end of the
+-     current stack segment.  If you (as a subprogram) store
+-     your registers on the stack and find that you are past
+-     the contents of B67, you have overflowed the segment.
+-
+-     B67 also points to the stack segment linkage control
+-     area, which is what we are really interested in.  */
+-
+-  stkl = CRAY_STACKSEG_END ();
+-  ssptr = (struct stack_segment_linkage *) stkl;
+-
+-  /* If one subtracts 'size' from the end of the segment,
+-     one has the address of the first word of the segment.
+-
+-     If this is not the first segment, 'pseg' will be
+-     nonzero.  */
+-
+-  pseg = ssptr->sspseg;
+-  size = ssptr->sssize;
+-
+-  this_segment = stkl - size;
+-
+-  /* It is possible that calling this routine itself caused
+-     a stack overflow.  Discard stack segments which do not
+-     contain the target address.  */
+-
+-  while (!(this_segment <= address && address <= stkl))
+-    {
+-#ifdef DEBUG_I00AFUNC
+-      fprintf (stderr, "%011o %011o %011o\n", this_segment, address, stkl);
+-#endif
+-      if (pseg == 0)
+-	break;
+-      stkl = stkl - pseg;
+-      ssptr = (struct stack_segment_linkage *) stkl;
+-      size = ssptr->sssize;
+-      pseg = ssptr->sspseg;
+-      this_segment = stkl - size;
+-    }
+-
+-  result = address - this_segment;
+-
+-  /* If you subtract pseg from the current end of the stack,
+-     you get the address of the previous stack segment's end.
+-     This seems a little convoluted to me, but I'll bet you save
+-     a cycle somewhere.  */
+-
+-  while (pseg != 0)
+-    {
+-#ifdef DEBUG_I00AFUNC
+-      fprintf (stderr, "%011o %011o\n", pseg, size);
+-#endif
+-      stkl = stkl - pseg;
+-      ssptr = (struct stack_segment_linkage *) stkl;
+-      size = ssptr->sssize;
+-      pseg = ssptr->sspseg;
+-      result += size;
+-    }
+-  return (result);
+-}
+-
+-#endif /* not CRAY2 */
+-#endif /* CRAY */
+-
+-#endif /* no alloca */
+-#endif /* not GCC version 2 */
+============================================================
+--- ctwm.c	85ebd1c921b013aed697fa8ab8f42832817f00eb
++++ ctwm.c	92a7863c957acb35f0e3133941561a89ace04bdf
+@@ -338,7 +338,8 @@ int main(int argc, char **argv, char **e
+ 		MultiScreen = False;
+ 		if ((i + 1) >= argc) continue;
+ 		if (*(argv [i + 1]) == '-') continue;
+-		if (sscanf (argv [i + 1], "%x", &capwin) != 1) continue;
++		if (sscanf (argv [i + 1], "%x", (unsigned int *)&capwin) != 1)
++		    continue;
+ 		i++;
+ 		continue;
+ #ifdef USEM4
+@@ -1028,6 +1029,7 @@ void InitVariables(void)
+     Scr->WarpToDefaultMenuEntry = FALSE;
+     Scr->ClickToFocus = FALSE;
+     Scr->SloppyFocus = FALSE;
++    Scr->SaveWorkspaceFocus = FALSE;
+     Scr->NoIconTitlebar = FALSE;
+     Scr->NoTitlebar = FALSE;
+     Scr->DecorateTransients = FALSE;
+@@ -1159,7 +1161,6 @@ void CreateFonts (void)
+ }
+ 
+ 
+-void RestoreWithdrawnLocation (TwmWindow *tmp);
+ void RestoreWithdrawnLocation (TwmWindow *tmp)
+ {
+     int gravx, gravy;
+@@ -1322,8 +1323,6 @@ void DoRestart(Time t)
+ 
+ void DoRestart(Time t)
+ {
+-    extern SmcConn smcConn;
+-
+     RestartFlag = 0;
+ 
+     StopAnimation ();
+============================================================
+--- ctwm.man	46d8d793b20b997b8f1783b35351a6adfcd65978
++++ ctwm.man	c385bd243f2a15648c06e6cb5d9296dbc72d1179
+@@ -1281,6 +1281,13 @@ Use sloppy focus.
+ .IP "\fBSloppyFocus\fP" 8
+ Use sloppy focus.
+ 
++.IP "\fBSaveWorkspaceFocus\fP" 8
++When changing to a workspace, restore the focus to the last window
++that had the focus when you left the workspace by warping the mouse
++into it. This essentially saves the focus window with the workspace
++and restores it automatically when you switch. In many cases, it
++avoids having to reach for the mouse after moving to a new workspace.
++
+ .IP "\fBSortIconManager\fP" 8
+ This variable indicates that entries in the icon manager should be
+ sorted alphabetically rather than by simply appending new windows to
+============================================================
+--- ctwm.spec	3d3e337e6b43cd318e6dae06bb207022437e13af
++++ ctwm.spec	67921f54c3620d2736cc4744a190ba6f0ac4325a
+@@ -1,6 +1,6 @@ Name: ctwm
+ Summary: Ctwm is a window manager for the X Window System.
+ Name: ctwm
+-Version: 3.8
++Version: 3.8.1
+ Release: 1
+ Source: http://ctwm.free.lp.se/preview/%{name}-%{version}.tar.gz
+ Copyright: MIT
+@@ -69,8 +69,10 @@ rm -fr $RPM_BUILD_ROOT
+ %attr(0644,root,root) /usr/X11R6/include/X11/pixmaps/*
+ 
+ %changelog
++* Thu Jan  5 2012 Richard Levitte <richard@levitte.org>
++- Release ctwm 3.8.1.
+ * Fri Feb 16 2006 Richard Levitte <richard@levitte.org>
+-- Release ctwm 3.8.
++- Release ctwm 3.8a.
+ * Wed May  4 2005 Rudolph T Maceyko <rm55@pobox.com>
+ - Tweaks.  Added all .ctwmrc files as well as sound and VMS docs.
+ * Wed May  4 2005 Richard Levitte <richard@levitte.org>
+============================================================
+--- events.c	685d604d51fbec43362bed358703bb39c23dd5b4
++++ events.c	39f3358ff082d672b599845150ceab6806a03603
+@@ -111,9 +111,8 @@ extern char *CurrentSelectedWorkspace;
+ extern unsigned int mods_used;
+ extern int menuFromFrameOrWindowOrTitlebar;
+ extern char *CurrentSelectedWorkspace;
++extern int RaiseDelay;
+ 
+-extern int captive;
+-
+ #ifdef USE_SIGNALS
+ extern Bool AnimationPending;
+ #else /* USE_SIGNALS */
+@@ -131,6 +130,7 @@ void RedoIconName(void);
+ static void do_key_menu (MenuRoot *menu,	/* menu to pop up */
+ 			 Window w);		/* invoking window or None */
+ void RedoIconName(void);
++extern void twmrc_error_prefix(void);
+ 
+ #ifdef SOUNDS
+ extern void play_sound(int snd);
+@@ -3335,7 +3335,6 @@ void HandleEnterNotify(void)
+     XEnterWindowEvent *ewp = &Event.xcrossing;
+     HENScanArgs scanArgs;
+     XEvent dummy;
+-    extern int RaiseDelay;
+     virtualScreen *vs;
+ 
+     /*
+@@ -4247,7 +4246,6 @@ void ConfigureRootWindow (XEvent *ev)
+     Window       root, child;
+     int          x, y;
+     unsigned int w, h, bw, d, oldw, oldh;
+-    extern void twmrc_error_prefix(void);
+ 
+     XGetGeometry (dpy, Scr->CaptiveRoot, &root, &x, &y, &w, &h, &bw, &d);
+     XTranslateCoordinates (dpy, Scr->CaptiveRoot, root, 0, 0, &Scr->crootx, &Scr->crooty, &child);
+============================================================
+--- gram.y	e27e6bb86324a57246031cd0d54cd98540f31ff3
++++ gram.y	f2d8e73825d7ce599e46d90a6a80cfaea8174c87
+@@ -115,6 +115,7 @@ extern int yylex(void);
+ extern void twmrc_error_prefix(void);
+ 
+ extern int yylex(void);
++extern int yyparse(void);
+ %}
+ 
+ %union
+============================================================
+--- iconmgr.c	f00de9c3a0a0eb4e1383551f60e5e7c54315778f
++++ iconmgr.c	1913a0dfec0f14363674c5aaae659aae4f1f184b
+@@ -72,6 +72,7 @@
+ #include "screen.h"
+ #include "resize.h"
+ #include "add_window.h"
++#define __WANT_SICONIFY_BITS
+ #include "siconify.bm"
+ #ifdef VMS
+ #include <decw$include/Xos.h>
+============================================================
+--- lex.l	42990f85e25cfa917cc0abbca579ca2c1061913b
++++ lex.l	5c3aacac9e7be64a40528463042849078f206fc1
+@@ -77,12 +77,11 @@ extern void twmrc_error_prefix(void);
+ extern int ParseError;
+ extern void twmrc_error_prefix(void);
+ #ifdef FLEX_SCANNER
+-   int yylineno;
+ #  undef YY_INPUT
+ #  define YY_INPUT(buf,result,max_size) {buf[0]=twmInputFunc();result=(buf[0] != 0);}
+ #endif
+ 
+-int twmrc_lineno;
++extern int yylex(void);
+ %}
+ 
+ string				\"([^"]|\\.)*\"
+============================================================
+--- libctwm.c	decb7ec8dc7edb365362c7220f8560ab118a7cd8
++++ libctwm.c	ea6442fdfa5ee8be8d3705d2fa2052ad0e78b835
+@@ -65,7 +65,8 @@ char **CtwmListWorkspaces (Display *disp
+     int			actual_format;
+     char		**ret;
+     int			count;
+-    int			i, l;
++    int			i;
++    unsigned long	l;
+ 
+     _XA_WM_WORKSPACESLIST = XInternAtom (display, "_WIN_WORKSPACE_NAMES", True);
+ 
+@@ -133,7 +134,8 @@ char **CtwmCurrentOccupation (Display *d
+     unsigned long	len;
+     Atom		actual_type;
+     int			actual_format;
+-    int			count, l, i;
++    int			count, i;
++    unsigned long	l;
+     char		**ret;
+ 
+     _XA_WM_OCCUPATION = XInternAtom (display, "WM_OCCUPATION", True);
+============================================================
+--- menus.c	4bcae54dd72a4f41b1f3bbdf535a0b5a8a0223bb
++++ menus.c	704d216a42b5c27cff51ee8e256a9d066dbcfd3d
+@@ -129,8 +129,6 @@
+ #endif
+ #define ABS(x) ((x)<0?-(x):(x))
+ 
+-extern XEvent Event;
+-
+ int RootFunction = 0;
+ MenuRoot *ActiveMenu = NULL;		/* the active menu */
+ MenuItem *ActiveItem = NULL;		/* the active menu item */
+@@ -141,7 +139,6 @@ Bool AlternateContext;
+ int AlternateKeymap;
+ Bool AlternateContext;
+ 
+-extern int captive;
+ extern char *captivename;
+ 
+ int ConstMove = FALSE;		/* constrained move variables */
+@@ -172,8 +169,9 @@ extern TwmWindow *ButtonWindow, *Tmp_win
+ extern char *Action;
+ extern int Context;
+ extern TwmWindow *ButtonWindow, *Tmp_win;
+-extern XEvent Event, ButtonEvent;
++extern XEvent ButtonEvent;
+ extern char *InitFile;
++extern int ConstrainedMoveTime;
+ static void Identify (TwmWindow *t);
+ 
+ #define SHADOWWIDTH 5			/* in pixels */
+@@ -1898,7 +1896,6 @@ int ExecuteFunction(int func, char *acti
+     int moving_icon = FALSE;
+     Bool fromtitlebar = False;
+     Bool from3dborder = False;
+-    extern int ConstrainedMoveTime;
+     TwmWindow *t;
+ 
+     RootFunction = 0;
+@@ -2320,14 +2317,25 @@ int ExecuteFunction(int func, char *acti
+ 	    break;
+ 	}
+ 	if (tmp_win->OpaqueResize) {
+-	    int sw, ss;
+-
+-	    sw = tmp_win->frame_width * tmp_win->frame_height;
+-	    ss = Scr->rootw  * Scr->rooth;
+-	    if (sw > ((ss * Scr->OpaqueResizeThreshold) / 100))
+-		Scr->OpaqueResize = FALSE;
+-	    else
++	    /*
++	     * OpaqueResize defaults to a thousand.  Assume that any number
++	     * >= 1000 is "infinity" and don't bother calculating.
++	     */
++	    if (Scr->OpaqueResizeThreshold >= 1000)
+ 		Scr->OpaqueResize = TRUE;
++	    else {
++		/*
++		 * scrsz will hold the number of pixels in your resolution,
++		 * which can get big.  [signed] int may not cut it.
++		 */
++		unsigned long winsz, scrsz;
++		winsz = tmp_win->frame_width * tmp_win->frame_height;
++		scrsz = Scr->rootw  * Scr->rooth;
++		if (winsz > (scrsz * (Scr->OpaqueResizeThreshold / 100.0)))
++		    Scr->OpaqueResize = FALSE;
++		else
++		    Scr->OpaqueResize = TRUE;
++	    }
+ 	}
+ 	else
+ 	    Scr->OpaqueResize = FALSE;
+@@ -2529,6 +2537,8 @@ int ExecuteFunction(int func, char *acti
+ 	else
+ 	    Scr->OpaqueMove = FALSE;
+ 
++	dragroot = Scr->XineramaRoot;
++
+ 	if (tmp_win->winbox) {
+ 	    XTranslateCoordinates (dpy, dragroot, tmp_win->winbox->window,
+ 		eventp->xbutton.x_root, eventp->xbutton.y_root,
+@@ -2625,8 +2635,6 @@ int ExecuteFunction(int func, char *acti
+ 	}
+ 	last_time = eventp->xbutton.time;
+ 
+-	dragroot = Scr->XineramaRoot;
+-
+ 	if (!Scr->OpaqueMove)
+ 	{
+ 	    InstallRootColormap();
+@@ -3083,17 +3091,17 @@ int ExecuteFunction(int func, char *acti
+ 	     * Keep within [ -denom, -1] or [ 0, denom >.
+ 	     */
+ 	    {
+-		int w = tmp_win->frame_width; /* or si->denom; if it were != 0 */
++		int wtmp = tmp_win->frame_width; /* or si->denom; if it were != 0 */
+ 		if (origNum < 0) {
+ 		    if (newx >= 0)
+ 			newx = -1;
+-		    else if (newx < -w)
+-			newx = -w;
++		    else if (newx < -wtmp)
++			newx = -wtmp;
+ 		} else if (origNum >= 0) {
+ 		    if (newx < 0)
+ 			newx = 0;
+-		    else if (newx >= w) 
+-			newx = w - 1;
++		    else if (newx >= wtmp) 
++			newx = wtmp - 1;
+ 		}
+ 	    }
+ 
+@@ -4054,7 +4062,7 @@ static void ReMapOne(TwmWindow *t, TwmWi
+ 	WList *wl;
+ 
+ 	for (wl = t->list; wl != NULL; wl = wl->nextv)
+-	    XUnmapWindow(dpy, t->list->icon);
++	    XUnmapWindow(dpy, wl->icon);
+     }
+     t->isicon = FALSE;
+     t->icon_on = FALSE;
+@@ -4707,7 +4715,9 @@ void WarpAlongRing (XButtonEvent *ev, Bo
+ 	}
+     }
+ 
+-    if (r && r != head) {
++    /* Note: (Scr->Focus != r) is necessary when we move to a workspace that
++       has a single window and we want warping to warp to it. */
++    if (r && (r != head || Scr->Focus != r)) {
+ 	TwmWindow *p = Scr->RingLeader, *t;
+ 
+ 	Scr->RingLeader = r;
+@@ -5157,6 +5167,8 @@ void fillwindow (TwmWindow *tmp_win, cha
+ 	newy = tmp_win->frame_y;
+ 	neww = winw + winx - newx;
+ 	newh = winh;
++	neww -= 2 * tmp_win->frame_bw;
++	newh -= 2 * tmp_win->frame_bw;
+ 	ConstrainSize (tmp_win, &neww, &newh);
+     } else
+     if (!strcmp (direction, "right")) {
+@@ -5168,6 +5180,8 @@ void fillwindow (TwmWindow *tmp_win, cha
+     	    neww = cons - winx;
+ 	    newh = winh;
+ 	    save = neww;
++	    neww -= 2 * tmp_win->frame_bw;
++	    newh -= 2 * tmp_win->frame_bw;
+ 	    ConstrainSize (tmp_win, &neww, &newh);
+ 	    if ((neww != winw) || (newh != winh) ||
+                 (cons == Scr->rootw - Scr->BorderRight))
+@@ -5183,6 +5197,8 @@ void fillwindow (TwmWindow *tmp_win, cha
+ 	newy = cons;
+ 	neww = winw;
+ 	newh = winh + winy - newy;
++	neww -= 2 * tmp_win->frame_bw;
++	newh -= 2 * tmp_win->frame_bw;
+ 	ConstrainSize (tmp_win, &neww, &newh);
+     } else
+     if (!strcmp (direction, "bottom")) {
+@@ -5194,6 +5210,8 @@ void fillwindow (TwmWindow *tmp_win, cha
+     	    neww = winw;
+ 	    newh = cons - winy;
+ 	    save = newh;
++	    neww -= 2 * tmp_win->frame_bw;
++	    newh -= 2 * tmp_win->frame_bw;
+ 	    ConstrainSize (tmp_win, &neww, &newh);
+ 	    if ((neww != winw) || (newh != winh) ||
+                 (cons == Scr->rooth - Scr->BorderBottom))
+@@ -5213,14 +5231,10 @@ void fillwindow (TwmWindow *tmp_win, cha
+ 
+ 			tmp_win->frame_y++;
+ 			newy = FindConstraint (tmp_win, J_TOP);
++			tmp_win->frame_y--;
+ 			newh = FindConstraint (tmp_win, J_BOTTOM) - newy;
++			newh -= 2 * tmp_win->frame_bw;
+ 
+-			/* FindConstraint 'grows' over borders 
+-			 * the window is next to,
+-			 * so make the window a bit smaller. */
+-			if (!Scr->use3Dborders)
+-			  newh -= tmp_win->frame_bw * 2;
+-
+ 			newx = tmp_win->frame_x;
+ 			neww = tmp_win->frame_width;
+ 
+============================================================
+--- parse.c	a981dab6c1497614bbf93a9eb19a1e28fe871249
++++ parse.c	8dbb47b9e53ed31924474b56085a1639a7163094
+@@ -105,6 +105,10 @@
+ #include <sys/types.h>
+ #include <sys/socket.h>
+ #include <netdb.h>
++
++extern int GoThroughM4;
++extern char *keepM4_filename;
++extern int KeepTmpFile;
+ #endif
+ 
+ #if defined(ultrix)
+@@ -138,7 +142,6 @@ static char *m4_defs(Display *display, c
+ static char *m4_defs(Display *display, char *host);
+ #endif
+ 
+-extern int twmrc_lineno;
+ extern int mods;
+ 
+ int ConstrainedMoveTime = 400;		/* milliseconds, event times */
+@@ -151,12 +154,10 @@ static int m4twmFileInput (void);
+ #else
+ static int m4twmFileInput (void);
+ #endif
+-void twmUnput(int c);
+ int (*twmInputFunc)(void);
+ 
+ extern char *defTwmrc[];		/* default bindings */
+ 
+-extern int captive;
+ extern char *captivename;
+ 
+ /***********************************************************************
+@@ -205,7 +206,6 @@ int ParseTwmrc (char *filename)
+     char tmpfilename[257];
+ #ifdef USEM4
+     static FILE *raw;
+-    extern int GoThroughM4;
+ #endif
+ 
+     /*
+@@ -465,7 +465,6 @@ static int m4twmFileInput(void)
+ static int m4twmFileInput(void)
+ {
+     int line;
+-    extern char *keepM4_filename;
+     static FILE *cp = NULL;
+ 
+     if ( cp == NULL && keepM4_filename ) {
+@@ -636,6 +635,7 @@ typedef struct _TwmKeyword {
+ #define kw0_SloppyFocus                 63
+ #define kw0_NoImagesInWorkSpaceManager  64
+ #define kw0_NoWarpToMenuTitle           65
++#define kw0_SaveWorkspaceFocus          66 /* blais */
+ 
+ #define kws_UsePPosition		1
+ #define kws_IconFont			2
+@@ -1024,6 +1024,7 @@ static TwmKeyword keytable[] = { 
+     { "root",			ROOT, 0 },
+     { "s",			SHIFT, 0 },
+     { "savecolor",              SAVECOLOR, 0},
++    { "saveworkspacefocus",     KEYWORD, kw0_SaveWorkspaceFocus },
+     { "schrinkicontitles",	KEYWORD, kw0_ShrinkIconTitles },
+     { "select",			SELECT, 0 },
+     { "shift",			SHIFT, 0 },
+@@ -1367,6 +1368,10 @@ int do_single_keyword (int keyword)
+ 	Scr->SloppyFocus = TRUE;
+ 	return 1;
+ 
++      case kw0_SaveWorkspaceFocus:
++	Scr->SaveWorkspaceFocus = TRUE;
++	return 1;
++
+       case kw0_NoImagesInWorkSpaceManager:
+ 	Scr->NoImagesInWorkSpaceManager = TRUE;
+ 	return 1;
+@@ -2199,7 +2204,6 @@ static char *m4_defs(Display *display, c
+ 
+ static char *m4_defs(Display *display, char *host)
+ {
+-        extern int KeepTmpFile;
+         Screen *screen;
+         Visual *visual;
+         char client[MAXHOSTNAME], server[MAXHOSTNAME], *colon;
+============================================================
+--- screen.h	84a0e0a995a35462f4f2172569b9a09281f7fa3f
++++ screen.h	e3be8919dc8c0b63029d7a0772974bc1e433d9ff
+@@ -428,6 +428,7 @@ struct ScreenInfo
+     short WarpToDefaultMenuEntry; /* warp cursor to default menu entry, if any  */
+     short ClickToFocus;		/* click to focus */
+     short SloppyFocus;		/* "sloppy" focus */
++    short SaveWorkspaceFocus;	/* Save and restore focus on workspace change. */
+     short NoIconManagers;	/* Don't create any icon managers */
+     short ClientBorderWidth;	/* respect client window border width */
+     short SqueezeTitle;		/* make title as small as possible */
+============================================================
+--- siconify.bm	9f8036b04cc5732c911a2c9d3c009ff62f9ed795
++++ siconify.bm	fdcf54778c00bf4b3ec290dde3bd90b5625063fb
+@@ -1,5 +1,8 @@
+ #define siconify_width 11
+ #define siconify_height 11
++
++#ifdef __WANT_SICONIFY_BITS
+ static unsigned char siconify_bits[] = {
+    0xff, 0x07, 0x01, 0x04, 0x0d, 0x05, 0x9d, 0x05, 0xb9, 0x04, 0x51, 0x04,
+    0xe9, 0x04, 0xcd, 0x05, 0x85, 0x05, 0x01, 0x04, 0xff, 0x07};
++#endif
+============================================================
+--- twm.h	63f2a702c87e8b206c75e3eb66ad9b28615634cb
++++ twm.h	3817926f80921b06eae8204341ea5006a27f26a8
+@@ -118,7 +118,7 @@ typedef SIGNAL_T (*SigProc)(int); /* typ
+ 
+ #define NULLSTR ((char *) NULL)
+ 
+-#define MAX_BUTTONS	6	/* max mouse buttons supported */
++#define MAX_BUTTONS	11	/* max mouse buttons supported */
+ 
+ /* info stings defines */
+ #define INFO_LINES 30
+============================================================
+--- util.c	94efd2be21b528cc2b88738e412a17c656309150
++++ util.c	511d6c1cf0fdf697b6b34ec558f64aa4a94b4155
+@@ -165,7 +165,6 @@
+ 
+ #define MAXANIMATIONSPEED 20
+ 
+-extern int captive;
+ extern Atom _XA_WM_WORKSPACESLIST;
+ 
+ static Image *LoadBitmapImage (char  *name, ColorPair cp);
+@@ -1156,8 +1155,8 @@ void TryToAnimate (void)
+     gettimeofday (&tp, &tzp);
+     gap = ((tp.tv_sec - lastsec) * 1000000) + (tp.tv_usec - lastusec);
+     if (tracefile) {
+-	fprintf (tracefile, "Time = %lu, %ld, %u, %d, %lu\n", lastsec, lastusec,
+-		tp.tv_sec, tp.tv_usec, gap);
++	fprintf (tracefile, "Time = %lu, %ld, %ld, %ld, %lu\n", lastsec,
++		lastusec, (long)tp.tv_sec, (long)tp.tv_usec, gap);
+ 	fflush (tracefile);
+     }
+     gap *= AnimationSpeed;
+@@ -3880,7 +3879,7 @@ unsigned char *GetWMPropertyString(Windo
+     return stringptr;
+ }
+ 
+-void FreeWMPropertyString(unsigned char *prop)
++void FreeWMPropertyString(char *prop)
+ {
+     if (prop && (char *)prop != NoName) {
+ 	free(prop);
+============================================================
+--- util.h	086a3b87e05de5bca8bb5221a7fce8478059865e
++++ util.h	d8a995b60f289e1038c500a7641c5ee56022f10f
+@@ -141,7 +141,7 @@ extern unsigned char *GetWMPropertyStrin
+ extern Image *GetImage (char *name, ColorPair cp);
+ 
+ extern unsigned char *GetWMPropertyString(Window w, Atom prop);
+-extern void FreeWMPropertyString(unsigned char *prop);
++extern void FreeWMPropertyString(char *prop);
+ extern void ConstrainByBorders1 (int *left, int width, int *top, int height);
+ extern void ConstrainByBorders (TwmWindow *twmwin,
+ 				int *left, int width,
+============================================================
+--- version.c	adedcb14af1a8e50423b601a3a58529fe3c94399
++++ version.c	79609e3cb8536a42c2d31c8cbb2178ef18b3ce25
+@@ -50,7 +50,7 @@
+  * Author:  Claude Lecommandeur [ lecom@sic.epfl.ch ][ April 1992 ]
+  */
+ 
+-#define VERSION_ID "3.8"
++#define VERSION_ID "3.8.1"
+ 
+ char *Version = "MIT X Consortium, R6, ctwm " VERSION_ID;
+ char *VersionNumber = VERSION_ID;
+============================================================
+--- vscreen.c	9c5d09d51fefe8231e9de7ce18694c4852254ac7
++++ vscreen.c	9c8e13bbd28f15cf2881a7f2daf932ac025a9856
+@@ -30,6 +30,8 @@
+ #include "cursor.h"
+ #include "screen.h"
+ 
++extern void twmrc_error_prefix(void);
++
+ void InitVirtualScreens (ScreenInfo *scr) {
+   Cursor cursor;
+   unsigned long valuemask, attrmask;
+@@ -37,7 +39,6 @@ void InitVirtualScreens (ScreenInfo *scr
+   name_list *nptr;
+   Atom _XA_WM_VIRTUALROOT = XInternAtom (dpy, "WM_VIRTUALROOT", False);
+   Bool userealroot = True;
+-  extern void twmrc_error_prefix(void);
+ 
+   NewFontCursor (&cursor, "X_cursor");
+ 
+@@ -184,6 +185,6 @@ Bool CtwmSetVScreenMap(Display *display,
+     if(! tally) return(False);
+ 
+     XChangeProperty(display, rootw, _XA_WM_CTWM_VSCREENMAP, XA_STRING, 8,
+-	PropModeReplace, buf, strlen(buf));
++	PropModeReplace, (unsigned char *)buf, strlen(buf));
+     return(True);
+ }
+============================================================
+--- workmgr.c	6ae1b763af5d189dad48ba1c9cb1db121f5c3f60
++++ workmgr.c	ea9dbcb2897548e5721e6a6cd2da57223c2dfaad
+@@ -63,7 +63,7 @@ static void fakeRaiseLower ();
+    extern Atom _XA_WIN_STATE;
+ #endif /* GNOME */
+ 
+-extern void twmrc_error_prefix (void); /* in ctwm.c */
++extern void twmrc_error_prefix (void); /* in gram.c */
+ extern char *captivename;
+ 
+ /***********************************************************************
+@@ -143,6 +143,8 @@ void InitWorkSpaceManager (void)
+     Scr->workSpaceMgr.occupyWindow->geometry  = NULL;
+     Scr->workSpaceMgr.occupyWindow->columns   = 0;
+     Scr->workSpaceMgr.occupyWindow->twm_win   = (TwmWindow*) 0;
++    Scr->workSpaceMgr.occupyWindow->vspace    = Scr->WMgrVertButtonIndent;
++    Scr->workSpaceMgr.occupyWindow->hspace    = Scr->WMgrHorizButtonIndent;
+ 
+     Scr->workSpaceMgr.curColors.back  = Scr->Black;
+     Scr->workSpaceMgr.curColors.fore  = Scr->White;
+@@ -168,8 +170,14 @@ void ConfigureWorkSpaceManager (void) {
+     virtualScreen *vs;
+ 
+     for (vs = Scr->vScreenList; vs != NULL; vs = vs->next) {
+-	WorkSpaceWindow *wsw = (WorkSpaceWindow*) malloc (sizeof (WorkSpaceWindow));
+-	wsw->twm_win	     = (TwmWindow*) 0;
++	/*
++	 * Make sure this is all properly initialized to nothing.  Otherwise
++	 * bad and undefined behavior can show up in certain cases (e.g.,
++	 * with no Workspaces {} defined in .ctwmrc, the only defined
++	 * workspace will be random memory bytes, which can causes crashes on
++	 * e.g.  f.menu "TwmWindows".)
++	 */
++	WorkSpaceWindow *wsw = (WorkSpaceWindow*) calloc (1, sizeof (WorkSpaceWindow));
+ 	wsw->state = Scr->workSpaceMgr.initialstate; /* BUTTONSSTATE */
+ 	vs->wsw = wsw;
+     }
+@@ -472,6 +480,12 @@ void GotoWorkSpace (virtualScreen *vs, W
+ 	    XSetWindowBackgroundPixmap (dpy, vs->window, newws->image->pixmap);
+ 	XClearWindow (dpy, vs->window);
+     }
++
++    /* If SaveWorkspaceFocus is on, save the focus of the last window. */
++    if ( Scr->SaveWorkspaceFocus ) {
++        oldws->save_focus = Scr->Focus;
++    }
++
+     focuswindow = (TwmWindow*)0;
+     for (twmWin = &(Scr->TwmRoot); twmWin != NULL; twmWin = twmWin->next) {
+ 	if (twmWin->vs == vs) {
+@@ -485,11 +499,10 @@ void GotoWorkSpace (virtualScreen *vs, W
+ 		break;
+ 	      }
+ 	    }
+-	  } else
+-	    if (twmWin->hasfocusvisible) {
++	  } else if (twmWin->hasfocusvisible) {
+ 	      focuswindow = twmWin;
+ 	      SetFocusVisualAttributes (focuswindow, False);
+-	    }
++	  }
+ 	}
+     }
+     /* Move to the end of the twmWin list */
+@@ -611,6 +624,16 @@ void GotoWorkSpace (virtualScreen *vs, W
+ 			   (Window) 0, (TwmWindow*) 0, &event, C_ROOT, FALSE);
+     }
+ 
++    /* If SaveWorkspaceFocus is on, try to restore the focus to the last
++       window which was focused when we left this workspace. */
++    if ( Scr->SaveWorkspaceFocus && newws->save_focus) {
++        for (twmWin = &(Scr->TwmRoot); twmWin != NULL; twmWin = twmWin->next) {
++            if (twmWin == newws->save_focus) {
++                WarpToWindow(twmWin);
++            }
++        }
++    }
++
+     /* keep track of the order of the workspaces across restarts */
+     CtwmSetVScreenMap(dpy, Scr->Root, Scr->vScreenList);
+ 
+@@ -652,6 +675,7 @@ void AddWorkSpace (char *name, char *bac
+     ws->label = (char*) strdup (name);
+ #endif
+     ws->clientlist = NULL;
++    ws->save_focus = NULL;
+ 
+     if (background == NULL)
+ 	ws->cp.back = Scr->IconManagerC.back;
+@@ -734,7 +758,14 @@ void SetupOccupation (TwmWindow *twm_win
+     long gwkspc = 0; /* for GNOME - which workspace we occupy */
+ 
+     if (! Scr->workSpaceManagerActive) {
+-	twm_win->occupation = 1;
++	twm_win->occupation = 1 << 0;   /* occupy workspace #0 */
++	/*
++	 * Choose some valid virtual screen.
++	 * InitVirtualScreens() always seems to set this to non-NULL.
++	 */
++	twm_win->vs = Scr->vScreenList; /* only one virtual screen */
++	/* more?... */
++
+ 	return;
+     }
+     if (twm_win->wspmgr) return;
+============================================================
+--- workmgr.h	6897a7db2c5b2f23935674602a6be0edb518bb79
++++ workmgr.h	714b6e2de3af029c0d3c9fd06730a7e1e285444f
+@@ -93,6 +93,7 @@ struct WorkSpace {
+   IconMgr             *iconmgr;
+   ColorPair           cp;
+   ColorPair           backcp;
++  TwmWindow	      *save_focus;  /* Used by SaveWorkspaceFocus feature */
+   struct WindowRegion *FirstWindowRegion;
+   struct WorkSpace *next;
+ };
