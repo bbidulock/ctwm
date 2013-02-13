@@ -17,22 +17,18 @@
 
 <h2>First time actions</h2>
 
-<h3>Initialise database</h3>
+<h3>Clone the repository</h3>
 
-<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
-	db init
-</pre>
+<p>It's important that you know where you want the clone of the
+repository to reside.  It's a database that is separate from your
+working directory (where you have the current source).</p>
 
-<h3>Pull the repository</h3>
+<p>In the example shown here, the monotone-specific storage of
+repositories (<tt>~/.monotone/databases</tt> on Unix-like operating
+systems) is used (with a notation that starts with a colon).</p>
 
-<pre>  mtn  --db=<i>YOUR_DATABASE_DIRECTORYI</i>/ctwm.mtn \
-	pull guardian.lp.se free.lp.se:X.ctwm
-</pre>
-
-<h3>Check out the source</h3>
-
-<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn --branch=free.lp.se:X.ctwm \
-	co <i>CTWM_WORK_DIRECTORY</i>
+<pre>  mtn --db=:ctwm clone mtn://free.lp.se/X?free.lp.se:X.ctwm \
+	<i>CTWM_WORK_DIRECTORY</i>
 </pre>
 
 <p>If you want write access, you have to create a key pair with your
