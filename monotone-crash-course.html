@@ -35,10 +35,16 @@ systems) is used (with a notation that starts with a colon).</p>
 email address as identity, then extract the public half and send it
 to me.</p>
 
-<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
-	genkey your.mail@address.com</pre>
-<pre>  mtn --db=<i>YOUR_DATABASE_DIRECTORY</i>/ctwm.mtn \
-	pubkey your.mail@address.com > public_your.mail@address.com</pre>
+<pre>  mtn --db=:ctwm genkey your.mail@address.com</pre>
+<pre>  mtn --db=:ctwm pubkey your.mail@address.com \
+	> public_your.mail@address.com</pre>
+
+<p>You might also want to check out several working directories from
+the same repository, perhaps to work on a different branch.  Here's
+the easy way to do so:</p>
+
+<pre>  mtn --db=:ctwm co --branch=free.lp.se:X.ctwm.<i>FEATURE</i> \
+	<i>CTWM_WORK_DIRECTORY_FOR_FEATURE</i></pre>
 
 <hr />
 
