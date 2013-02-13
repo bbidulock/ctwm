@@ -27,8 +27,8 @@ working directory (where you have the current source).</p>
 repositories (<tt>~/.monotone/databases</tt> on Unix-like operating
 systems) is used (with a notation that starts with a colon).</p>
 
-<pre>  mtn --db=:ctwm clone mtn://free.lp.se/X?free.lp.se:X.ctwm \
-	<i>CTWM_WORK_DIRECTORY</i>
+<pre>  mtn --db=:ctwm clone 'mtn://free.lp.se/X?free.lp.se:X.ctwm*' \
+	--branch=free.lp.se:X.ctwm <i>CTWM_WORK_DIRECTORY</i>
 </pre>
 
 <p>If you want write access, you have to create a key pair with your
