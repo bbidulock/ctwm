@@ -1179,7 +1179,6 @@ void fullzoom(TwmWindow *tmp_win, int flag)
 	int zheight = Scr->rooth;
 	int tmpX, tmpY, tmpW, tmpH;
 
-
 	XGetGeometry(dpy, (Drawable) tmp_win->frame, &junkRoot,
 	             &dragx, &dragy, (unsigned int *)&dragWidth, (unsigned int *)&dragHeight,
 	             &junkbw,

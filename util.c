@@ -1692,6 +1692,20 @@ Bool UpdateFont(MyFont *font, int height)
 	return (prev != font->avg_height);
 }
 
+Bool UpdateFont (MyFont *font, int height)
+{
+    int prev = font->avg_height;
+    font->avg_fheight = (font->avg_fheight * font->avg_count + height)
+	/ ++font->avg_count;
+    /* Arbitrary limit.  */
+    if (font->avg_count >= 256) font->avg_count = 256;
+    font->avg_height = (int) (font->avg_fheight + 0.5);
+    /* fprintf (stderr, "Updating avg with %d(%d) + %d -> %d(%f)\n",
+     * 	     prev, font->avg_count, height,
+     * 	     font->avg_height, font->avg_fheight); */
+    return (prev != font->avg_height);
+}
+
 void GetFont(MyFont *font)
 {
 	char *deffontname = "fixed,*";
