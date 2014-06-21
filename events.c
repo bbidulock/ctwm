@@ -2190,25 +2190,6 @@ void HandleClientMessage(void)
 	if(Event.xclient.message_type == _XA_WIN_STATE) {
 		unsigned long new_stuff = (unsigned long) Event.xclient.data.l [1];
 		unsigned long old_stuff = (unsigned long) Event.xclient.data.l [0];
-		Window        tmp_win = Event.xclient.window;
-
-		twm_win = GetTwmWindow(tmp_win);
-
-		if(twm_win == NULL) {
-			return;
-		}
-
-		if(old_stuff & WIN_STATE_STICKY) {  /* sticky */
-			if(new_stuff & WIN_STATE_STICKY) {
-				OccupyAll(twm_win);
-			}
-			else {
-				ChangeOccupation(twm_win, (1 << (Scr->currentvs->wsw->currentwspc->number)));
-			}
-		}
-		if(old_stuff & WIN_STATE_SHADED) {      /* shaded (squeezed) */
-			Squeeze(twm_win);
-		}
 	}
 #endif /* GNOME */
 	else if((Event.xclient.message_type == _XA_WM_PROTOCOLS) &&

@@ -3225,9 +3225,64 @@ int ExecuteFunction(int func, void *action, Window w, TwmWindow *tmp_win,
 
 			if(!Scr->OpaqueMove && DragWindow == None) {
 				UninstallRootColormap();
+					XTranslateCoordinates(dpy, Scr->Root, tmp_win->winbox->window,
+					                      eventp->xmotion.x_root, eventp->xmotion.y_root,
+					                      &eventp->xmotion.x_root, &eventp->xmotion.y_root, &JunkChild);
+				}
+
+				if(!Scr->NoRaiseMove && Scr->OpaqueMove && !WindowMoved) {
+					RaiseFrame(w);
+				}
+
+				deltax = eventp->xmotion.x_root - origX;
+				newx = origNum + deltax;
+
+				/*
+				 * Clamp to left and right.
+				 * If we're in pixel size, keep within [ 0, frame_width >.
+				 * If we're proportional, don't cross the 0.
+				 * Also don't let the nominator get bigger than the denominator.
+				 * Keep within [ -denom, -1] or [ 0, denom >.
+				 */
+				{
+					int wtmp = tmp_win->frame_width; /* or si->denom; if it were != 0 */
+					if(origNum < 0) {
+						if(newx >= 0) {
+							newx = -1;
+						}
+						else if(newx < -wtmp) {
+							newx = -wtmp;
+						}
+					}
+					else if(origNum >= 0) {
+						if(newx < 0) {
+							newx = 0;
+						}
+						else if(newx >= wtmp) {
+							newx = wtmp - 1;
+						}
+					}
+				}
+
+				si->num = newx;
+				/* This, finally, actually moves the title bar */
+				/* XXX pressing a second button should cancel and undo this */
+				SetFrameShape(tmp_win);
 			}
 			break;
 		}
+		case F_FUNCTION: {
+			MenuRoot *mroot;
+			MenuItem *mitem;
+
+			if((mroot = FindMenuRoot(action)) == NULL) {
+				if(!action) {
+					action = "undef";
+				}
+				fprintf(stderr, "%s: couldn't find function \"%s\"\n",
+				        ProgramName, action);
+				return TRUE;
+			}
 
 		case F_PRIORITYSWITCHING:
 		case F_SWITCHPRIORITY:
@@ -3258,6 +3313,19 @@ int ExecuteFunction(int func, void *action, Window w, TwmWindow *tmp_win,
 				case F_SWITCHPRIORITY:
 					OtpSwitchPriority(tmp_win, wintype);
 					break;
+			if(NeedToDefer(mroot) && DeferExecution(context, func, Scr->SelectCursor)) {
+				return TRUE;
+			}
+			else {
+				for(mitem = mroot->first; mitem != NULL; mitem = mitem->next) {
+					if(!ExecuteFunction(mitem->func, mitem->action, w,
+					                    tmp_win, eventp, context, pulldown))
+						/* pebl FIXME: the focus should be updated here,
+						 or the function would operate on the same window */
+					{
+						break;
+					}
+				}
 			}
 		}
 		break;
