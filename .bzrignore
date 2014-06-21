@@ -1,0 +1,6 @@
+ctwm
+deftwmrc.c
+gram.tab.[ch]
+lex.c
+*.tar*
+build/*

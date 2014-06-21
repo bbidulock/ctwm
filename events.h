@@ -24,11 +24,11 @@
 /**    TORTIOUS ACTION, ARISING OUT OF OR IN  CONNECTION  WITH  THE  USE    **/
 /**    OR PERFORMANCE OF THIS SOFTWARE.                                     **/
 /*****************************************************************************/
-/* 
+/*
  *  [ ctwm ]
  *
  *  Copyright 1992 Claude Lecommandeur.
- *            
+ *
  * Permission to use, copy, modify  and distribute this software  [ctwm] and
  * its documentation for any purpose is hereby granted without fee, provided
  * that the above  copyright notice appear  in all copies and that both that
@@ -57,13 +57,14 @@
  *
  * twm event handler include file
  *
- * 17-Nov-87 Thomas E. LaStrange		File created
+ * 17-Nov-87 Thomas E. LaStrange                File created
  *
  ***********************************************************************/
 
 #ifndef _EVENTS_
 #define _EVENTS_
 
+#include <stdio.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
 
@@ -74,11 +75,12 @@ extern Bool StashEventTime(register XEvent *ev);
 extern Time lastTimestamp;
 extern void SimulateMapRequest(Window w);
 extern void AutoRaiseWindow(TwmWindow *tmp);
-extern void SetRaiseWindow (TwmWindow *tmp);
+extern void SetRaiseWindow(TwmWindow *tmp);
+extern void AutoPopupMaybe(TwmWindow *tmp);
 extern void AutoLowerWindow(TwmWindow *tmp);
 #define LastTimestamp() lastTimestamp
-extern Window WindowOfEvent (XEvent *e);
-extern void FixRootEvent (XEvent *e);
+extern Window WindowOfEvent(XEvent *e);
+extern void FixRootEvent(XEvent *e);
 extern Bool DispatchEvent(void);
 extern Bool DispatchEvent2(void);
 extern void HandleEvents(void);
@@ -104,17 +106,18 @@ extern void HandleFocusIn(XFocusInEvent *event);
 extern void HandleFocusOut(XFocusOutEvent *event);
 extern void SynthesiseFocusOut(Window w);
 extern void SynthesiseFocusIn(Window w);
+extern void HandleCirculateNotify(void);
 extern int Transient(Window w, Window *propw);
 
 extern ScreenInfo *FindScreenInfo(Window w);
 
-extern int InstallWindowColormaps (int type, TwmWindow *tmp);
-extern int InstallColormaps (int type, Colormaps *cmaps);
+extern int InstallWindowColormaps(int type, TwmWindow *tmp);
+extern int InstallColormaps(int type, Colormaps *cmaps);
 extern void InstallRootColormap(void);
 extern void UninstallRootColormap(void);
-extern void ConfigureRootWindow (XEvent *ev);
+extern void ConfigureRootWindow(XEvent *ev);
 
-extern void free_cwins (TwmWindow *tmp);
+extern void free_cwins(TwmWindow *tmp);
 
 extern event_proc EventHandler[];
 extern Window DragWindow;
@@ -127,6 +130,8 @@ extern unsigned int DragHeight;
 extern unsigned int DragBW;
 extern int CurrentDragX;
 extern int CurrentDragY;
+extern int Context;
+extern FILE *tracefile;
 
 extern int ButtonPressed;
 extern int Cancel;

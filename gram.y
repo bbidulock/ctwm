@@ -68,6 +68,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "twm.h"
+#include "otp.h"
 #include "menus.h"
 #include "icons.h"
 #include "windowbox.h"
@@ -94,7 +95,8 @@ static char *client, *workspace;
 static MenuItem *lastmenuitem = (MenuItem*) 0;
 
 extern void yyerror(char *s);
-extern void RemoveDQuote(char *str);
+static void InitGramVariables(void);
+static void RemoveDQuote(char *str);
 
 static MenuRoot *GetRoot(char *name, char *fore, char *back);
 
@@ -108,11 +110,8 @@ static char *ptr;
 static name_list **list;
 static int cont = 0;
 static int color;
-Bool donttoggleworkspacemanagerstate = FALSE;
-int mods = 0;
+static int mods = 0;
 unsigned int mods_used = (ShiftMask | ControlMask | Mod1Mask);
-
-extern void twmrc_error_prefix(void);
 
 extern int yylex(void);
 extern int yyparse(void);
@@ -130,20 +129,24 @@ extern int yyparse(void);
 %token <num> ICONMGR_SHOW ICONMGR ALTER WINDOW_FUNCTION ZOOM ICONMGRS
 %token <num> ICONMGR_GEOMETRY ICONMGR_NOSHOW MAKE_TITLE
 %token <num> ICONIFY_BY_UNMAPPING DONT_ICONIFY_BY_UNMAPPING
+%token <num> AUTO_POPUP
 %token <num> NO_BORDER NO_ICON_TITLE NO_TITLE AUTO_RAISE NO_HILITE ICON_REGION
 %token <num> WINDOW_REGION META SHIFT LOCK CONTROL WINDOW TITLE ICON ROOT FRAME
 %token <num> COLON EQUALS SQUEEZE_TITLE DONT_SQUEEZE_TITLE
+%token <num> WARP_ON_DEICONIFY
 %token <num> START_ICONIFIED NO_TITLE_HILITE TITLE_HILITE
 %token <num> MOVE RESIZE WAITC SELECT KILL LEFT_TITLEBUTTON RIGHT_TITLEBUTTON
 %token <num> NUMBER KEYWORD NKEYWORD CKEYWORD CLKEYWORD FKEYWORD FSKEYWORD
+%token <num> FNKEYWORD PRIORITY_SWITCHING PRIORITY_NOT_SWITCHING
 %token <num> SKEYWORD SSKEYWORD DKEYWORD JKEYWORD WINDOW_RING WINDOW_RING_EXCLUDE WARP_CURSOR ERRORTOKEN
 %token <num> NO_STACKMODE ALWAYS_ON_TOP WORKSPACE WORKSPACES WORKSPCMGR_GEOMETRY
 %token <num> OCCUPYALL OCCUPYLIST MAPWINDOWCURRENTWORKSPACE MAPWINDOWDEFAULTWORKSPACE
+%token <num> ON_TOP_PRIORITY
 %token <num> UNMAPBYMOVINGFARAWAY OPAQUEMOVE NOOPAQUEMOVE OPAQUERESIZE NOOPAQUERESIZE
 %token <num> DONTSETINACTIVE CHANGE_WORKSPACE_FUNCTION DEICONIFY_FUNCTION ICONIFY_FUNCTION
 %token <num> AUTOSQUEEZE STARTSQUEEZED DONT_SAVE AUTO_LOWER ICONMENU_DONTSHOW WINDOW_BOX
 %token <num> IGNOREMODIFIER WINDOW_GEOMETRIES ALWAYSSQUEEZETOGRAVITY VIRTUAL_SCREENS
-%token <num> IGNORE_TRANSIENT DONTTOGGLEWORKSPACEMANAGERSTATE
+%token <num> IGNORE_TRANSIENT
 %token <ptr> STRING
 
 %type <ptr> string
@@ -152,7 +155,8 @@ extern int yyparse(void);
 %start twmrc
 
 %%
-twmrc		: stmts
+twmrc		: { InitGramVariables(); }
+                  stmts
 		;
 
 stmts		: /* Empty */
@@ -292,7 +296,11 @@ stmt		: error
 		  win_list
 		| WORKSPACES {}
 		  workspc_list
-		| IGNOREMODIFIER {} LB keys  { Scr->IgnoreModifier = mods; mods = 0; } RB
+		| IGNOREMODIFIER
+			{ mods = 0; }
+			LB keys
+			{ Scr->IgnoreModifier |= mods; mods = 0; }
+			RB
 		| OCCUPYALL		{ list = &Scr->OccupyAll; }
 		  win_list
 		| ICONMENU_DONTSHOW	{ list = &Scr->IconMenuDontShow; }
@@ -325,13 +333,42 @@ stmt		: error
 		  win_list
 		| NO_HILITE		{ if (Scr->FirstTime)
 						Scr->Highlight = FALSE; }
-		| ALWAYS_ON_TOP		{ list = &Scr->AlwaysOnTopL; }
+                | ON_TOP_PRIORITY signed_number 
+                                        { OtpScrSetZero(Scr, WinWin, $2); }
+		| ON_TOP_PRIORITY ICONS signed_number
+                                        { OtpScrSetZero(Scr, IconWin, $3); }
+		| ON_TOP_PRIORITY signed_number
+                                        { list = OtpScrPriorityL(Scr, WinWin, $2); }
+		  win_list
+		| ON_TOP_PRIORITY ICONS signed_number
+                                        { list = OtpScrPriorityL(Scr, IconWin, $3); }
+		  win_list
+		| ALWAYS_ON_TOP		{ list = OtpScrPriorityL(Scr, WinWin, 8); }
+		  win_list
+		| PRIORITY_SWITCHING	{ OtpScrSetSwitching(Scr, WinWin, False);
+		                          list = OtpScrSwitchingL(Scr, WinWin); }
+		  win_list
+		| PRIORITY_NOT_SWITCHING { OtpScrSetSwitching(Scr, WinWin, True);
+		                          list = OtpScrSwitchingL(Scr, WinWin); }
+		  win_list
+		| PRIORITY_SWITCHING ICONS
+                                        { OtpScrSetSwitching(Scr, IconWin, False);
+                                        list = OtpScrSwitchingL(Scr, IconWin); }
+		  win_list
+		| PRIORITY_NOT_SWITCHING ICONS
+                                        { OtpScrSetSwitching(Scr, IconWin, True);
+		                          list = OtpScrSwitchingL(Scr, IconWin); }
+		  win_list
+
 		  win_list
 		| NO_STACKMODE		{ list = &Scr->NoStackModeL; }
 		  win_list
 		| NO_STACKMODE		{ if (Scr->FirstTime)
 						Scr->StackMode = FALSE; }
 		| NO_BORDER		{ list = &Scr->NoBorder; }
+		  win_list
+		| AUTO_POPUP		{ Scr->AutoPopup = TRUE; }
+		| AUTO_POPUP		{ list = &Scr->AutoPopupL; }
 		  win_list
 		| DONT_SAVE		{ list = &Scr->DontSave; }
 		  win_list
@@ -345,7 +382,6 @@ stmt		: error
 						Scr->NoTitlebar = TRUE; }
 		| IGNORE_TRANSIENT	{ list = &Scr->IgnoreTransientL; }
 		  win_list
-		| DONTTOGGLEWORKSPACEMANAGERSTATE  { donttoggleworkspacemanagerstate = TRUE; }
 		| MAKE_TITLE		{ list = &Scr->MakeTitle; }
 		  win_list
 		| START_ICONIFIED	{ list = &Scr->StartIconified; }
@@ -353,6 +389,8 @@ stmt		: error
 		| AUTO_RAISE		{ list = &Scr->AutoRaise; }
 		  win_list
 		| AUTO_RAISE		{ Scr->AutoRaiseDefault = TRUE; }
+		| WARP_ON_DEICONIFY	{ list = &Scr->WarpOnDeIconify; }
+		  win_list
 		| AUTO_LOWER		{ list = &Scr->AutoLower; }
 		  win_list
 		| AUTO_LOWER		{ Scr->AutoLowerDefault = TRUE; }
@@ -1029,7 +1067,12 @@ void yyerror(char *s)
     ParseError = 1;
 }
 
-void RemoveDQuote(char *str)
+static void InitGramVariables(void)
+{
+    mods = 0;
+}
+
+static void RemoveDQuote(char *str)
 {
     register char *i, *o;
     register int n;
@@ -1207,7 +1250,7 @@ static Bool CheckWarpScreenArg (register char *s)
 	strcmp (s,  WARPSCREEN_BACK) == 0)
       return True;
 
-    for (; *s && isascii(*s) && isdigit(*s); s++) ; /* SUPPRESS 530 */
+    for (; *s && Isascii(*s) && Isdigit(*s); s++) ; /* SUPPRESS 530 */
     return (*s ? False : True);
 }
 

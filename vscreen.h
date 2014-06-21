@@ -1,8 +1,8 @@
-/* 
+/*
  *  [ ctwm ]
  *
  *  Copyright 1992 Claude Lecommandeur.
- *            
+ *
  * Permission to use, copy, modify  and distribute this software  [ctwm] and
  * its documentation for any purpose is hereby granted without fee, provided
  * that the above  copyright notice appear  in all copies and that both that
@@ -28,20 +28,20 @@
 #ifndef _VSCREEN_
 #define _VSCREEN_
 
-struct virtualScreen {
-  int   x, y, w, h;		/* x,y relative to XineramaRoot */
-  Window window;
-  /* Boolean main; */
-  struct WorkSpaceWindow *wsw;
-  struct virtualScreen *next;
+struct VirtualScreen {
+	int   x, y, w, h;             /* x,y relative to XineramaRoot */
+	Window window;
+	/* Boolean main; */
+	struct WorkSpaceWindow *wsw;
+	struct VirtualScreen *next;
 };
 
-void InitVirtualScreens (ScreenInfo *scr);
-virtualScreen *findIfVScreenOf (int x, int y);
-virtualScreen *getVScreenOf (int x, int y);
-Bool CtwmGetVScreenMap (Display *display, Window rootw,
-			char *outbuf, int *outbuf_len);
+void InitVirtualScreens(ScreenInfo *scr);
+VirtualScreen *findIfVScreenOf(int x, int y);
+VirtualScreen *getVScreenOf(int x, int y);
+Bool CtwmGetVScreenMap(Display *display, Window rootw,
+                       char *outbuf, int *outbuf_len);
 Bool CtwmSetVScreenMap(Display *display, Window rootw,
-		       struct virtualScreen *firstvs);
+                       struct VirtualScreen *firstvs);
 
 #endif /* -VSCREEN- */
